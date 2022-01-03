@@ -21,7 +21,7 @@ OR download `mouldbtools` directly from Github without cloning the repository:
 install.packages("devtools")
 library(devtools)
 install_github("MoultDB/moultdbtools")
-library(mouldtdbtools)
+library(moultdbtools)
 ```
 
 ## Available methods and how to use them:
