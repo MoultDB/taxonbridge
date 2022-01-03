@@ -20,13 +20,13 @@ OR download `mouldbtools` directly from Github without cloning the repository:
 ``` r
 install.packages("devtools")
 library(devtools)
-install_github("werner0/moultdbtools/moultdbtools", subdir="pkg")
+install_github("MoultDB/moultdbtools)
 library(mouldtdbtools)
 ```
 
 ## Available methods and how to use them:
 
-See the `moultdbtools` [documentation](https://github.com/Werner0/moultdbtools/moultdbtools_workflow.pdf) and [workflow](https://github.com/Werner0/moultdbtools/moultdbtools_0.0.0.9000.pdf).
+See the `moultdbtools` [documentation](https://github.com/MoultDB/moultdbtools/moultdbtools_workflow.pdf) and [workflow](https://github.com/MoultDB/moultdbtools/moultdbtools_0.0.0.9000.pdf).
 
 ## Example
 
