@@ -24,7 +24,7 @@ install_github("MoultDB/moultdbtools")
 library(moultdbtools)
 ```
 
-## Available methods and how to use them:
+## Available methods and how to use them
 
 See the `moultdbtools` [documentation](https://github.com/MoultDB/moultdbtools/blob/master/moultdbtools_0.0.0.9000.pdf) and [workflow](https://github.com/MoultDB/moultdbtools/blob/master/moultdbtools_workflow.pdf).
 
