@@ -20,7 +20,7 @@ OR download `mouldbtools` directly from Github without cloning the repository:
 ``` r
 install.packages("devtools")
 library(devtools)
-install_github("MoultDB/moultdbtools)
+install_github("MoultDB/moultdbtools")
 library(mouldtdbtools)
 ```
 
