@@ -12,10 +12,10 @@ You can install the development version of `moultdbtools` by cloning this reposi
 
 ``` r
 install.packages("path/to/moultdbtools_0.0.0.9000.tar.gz", repos = NULL, type="source")
-library(mouldtdbtools)
+library(moultdbtools)
 ```
 
-OR download `mouldbtools` directly from Github without cloning the repository:
+OR download `moultdbtools` directly from Github without cloning the repository:
 
 ``` r
 install.packages("devtools")
