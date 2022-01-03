@@ -4,7 +4,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-There are three main sources of taxonomic information on the internet: The Global Biodiversity Information Facility (GBIF), the National Centre for Biotechnology Information (NCBI), and the Catalogue of Life (COL). The NCBI is the go to resource for many scientists, but it only includes data on extant species. The GBIF includes extant species and it has integrated the COL into its taxonomic database (i.e. the GBIF backbone taxonomy). However, he NCBI taxonomy is not integrated into the GBIF backbone taxonomy. The goal of `moultdbtools` is to provide tools for merging the GBIF backbone taxonomy and the NCBI taxonomy. 
+There are three main sources of taxonomic information on the internet: The Global Biodiversity Information Facility (GBIF), the National Centre for Biotechnology Information (NCBI), and the Catalogue of Life (COL). The NCBI is the go to resource for many scientists, but it only includes data on extant species. The GBIF includes extinct as well as extant species, and it has integrated the COL into its taxonomic database (i.e. the GBIF backbone taxonomy). However, the NCBI taxonomy is not integrated into the GBIF backbone taxonomy. The goal of `moultdbtools` is to provide tools for merging the GBIF backbone taxonomy and the NCBI taxonomy. 
 
 ## Installation
 
