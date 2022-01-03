@@ -26,7 +26,7 @@ library(mouldtdbtools)
 
 ## Available methods and how to use them:
 
-See the `moultdbtools` [documentation](https://github.com/MoultDB/moultdbtools/blob/master/moultdbtools_workflow.pdf) and [workflow](https://github.com/MoultDB/moultdbtools//blob/master/moultdbtools_0.0.0.9000.pdf).
+See the `moultdbtools` [documentation](https://github.com/MoultDB/moultdbtools/blob/master/moultdbtools_0.0.0.9000.pdf) and [workflow](https://github.com/MoultDB/moultdbtools/blob/master/moultdbtools_workflow.pdf).
 
 ## Example
 
