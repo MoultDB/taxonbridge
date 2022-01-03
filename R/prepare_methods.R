@@ -1,0 +1,96 @@
+#' Get all NCBI and GBIF taxonomic ranks
+#'
+#' \code{prepare_rank_dist()} returns taxonomic ranks aggregated by frequency for
+#' data derived from the NCBI, the GBIF, or both.
+#'
+#' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
+#' @param GBIF A boolean indicating whether GBIF taxonomic ranks are to be retrieved.
+#' @param NCBI A boolean indicating whether NCBI taxonomic ranks are to be retrieved.
+#'
+#' @return A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class \code{all_ranks}.
+#' @export
+#'
+#' @examples
+#' prepare_rank_dist(load_sample())
+#' prepare_rank_dist(load_sample(), NCBI=FALSE)
+prepare_rank_dist <- function(x, GBIF=TRUE, NCBI=TRUE) {
+  if (!is.logical(GBIF)) stop("Argument to GBIF parameter must be either TRUE or FALSE")
+  if (!is.logical(NCBI)) stop("Argument to NCBI parameter must be either TRUE or FALSE")
+  taxonRank <- ncbi_rank <- NULL
+  if (GBIF && NCBI) {
+    xout <- list("GBIF" = dplyr::count(x, taxonRank),"NCBI" = dplyr::count(x, ncbi_rank))
+    xout <- lapply(xout, function(y) {colnames(y) <- c("Rank", "Frequency"); y})
+    class(xout) <- "all_ranks"
+    xout
+  }
+  else if (GBIF && !NCBI) {
+    xout <- list("GBIF" = dplyr::count(x, taxonRank))
+    xout <- lapply(xout, function(y) {colnames(y) <- c("Rank", "Frequency"); y})
+    class(xout) <- "one_rank"
+    xout
+  }
+  else if (!GBIF && NCBI) {
+    xout <- list("NCBI" = dplyr::count(x, ncbi_rank))
+    xout <- lapply(xout, function(y) {colnames(y) <- c("Rank", "Frequency"); y})
+    class(xout) <- "one_rank"
+    xout
+  }
+  else {
+    stop("At least one argument has to be true")
+  }
+}
+
+#' Get comparable NCBI and GBIF taxonomic ranks
+#'
+#' \code{prepare_comparable_rank_dist()}, like \code{prepare_rank_dist()}, returns taxonomic ranks aggregated by frequency for
+#' data derived from the NCBI, the GBIF, or both. However, \code{prepare_comparable_rank_dist()} only includes
+#' taxonomic ranks that have at least one NCBI and one GBIF representative.
+#'
+#' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
+#' @param GBIF A boolean indicating whether GBIF taxonomic ranks are to be retrieved.
+#' @param NCBI A boolean indicating whether NCBI taxonomic ranks are to be retrieved.
+#'
+#' @return A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class \code{all_ranks}.
+#' @export
+#'
+#' @examples
+#' prepare_comparable_rank_dist(load_sample())
+#' prepare_comparable_rank_dist(get_status(load_sample(), "accepted"), NCBI = FALSE)
+prepare_comparable_rank_dist <- function(x, GBIF = TRUE, NCBI = TRUE) {
+  if (!is.logical(GBIF)) stop("Argument to GBIF parameter must be either TRUE or FALSE")
+  if (!is.logical(NCBI)) stop("Argument to NCBI parameter must be either TRUE or FALSE")
+  G <- GBIF
+  N <- NCBI
+  similar <- c(intersect(x$taxonRank,x$ncbi_rank))
+  x <- x[x$taxonRank %in% similar & x$ncbi_rank %in% similar,]
+  xout <- prepare_rank_dist(x, G, N)
+  xout
+}
+
+#' Filter a combined taxonomy by GBIF taxonomic status/synonym
+#'
+#' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
+#' @param status Filter on GBIF assigned status (i.e. "doubtful", "accepted", "proparte synonym", "synonym", "homotypic synonym",
+#' "heterotypic synonym"). Can be a string or a vector of strings. Defaults to no filtering.
+#'
+#' @return A filtered tibble
+#' @export
+#'
+#' @examples
+#' get_status(load_sample(), "synonym")
+#' get_status(load_sample(), c("accepted", "doubtful"))
+get_status <- function (x, status = "all") {
+  StatusVector <- c(tolower(status))
+  if(!"all" %in% StatusVector) {
+    GBIF_status <- c("doubtful", "accepted", "proparte synonym", "synonym", "homotypic synonym", "heterotypic synonym")
+    if (!rje::is.subset(StatusVector,GBIF_status)) {
+      stop(paste0("Status must be, and only be, one or more of: ", toString(GBIF_status)))
+    }
+    xout <- x[x$taxonomicStatus %in% StatusVector,]
+    xout
+  }
+  else {
+    xout <- x
+    xout
+  }
+}
