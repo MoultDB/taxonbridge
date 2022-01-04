@@ -1,9 +1,11 @@
 test_that("Sample data is in the correct format",
           {
+            x <- load_sample()
+            x_table <- table(sapply(x,class))
             #Check dimensions
-            expect_equal(dim(load_sample()), c(2000,20))
+            expect_equal(dim(x), c(2000,20))
             #Check number of character type columns
-            expect_equal(table(sapply(load_sample(),class))["character"][[1]], 15)
+            expect_equal(x_table["character"][[1]], 15)
             #Check number of numeric type columns
-            expect_equal(table(sapply(load_sample(),class))["numeric"][[1]], 5)
+            expect_equal(x_table["numeric"][[1]], 5)
           })
