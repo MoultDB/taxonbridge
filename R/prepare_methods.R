@@ -66,31 +66,3 @@ prepare_comparable_rank_dist <- function(x, GBIF = TRUE, NCBI = TRUE) {
   xout <- prepare_rank_dist(x, G, N)
   xout
 }
-
-#' Filter a combined taxonomy by GBIF taxonomic status/synonym
-#'
-#' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
-#' @param status Filter on GBIF assigned status (i.e. "doubtful", "accepted", "proparte synonym", "synonym", "homotypic synonym",
-#' "heterotypic synonym"). Can be a string or a vector of strings. Defaults to no filtering.
-#'
-#' @return A filtered tibble
-#' @export
-#'
-#' @examples
-#' get_status(load_sample(), "synonym")
-#' get_status(load_sample(), c("accepted", "doubtful"))
-get_status <- function (x, status = "all") {
-  StatusVector <- c(tolower(status))
-  if(!"all" %in% StatusVector) {
-    GBIF_status <- c("doubtful", "accepted", "proparte synonym", "synonym", "homotypic synonym", "heterotypic synonym")
-    if (!rje::is.subset(StatusVector,GBIF_status)) {
-      stop(paste0("Status must be, and only be, one or more of: ", toString(GBIF_status)))
-    }
-    xout <- x[x$taxonomicStatus %in% StatusVector,]
-    xout
-  }
-  else {
-    xout <- x
-    xout
-  }
-}
