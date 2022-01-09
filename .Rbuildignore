@@ -3,6 +3,7 @@
 ^LICENSE\.md$
 ^moultdbtools_workflow.pdf$
 ^moultdbtools_0.0.0.9000.pdf$
+^moultdbtools_data_provenance.pdf$
 ^moultdbtools_0.0.0.9000.tar.gz$
 ^main.yml$
 ^.github$
