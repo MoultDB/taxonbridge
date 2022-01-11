@@ -4,7 +4,7 @@
 \alias{prepare_rank_dist}
 \title{Get all NCBI and GBIF taxonomic ranks}
 \usage{
-prepare_rank_dist(x, GBIF = TRUE, NCBI = TRUE)
+prepare_rank_dist(x, GBIF = FALSE, NCBI = FALSE)
 }
 \arguments{
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
@@ -21,6 +21,6 @@ A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class 
 data derived from the NCBI, the GBIF, or both.
 }
 \examples{
-prepare_rank_dist(load_sample())
-prepare_rank_dist(load_sample(), NCBI=FALSE)
+prepare_rank_dist(load_sample(), NCBI=TRUE, GBIF=TRUE)
+prepare_rank_dist(load_sample(), NCBI=TRUE)
 }

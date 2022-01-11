@@ -11,9 +11,9 @@
 #' @export
 #'
 #' @examples
-#' prepare_rank_dist(load_sample())
-#' prepare_rank_dist(load_sample(), NCBI=FALSE)
-prepare_rank_dist <- function(x, GBIF=TRUE, NCBI=TRUE) {
+#' prepare_rank_dist(load_sample(), NCBI=TRUE, GBIF=TRUE)
+#' prepare_rank_dist(load_sample(), NCBI=TRUE)
+prepare_rank_dist <- function(x, GBIF=FALSE, NCBI=FALSE) {
   if (!is.logical(GBIF)) stop("Argument to GBIF parameter must be either TRUE or FALSE")
   if (!is.logical(NCBI)) stop("Argument to NCBI parameter must be either TRUE or FALSE")
   taxonRank <- ncbi_rank <- NULL

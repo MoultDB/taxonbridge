@@ -7,9 +7,9 @@
 #' @export
 #'
 #' @examples
-#' plot_mdb(prepare_rank_dist(load_sample()))
+#' plot_mdb(prepare_rank_dist(load_sample(), NCBI = TRUE, GBIF = TRUE))
 #' plot_mdb(prepare_comparable_rank_dist(load_sample()))
-#' plot_mdb(prepare_rank_dist(get_status(load_sample(),status = "synonym"), NCBI = FALSE))
+#' plot_mdb(prepare_rank_dist(get_status(load_sample(),status = "synonym"), NCBI = TRUE))
 #' plot_mdb(prepare_comparable_rank_dist(get_validity(get_status(load_sample()), valid = TRUE)))
 plot_mdb <- function(x) {
   UseMethod("plot_mdb")
@@ -17,9 +17,8 @@ plot_mdb <- function(x) {
 
 #' @export
 plot_mdb.default <- function (x) {
-  if (!class(x) %in% c("one_rank", "all_ranks")) {
-    stop(paste0("plot_mdb() is not applicable to ", toString(x)),
-         ". First use a moultdbtools get_foo() method to obtain an appropriate object.")
+  if (class(x) != "one_rank" || class(x) != "all_ranks") {
+    stop("plot_mdb() is not applicable to this object.")
   }
 }
 

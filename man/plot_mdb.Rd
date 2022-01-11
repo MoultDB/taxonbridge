@@ -16,8 +16,8 @@ A \code{ggplot2} derived plot
 A custom generic for methods that plot \code{package:moultdbtools} data types
 }
 \examples{
-plot_mdb(prepare_rank_dist(load_sample()))
+plot_mdb(prepare_rank_dist(load_sample(), NCBI = TRUE, GBIF = TRUE))
 plot_mdb(prepare_comparable_rank_dist(load_sample()))
-plot_mdb(prepare_rank_dist(get_status(load_sample(),status = "synonym"), NCBI = FALSE))
+plot_mdb(prepare_rank_dist(get_status(load_sample(),status = "synonym"), NCBI = TRUE))
 plot_mdb(prepare_comparable_rank_dist(get_validity(get_status(load_sample()), valid = TRUE)))
 }
