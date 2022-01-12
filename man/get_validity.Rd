@@ -12,7 +12,8 @@ get_validity(x, valid = TRUE, rank = "family")
 \item{valid}{A logical indicating whether the returned data should include valid or invalid entries (defaults to valid).}
 
 \item{rank}{A string with GBIF rank that will be used to examine an NCBI lineage for validation purposes. Must
-be "phylum", "class", "order" or "family". Defaults to family.}
+be kingdom, phylum, class, order or family. Defaults to family. Note: If "kingdom" is used, the
+term_conversion() method should first be applied.}
 }
 \value{
 A validated tibble

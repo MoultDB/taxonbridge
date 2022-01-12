@@ -11,7 +11,9 @@
 #' @examples
 #' term_conversion(load_sample())
 term_conversion <- function(x) {
-  ncbi_kingdom <- replace(x$kingdom, x$kingdom=="Animalia", "Metazoa")
-  x$kingdom <- ncbi_kingdom
+  to_metazoa <- replace(x$kingdom, x$kingdom=="Animalia", "Metazoa")
+  x$kingdom <- to_metazoa
+  to_viridiplantae <- replace(x$kingdom, x$kingdom=="Plantae", "Viridiplantae")
+  x$kingdom <- to_viridiplantae
   x
 }

@@ -3,7 +3,8 @@
 #' @param x A tibble created with `load_taxonomies()` or `load_population()` or `load_sample()`.
 #' @param valid A logical indicating whether the returned data should include valid or invalid entries (defaults to valid).
 #' @param rank A string with GBIF rank that will be used to examine an NCBI lineage for validation purposes. Must
-#' be "phylum", "class", "order" or "family". Defaults to family.
+#' be kingdom, phylum, class, order or family. Defaults to family. Note: If "kingdom" is used, the
+#' term_conversion() method should first be applied.
 #'
 #' @return A validated tibble
 #' @export
@@ -11,7 +12,7 @@
 #' @examples
 #' get_validity(load_sample(), valid = TRUE)
 get_validity <- function(x,  valid = TRUE , rank = "family") {
-  usablecolumns <- c("phylum", "class", "order", "family")
+  usablecolumns <- c("kingdom", "phylum", "class", "order", "family")
   userdefinedcolumn <- tolower(toString(rank))
   if (!rje::is.subset(userdefinedcolumn,usablecolumns)) {
     stop(paste0("Rank must be one of: ", toString(usablecolumns)))
