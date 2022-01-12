@@ -4,16 +4,16 @@
 \alias{get_validity}
 \title{Validate entries of a merged taxonomy}
 \usage{
-get_validity(x, valid = TRUE, rank = "family")
+get_validity(x, rank = "family", valid = TRUE)
 }
 \arguments{
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 
-\item{valid}{A logical indicating whether the returned data should include valid or invalid entries (defaults to valid).}
-
 \item{rank}{A string with GBIF rank that will be used to examine an NCBI lineage for validation purposes. Must
 be kingdom, phylum, class, order or family. Defaults to family. Note: If "kingdom" is used, the
 term_conversion() method should first be applied.}
+
+\item{valid}{A logical indicating whether the returned data should include valid or invalid entries (defaults to valid).}
 }
 \value{
 A validated tibble

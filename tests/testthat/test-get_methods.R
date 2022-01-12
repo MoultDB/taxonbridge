@@ -16,31 +16,17 @@ test_that("get_lineages() returns all and only all non-NA data points",
             expect_equal(nrow(relevant)+nrow(irrelevant), nrow(x))
           })
 
-test_that("get_status() returns all, one, or multiple statuses",
+test_that("get_status() is functional",
           {
             x <- load_sample()
-            single_test <- unique(get_status(x, "accepted")[,"taxonomicStatus"])[[1]]
-            NA_test <- unique(get_status(x, NA)[,"taxonomicStatus"])[[1]]
-            case_test <- unique(get_status(x, c("SynOnym", "synonym"))[,"taxonomicStatus"])[[1]]
-            all_test <- get_status(x, c(NA, "doubtful", "accepted", "proparte synonym", "synonym", "homotypic synonym", "heterotypic synonym"))
-
-            #Check that the input is returned unchanged when the second argument is absent.
-            expect_equal(get_status(x), x)
-
-            #Check that a string returns a tibble filtered on the string
-            expect_equal(single_test, "accepted")
-            expect_equal(NA_test, as.character(NA))
-
-            #Check that upper and lower case doesn't effect the results
-            expect_equal(case_test, "synonym")
-
-            #Check that the input is returned unchanged when all terms are used
-            expect_equal(all_test, x)
-
-            #Check that an incorrect term returns and error
-            expect_error(get_status(x,"404"))
-
-            #Check that incompatible input returns an error
-            expect_error(get_status("404"))
+            expect_error(get_status(x[,1:5]))
+            expect_error(get_status(x, c("doubtful", "duplicated")))
+            expect_equal(nrow(get_status(x, c("doubtful", "accepted"))), 1260)
           })
 
+test_that("get_validity() is functional",
+          {
+            x <- load_sample()
+            expect_error(get_validity(x, rank = "species"))
+            expect_message(get_validity(x, rank = "kingdom", valid = FALSE), "Term conversion carried out on kingdom taxonomic rank")
+          })

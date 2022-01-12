@@ -11,20 +11,20 @@
 #'
 #' @examples
 #' get_validity(load_sample(), valid = TRUE)
-get_validity <- function(x,  valid = TRUE , rank = "family") {
+get_validity <- function(x, rank = "family", valid = TRUE) {
   usablecolumns <- c("kingdom", "phylum", "class", "order", "family")
   userdefinedcolumn <- tolower(toString(rank))
   if (!rje::is.subset(userdefinedcolumn,usablecolumns)) {
     stop(paste0("Rank must be one of: ", toString(usablecolumns)))
   }
+  if (userdefinedcolumn=="kingdom" && is.null(attr(x,"converted"))) {
+    x <- term_conversion(x)
+    message("Term conversion carried out on kingdom taxonomic rank")
+  }
   x <- get_lineages(x)
   query_list <- strsplit(x$ncbi_lineage_names, split = ";")
   target_list <- dplyr::pull(x, userdefinedcolumn)
-  lgl_vec <- c()
-  for (i in 1:length(target_list)) {
-    bool <- rje::is.subset(target_list[i],query_list[[i]])
-    lgl_vec <- append(lgl_vec, bool)
-  }
+  lgl_vec <- unlist(purrr::map2(target_list, query_list, rje::is.subset))
   if (valid) {
     xout <- x[which(lgl_vec),] }
   else {xout <- x[which(!lgl_vec),] }
