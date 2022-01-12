@@ -11,6 +11,6 @@ test_that("plot_mdb()",
 
             #S3 non-default methods create plot objects
             expect_equal(attr(plot_mdb(x_one_rank),"class")[1], "gg")
-            expect_equal(attr(plot_mdb(x_one_rank),"class")[1], "gg")
+            expect_equal(attr(plot_mdb(x_two_ranks),"class")[1], "gg")
             expect_equal(attr(plot_mdb(x_all_ranks),"class")[1], "gg")
           })
