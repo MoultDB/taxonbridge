@@ -33,20 +33,20 @@ See the `moultdbtools` [documentation](https://github.com/MoultDB/moultdbtools/b
 
 ## Examples
 
-* This is a basic example which uses a function from each of the `moultdbtools` package's four main function categories to load and manipulate sample data:
+This is a basic example which uses a function from each of the `moultdbtools` package's four main function categories to load and manipulate sample data:
 
 ``` r
 library(moultdbtools)
 plot_mdb(prepare_comparable_rank_dist(get_validity(get_status(load_sample()), valid = TRUE)))
 ```
 
-* Want to try more than a sample? [Download](https://drive.google.com/file/d/1gpvm9QKdOcuGo_cIXPkAgGlB-qfKZZU6/view?usp=sharing) a larger dataset and load it as follow:
+Want to try more than a sample? [Download](https://drive.google.com/file/d/1gpvm9QKdOcuGo_cIXPkAgGlB-qfKZZU6/view?usp=sharing) a larger dataset and load it as follow:
 
 ``` r
 library(moultdbtools)
 load_population("path/to/downloaded/dataset")
 ```
-* You can also prepare a dataset yourself, which requires the use of external data and software available at the following links:
+You can also prepare a dataset yourself which requires the use of external data and software available at the following links:
 
 [Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/) (download backbone.zip)
 
