@@ -1,14 +1,17 @@
-test_that("Sample data is in the correct format",
+test_that("load_sample() is functional",
           {
-            x <- load_sample()
-            x_table <- table(sapply(x,class))
+            expect_equal(dim(load_sample()), c(2000,20))
+          })
 
-            #Check dimensions
-            expect_equal(dim(x), c(2000,20))
+test_that("load_population() is functional",
+          {
+            sample_data <- system.file("extdata", "sample.tsv.gz", package = "moultdbtools", mustWork = TRUE)
+            expect_equal(load_sample(), load_population(sample_data))
+          })
 
-            #Check number of character type columns
-            expect_equal(x_table["character"][[1]], 15)
-
-            #Check number of numeric type columns
-            expect_equal(x_table["numeric"][[1]], 5)
+test_that("load_taxonomies() is functional",
+          {
+            GBIF_stub <- system.file("extdata", "GBIF_stub.tsv", package = "moultdbtools", mustWork = TRUE)
+            NCBI_stub <- system.file("extdata", "NCBI_stub.tsv", package = "moultdbtools", mustWork = TRUE)
+            expect_equal(dim(load_taxonomies(GBIF_stub, NCBI_stub)), c(4,20))
           })

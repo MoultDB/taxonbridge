@@ -1,0 +1,5 @@
+taxonID	datasetID	parentNameUsageID	acceptedNameUsageID	originalNameUsageID	scientificName	scientificNameAuthorship	canonicalName	genericName	specificEpithet	infraspecificEpithet	taxonRank	nameAccordingTo	namePublishedIn	taxonomicStatus	nomenclaturalStatus	taxonRemarks	kingdom	phylum	class	order	family	genus
+10136806	61a5f178-b5fb-4484-b6d8-9b129739e59d	5			SH1567882.08FU						unranked			accepted			Fungi					
+10691829	61a5f178-b5fb-4484-b6d8-9b129739e59d	5			SH2699288.08FU						unranked			accepted			Fungi					
+10205537	61a5f178-b5fb-4484-b6d8-9b129739e59d	5			SH1566348.08FU						unranked			accepted			Fungi					
+9988386	61a5f178-b5fb-4484-b6d8-9b129739e59d	5			SH1564074.08FU						unranked			accepted			Fungi					

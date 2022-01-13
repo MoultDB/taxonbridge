@@ -19,12 +19,14 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   #Remove redundant and empty columns
   GBIF <- vroom::vroom(GBIF_path)
   GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
+  GBIF$canonicalName <- as.character(GBIF$canonicalName)
 
   #Load NCBI data obtained from taxonkit with:
   #taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > all.lineage_extended.tsv
   #Rename NCBI "name" column to "canonicalName" for merger with identically named column in GBIF_2
   NCBI <- vroom::vroom(NCBI_path, na = "")
   colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName", "ncbi_rank", "ncbi_lineage_ranks")
+  NCBI$canonicalName <- as.character(NCBI$canonicalName)
 
   #Merge GBIF_2 and NCBI on “canonicalName" having a value
   dplyr::full_join(GBIF[!is.na(GBIF$canonicalName),], NCBI[!is.na(NCBI$canonicalName),])

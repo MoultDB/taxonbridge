@@ -15,6 +15,6 @@ term_conversion <- function(x) {
   x$kingdom <- to_metazoa
   to_viridiplantae <- replace(x$kingdom, x$kingdom=="Plantae", "Viridiplantae")
   x$kingdom <- to_viridiplantae
-  attr(x, "converted") <- "yes"
+  attr(x, "converted") <- TRUE
   x
 }
