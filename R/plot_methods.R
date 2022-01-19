@@ -17,7 +17,7 @@ plot_mdb <- function(x) {
 
 #' @export
 plot_mdb.default <- function (x) {
-  if (class(x) != "one_rank" || class(x) != "all_ranks") {
+  if (!rje::is.subset(class(x), c("one_rank","all_ranks"))) {
     stop("plot_mdb() is not applicable to this object.")
   }
 }
