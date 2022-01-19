@@ -1,6 +1,6 @@
 #' Generic for plot_mdb methods
 #'
-#' A custom generic for methods that plot `package:moultdbtools` data types
+#' A custom generic for methods that plot `taxonbridge` data types
 #'
 #' @param x An object of the class one_rank or the class all_ranks.
 #' @return A `ggplot2` derived plot

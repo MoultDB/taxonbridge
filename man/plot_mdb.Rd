@@ -13,7 +13,7 @@ plot_mdb(x)
 A \code{ggplot2} derived plot
 }
 \description{
-A custom generic for methods that plot \code{package:moultdbtools} data types
+A custom generic for methods that plot \code{taxonbridge} data types
 }
 \examples{
 plot_mdb(prepare_rank_dist(load_sample(), NCBI = TRUE, GBIF = TRUE))

@@ -60,6 +60,6 @@ load_population <- function(x) {
 #' @examples
 #' load_sample()
 load_sample <- function() {
-  sample_data <- system.file("extdata", "sample.tsv.gz", package = "moultdbtools", mustWork = TRUE)
+  sample_data <- system.file("extdata", "sample.tsv.gz", package = "taxonbridge", mustWork = TRUE)
   vroom::vroom(sample_data, na = "")
 }

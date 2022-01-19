@@ -1,4 +1,4 @@
 library(testthat)
-library(moultdbtools)
+library(taxonbridge)
 
-test_check("moultdbtools")
+test_check("taxonbridge")
