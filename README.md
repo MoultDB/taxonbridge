@@ -12,7 +12,7 @@ There are three main sources of taxonomic information on the internet: The Globa
 You can install the development version of `taxonbridge` by cloning this repository and executing the following command from within R:
 
 ``` r
-install.packages("path/to/taxonbridge_0.0.0.9000.tar.gz", repos = NULL, type="source")
+install.packages("path/to/taxonbridge_1.0.1.tar.gz", repos = NULL, type="source")
 library(taxonbridge)
 ```
 
@@ -29,7 +29,7 @@ library(taxonbridge)
 
 ## Available methods and how to use them
 
-See the `taxonbridge` [documentation](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_0.0.0.9000.pdf) and [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf).
+See the `taxonbridge` [documentation](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_1.0.1.pdf) and [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf).
 
 ## Examples
 
@@ -52,7 +52,7 @@ You can also prepare a dataset yourself which requires the use of external data 
 
 [National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (to be parsed with the [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) program according to its guidelines)
 
-Next, read the `load_taxonomies()` [documentation](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_0.0.0.9000.pdf) for instructions on how to load a dataset of your own:
+Next, read the `load_taxonomies()` [documentation](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_1.0.1.pdf) for instructions on how to load a dataset of your own:
 
 ``` r
 library(taxonbridge)

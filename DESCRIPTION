@@ -1,6 +1,6 @@
 Package: taxonbridge
 Title: Combined Analysis of NCBI Taxonomy and GBIF Taxonomy 
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person("Werner", "Veldsman", , "wernerpieter.veldsman@unil.ch", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9837-8332"))
