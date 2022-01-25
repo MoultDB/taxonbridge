@@ -6,6 +6,8 @@ Authors@R:
            comment = c(ORCID = "0000-0001-9837-8332"))
 Description: The NCBI is the go to resource for taxonomic studies but it only contains data on extant species whereas the GBIF also includes extinct species. `taxonbridge` is useful for the combined analysis of the NCBI taxonomy and GBIF taxonomy.
 License: CC0
+URL: https://github.com/MoultDB/taxonbridge
+BugReports: https://github.com/MoultDB/taxonbridge/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
