@@ -37,7 +37,7 @@ library(taxonbridge)
 
 ## Available methods and how to use them
 
-See the `taxonbridge` [documentation](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_1.0.1.pdf) and [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf).
+See the `taxonbridge` [documentation]( https://rdocumentation.org/packages/taxonbridge/versions/1.0.1) and [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf).
 
 ## Examples
 
@@ -60,7 +60,7 @@ You can also prepare a dataset yourself which requires the use of external data 
 
 [National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (to be parsed with the [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) program according to its guidelines)
 
-Next, read the `load_taxonomies()` [documentation](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_1.0.1.pdf) for instructions on how to load a dataset of your own:
+Read the `load_taxonomies()` function [documentation]( https://rdocumentation.org/packages/taxonbridge/versions/1.0.1) for instructions on how to load a dataset of your own:
 
 ``` r
 library(taxonbridge)
