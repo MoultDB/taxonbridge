@@ -1,6 +1,6 @@
 
 # taxonbridge
-
+<img src="https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_logo.png" align="left" style="margin: 0px 10px 0px 0px;" alt="" width="120"></img>
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/MoultDB/taxonbridge/actions/workflows/main.yml/badge.svg)](https://github.com/MoultDB/taxonbridge/actions/workflows/main.yml)
 [![CRAN Status](https://www.r-pkg.org/badges/version/taxonbridge)](https://CRAN.R-project.org/package=taxonbridge)
