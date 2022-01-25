@@ -24,14 +24,7 @@ Note that the version on CRAN might not reflect the most recent changes made to 
 
 ### Development version:
 
-You can install the development version of `taxonbridge` by cloning this repository and executing the following command:
-
-``` r
-install.packages("path/to/taxonbridge_1.0.1.tar.gz", repos = NULL, type="source")
-library(taxonbridge)
-```
-
-or by downloading `taxonbridge` directly from Github without cloning the repository:
+You can install the development version of `taxonbridge` with `devtools`:
 
 ``` r
 install.packages("devtools")
@@ -40,7 +33,7 @@ install_github("MoultDB/taxonbridge")
 library(taxonbridge)
 ```
 
-`taxonbridge` can be also be updated/re-installed/overwritten with any of the preceding installation options. 
+`taxonbridge` can be also be updated/re-installed/overwritten with either of the preceding installation options. 
 
 ## Available methods and how to use them
 
