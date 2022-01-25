@@ -3,20 +3,35 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/MoultDB/taxonbridge/actions/workflows/main.yml/badge.svg)](https://github.com/MoultDB/taxonbridge/actions/workflows/main.yml)
+[![CRAN Status](https://www.r-pkg.org/badges/version/taxonbridge)](https://CRAN.R-project.org/package=taxonbridge)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/taxonbridge)](https://cran.r-project.org/package=taxonbridge)
 <!-- badges: end -->
 
 There are three main sources of taxonomic information on the internet: The Global Biodiversity Information Facility (GBIF), the National Centre for Biotechnology Information (NCBI), and the Catalogue of Life (COL). The NCBI is the go to resource for many scientists, but it only includes data on extant species. The GBIF includes extinct as well as extant species, and it has integrated the COL into its taxonomic database (i.e. the GBIF backbone taxonomy). However, the NCBI taxonomy is not integrated into the GBIF backbone taxonomy. The goal of `taxonbridge` is to provide tools for merging the GBIF backbone taxonomy and the NCBI taxonomy (see [data provenance](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_data_provenance.pdf)).
 
 ## Installation
 
-You can install the development version of `taxonbridge` by cloning this repository and executing the following command from within R:
+### CRAN version:
+
+To install `taxonbridge` from CRAN type:
+
+``` r
+install.packages("taxonbridge")
+library(taxonbridge)
+```
+
+Note that the version on CRAN might not reflect the most recent changes made to the development version of `taxonbridge`.
+
+### Development version:
+
+You can install the development version of `taxonbridge` by cloning this repository and executing the following command:
 
 ``` r
 install.packages("path/to/taxonbridge_1.0.1.tar.gz", repos = NULL, type="source")
 library(taxonbridge)
 ```
 
-OR download `taxonbridge` directly from Github without cloning the repository:
+or by downloading `taxonbridge` directly from Github without cloning the repository:
 
 ``` r
 install.packages("devtools")
@@ -25,7 +40,7 @@ install_github("MoultDB/taxonbridge")
 library(taxonbridge)
 ```
 
-`taxonbridge` can be also be updated/re-installed/overwritten with either of the above commands. 
+`taxonbridge` can be also be updated/re-installed/overwritten with any of the preceding installation options. 
 
 ## Available methods and how to use them
 
