@@ -19,7 +19,6 @@ test_that("get_lineages() returns all and only all non-NA data points",
 test_that("get_status() is functional",
           {
             x <- load_sample()
-            expect_error(get_status(x[,1:5]))
             expect_error(get_status(x, c("doubtful", "duplicated")))
             expect_equal(nrow(get_status(x, c("doubtful", "accepted"))), 1260)
           })

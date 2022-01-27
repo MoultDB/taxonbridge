@@ -59,8 +59,6 @@ get_lineages <- function(x) {
 #' get_status(load_sample(), "synonym")
 #' get_status(load_sample(), c("accepted", "doubtful"))
 get_status <- function (x, status = "all") {
-  if (!dim(x)[2]==20) {
-    stop("Input data doesn't have the expected number of columns")}
   StatusVector <- c(tolower(status))
   if(!"all" %in% StatusVector) {
     GBIF_status <- c(NA, "doubtful", "accepted", "proparte synonym", "synonym", "homotypic synonym", "heterotypic synonym")
@@ -68,9 +66,11 @@ get_status <- function (x, status = "all") {
       stop(paste0("Status must be, and only be, one or more of: ", toString(GBIF_status)))
     }
     xout <- x[x$taxonomicStatus %in% StatusVector,]
+
   }
   else {
     xout <- x
+    message("No filtering argument were passed to get_status()")
   }
   xout
 }

@@ -13,5 +13,5 @@ test_that("load_taxonomies() is functional",
           {
             GBIF_stub <- system.file("extdata", "GBIF_stub.tsv", package = "taxonbridge", mustWork = TRUE)
             NCBI_stub <- system.file("extdata", "NCBI_stub.tsv", package = "taxonbridge", mustWork = TRUE)
-            expect_equal(dim(load_taxonomies(GBIF_stub, NCBI_stub)), c(4,20))
+            expect_equal(dim(load_taxonomies(GBIF_stub, NCBI_stub)), c(5,22))
           })

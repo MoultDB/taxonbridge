@@ -20,16 +20,37 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   GBIF <- vroom::vroom(GBIF_path)
   GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
   GBIF$canonicalName <- as.character(GBIF$canonicalName)
+  GBIF_all_rows <- nrow(GBIF)
+  GBIF_data <- GBIF[!is.na(GBIF$canonicalName),]
+  GBIF_data$from_GBIF <- 1
+  GBIF_filtered_rows <- nrow(GBIF_data)
 
   #Load NCBI data obtained from taxonkit with:
   #taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > all.lineage_extended.tsv
-  #Rename NCBI "name" column to "canonicalName" for merger with identically named column in GBIF_2
-  NCBI <- vroom::vroom(NCBI_path, na = "")
+  #Rename NCBI "name" column to "canonicalName" for merger with identically named column in GBIF
+  NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE)
   colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName", "ncbi_rank", "ncbi_lineage_ranks")
   NCBI$canonicalName <- as.character(NCBI$canonicalName)
+  NCBI_all_rows <- nrow(NCBI)
+  NCBI_data <- NCBI[!is.na(NCBI$canonicalName),]
+  NCBI_data$from_NCBI <- 1
+  NCBI_filtered_rows <- nrow(NCBI_data)
 
-  #Merge GBIF_2 and NCBI on “canonicalName" having a value
-  dplyr::full_join(GBIF[!is.na(GBIF$canonicalName),], NCBI[!is.na(NCBI$canonicalName),])
+  #Merge GBIF and NCBI on “canonicalName" having a value
+  merged_set <- dplyr::full_join(GBIF_data, NCBI_data)
+  merged_rows <- nrow(merged_set)
+  matched_rows <- nrow(merged_set[which(!is.na(merged_set$from_NCBI) & !is.na(merged_set$from_GBIF)),])
+
+  message(toString(GBIF_filtered_rows), " of ", toString(GBIF_all_rows)," GBIF entries contained scientific names")
+  message(toString(NCBI_filtered_rows), " of ", toString(NCBI_all_rows)," NCBI entries contained scientific names")
+  message(toString(matched_rows), " matches on scientific names were made")
+
+  attr(merged_set, "GBIF_all_rows") <- GBIF_all_rows
+  attr(merged_set, "GBIF_filtered_rows") <- GBIF_filtered_rows
+  attr(merged_set, "NCBI_all_rows") <- NCBI_all_rows
+  attr(merged_set, "NCBI_filtered_rows") <- NCBI_filtered_rows
+  attr(merged_set, "matched_rows") <- matched_rows
+  merged_set
 }
 
 
