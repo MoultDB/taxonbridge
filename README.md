@@ -28,8 +28,7 @@ You can install the development version of `taxonbridge` with `devtools`:
 
 ``` r
 install.packages("devtools")
-library(devtools)
-install_github("MoultDB/taxonbridge")
+devtools::install_github("MoultDB/taxonbridge", build_vignettes = TRUE)
 library(taxonbridge)
 ```
 
