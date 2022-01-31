@@ -60,7 +60,7 @@ You can also prepare a dataset yourself which requires the use of external data 
 
 [National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (to be parsed with the [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) program according to its guidelines)
 
-Read the `load_taxonomies()` function [documentation]( https://rdocumentation.org/packages/taxonbridge/versions/1.0.1) for instructions on how to load a dataset of your own:
+Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/versions/1.0.1/topics/load_taxonomies) for instructions on how to load a dataset of your own:
 
 ``` r
 library(taxonbridge)
