@@ -1,6 +1,6 @@
 #' Load and merge GBIF and NCBI taxonomic data
 #'
-#' `load_taxonomies()` parses and merges a GBIF `Taxon.tsv()` file (available
+#' `load_taxonomies()` parses and merges a GBIF `Taxon.tsv` file (available
 #' within the \url{https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip} archive) and
 #' a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: `taxonkit list --ids 1 | taxonkit lineage
 #' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv`.

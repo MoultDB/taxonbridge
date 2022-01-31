@@ -28,6 +28,7 @@ get_validity <- function(x, rank = "family", valid = TRUE) {
   if (valid) {
     xout <- x[which(lgl_vec),] }
   else {xout <- x[which(!lgl_vec),] }
+  attr(xout, "got_validated") <- TRUE
   xout
 }
 
@@ -70,7 +71,32 @@ get_status <- function (x, status = "all") {
   }
   else {
     xout <- x
-    message("No filtering argument were passed to get_status()")
+    message("No filtering argument was passed to get_status()")
+  }
+  xout
+}
+
+#' Detect candidate inconsistencies and ambiguity
+#'
+#' @param x A list consisting of tibble(s) that have been passed to get_validated()
+#' @param uninomials A Boolean indicating whether uninomials should be included in the detection (defaults to TRUE)
+#'
+#' @return A character vector containing scientific names that exhibit inconsistency or ambiguity
+#' @export
+#'
+#' @examples
+#'sample <- load_sample()
+#'lineages <- get_lineages(sample)
+#'kingdom <- get_validity(lineages, rank = "kingdom", valid = FALSE)
+#'family <- get_validity(lineages, rank = "family", valid = FALSE)
+#'candidates <- list(kingdom, family)
+#'get_inconsistencies(candidates, uninomials = FALSE)
+get_inconsistencies <- function(x, uninomials = TRUE) {
+  canonicalName <- NULL
+  candidates <- lapply(x, function(y) dplyr::pull(y, canonicalName))
+  candidate_intersect <- Reduce(intersect, candidates)
+  if (!uninomials) {
+    xout <- candidate_intersect[which(purrr::map_dbl(strsplit(candidate_intersect, " "), length)>1)]
   }
   xout
 }

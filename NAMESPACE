@@ -3,6 +3,7 @@
 S3method(plot_mdb,all_ranks)
 S3method(plot_mdb,default)
 S3method(plot_mdb,one_rank)
+export(get_inconsistencies)
 export(get_lineages)
 export(get_status)
 export(get_validity)

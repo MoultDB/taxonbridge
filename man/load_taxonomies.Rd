@@ -15,7 +15,7 @@ load_taxonomies(GBIF_path, NCBI_path)
 A tibble containing merged GBIF and NCBI taxonomic data.
 }
 \description{
-\code{load_taxonomies()} parses and merges a GBIF \code{Taxon.tsv()} file (available
+\code{load_taxonomies()} parses and merges a GBIF \code{Taxon.tsv} file (available
 within the \url{https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip} archive) and
 a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: \verb{taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv}.
 }

@@ -29,3 +29,12 @@ test_that("get_validity() is functional",
             expect_error(get_validity(x, rank = "species"))
             expect_message(get_validity(x, rank = "kingdom", valid = FALSE), "Term conversion carried out on kingdom taxonomic rank")
           })
+
+test_that("get_inconsistencies() is functional",
+          {
+            x <- get_lineages(load_sample())
+            kingdom <- get_validity(x, rank = "kingdom", valid = FALSE)
+            family <- get_validity(x, rank = "family", valid = FALSE)
+            candidates <- list(kingdom, family)
+            expect_equal(length(get_inconsistencies(candidates, uninomials = FALSE)), 2)
+          })
