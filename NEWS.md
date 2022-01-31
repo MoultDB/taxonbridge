@@ -1,5 +1,6 @@
 # taxonbridge 1.0.2
 
+* Added a vignette
 * Added `get_inconsistencies()`
 * Added merge stats to `load_taxonomies()` output tibble attributes fields
 * Added provenance columns to `load_taxonomies()` output tibble

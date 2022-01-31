@@ -1,0 +1,65 @@
+---
+title: "How to detect taxonomic incongruencies"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Start by loading the 2000 row sample dataset that comes with `taxonbridge`:
+
+```{r, include=TRUE, message=FALSE}
+library(taxonbridge)
+sample <- load_sample()
+dim(sample)
+```
+
+Next, retrieve all rows that have lineage information in both the GBIF backbone and NCBI:
+
+```{r, include=TRUE}
+lineages <- get_lineages(sample)
+```
+
+Then validate the lineages by using the kingdom and family taxonomic ranks, and create a list of the resulting tibble(s). Note that phylum, class, and order may also be used. In this example, entries that failed validation are returned by setting `valid = FALSE`.
+
+```{r, include= TRUE}
+kingdom <- get_validity(lineages, rank = "kingdom", valid = FALSE)
+family <- get_validity(lineages, rank = "family", valid = FALSE)
+candidates <- list(kingdom, family)
+```
+
+Finally, detect candidate incongruencies (excluding those with uninomial scientific names):
+
+```{r, include= TRUE}
+get_inconsistencies(candidates, uninomials = FALSE)
+```
+
+Two binomial names exhibit incongruency. Upon reference to the literature and the individual entries it can be seen that: 
+
+* *Attheya septentrionalis* is assigned to different families of the **problematica** order Chaetocerotales
+
+* *Gordonia neofelifaecis* is a plant (family: Theaceae) in the GBIF but a bacterium in the NCBI (family: Gordoniaceae)
+
+*Attheya septentrionalis* has the status "synonym" in the GBIF data:
+
+```{r, include= TRUE}
+lineages[lineages$canonicalName=="Attheya septentrionalis", "taxonomicStatus"]
+```
+
+Applying the `get_status()` function and rerunning the exercise leaves only *Gordonia neofelifaecis* as a binomial incongruency with biological provenance:
+
+```{r, include= TRUE}
+lineages <- get_status(get_lineages(sample), status = "accepted")
+kingdom <- get_validity(lineages, rank = "kingdom", valid = FALSE)
+family <- get_validity(lineages, rank = "family", valid = FALSE)
+candidates <- list(kingdom, family)
+get_inconsistencies(candidates, uninomials = FALSE)
+```
