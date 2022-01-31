@@ -1,5 +1,5 @@
 ---
-title: "How to detect taxonomic incongruencies"
+title: "Examples"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Examples}
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Start by loading the 2000 row sample dataset that comes with `taxonbridge`:
+This vignette illustrates how to detect ambiguity and inconsistency in a merged taxonomy. Start by loading the 2000 row sample dataset that comes with `taxonbridge`:
 
 ```{r, include=TRUE, message=FALSE}
 library(taxonbridge)

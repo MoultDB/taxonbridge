@@ -6,3 +6,5 @@
 ^taxonbridge_logo.png$
 ^main.yml$
 ^.github$
+^doc$
+^Meta$
