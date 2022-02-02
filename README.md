@@ -27,7 +27,7 @@ Note that the version on CRAN might not reflect the most recent changes made to 
 You can install the development version of `taxonbridge` with `devtools`:
 
 ``` r
-install.packages("devtools")
+install.packages(c("devtools", "rmarkdown"))
 devtools::install_github("MoultDB/taxonbridge", build_vignettes = TRUE)
 library(taxonbridge)
 ```
