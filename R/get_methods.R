@@ -100,3 +100,52 @@ get_inconsistencies <- function(x, uninomials = TRUE) {
   }
   xout
 }
+
+#' A helper function to filter columns on GBIF taxa names
+#'
+#' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
+#' @param kingdom A string consisting of a scientific name
+#' @param phylum A string consisting of a scientific name
+#' @param class A string consisting of a scientific name
+#' @param order A string consisting of a scientific name
+#' @param family A string consisting of a scientific name
+#' @param genus A string consisting of a scientific name
+#' @param species A string consisting of a scientific name
+#'
+#' @return A filtered tibble
+#' @export
+#'
+#' @examples
+#' get_taxa(load_sample(), species = "hyalina")
+get_taxa <- function(x, kingdom=NA, phylum=NA, class=NA, order=NA, family=NA, genus=NA, species=NA) {
+  if (!is.na(kingdom)) {
+    x <- x[tolower(x$kingdom)==tolower(kingdom),]
+    x <- x[!is.na(x$kingdom),]
+  }
+  if (!is.na(phylum)) {
+    x <- x[tolower(x$phylum)==tolower(phylum),]
+    x <- x[!is.na(x$phylum),]
+  }
+  if (!is.na(class)) {
+    x <- x[tolower(x$class)==tolower(class),]
+    x <- x[!is.na(x$class),]
+  }
+  if (!is.na(order)) {
+    x <- x[tolower(x$order)==tolower(order),]
+    x <- x[!is.na(x$order),]
+  }
+  if (!is.na(family)) {
+    x <- x[tolower(x$family)==tolower(family),]
+    x <- x[!is.na(x$family),]
+  }
+  if (!is.na(genus)) {
+    x <- x[tolower(x$genericName)==tolower(genus),]
+    x <- x[!is.na(x$genericName),]
+  }
+  if (!is.na(species)) {
+    x <- x[tolower(x$specificEpithet)==tolower(species),]
+    x <- x[!is.na(x$specificEpithet),]
+  }
+  xout <- x
+  xout
+}

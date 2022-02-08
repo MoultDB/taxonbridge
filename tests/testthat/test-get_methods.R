@@ -38,3 +38,14 @@ test_that("get_inconsistencies() is functional",
             candidates <- list(kingdom, family)
             expect_equal(length(get_inconsistencies(candidates, uninomials = FALSE)), 2)
           })
+test_that("get_taxa() is functional",
+          {
+            x <- load_sample()
+            expect_equal(nrow(get_taxa(x, kingdom = "Animalia",
+                                  phylum = "Chordata",
+                                  class = "Mammalia",
+                                  order = "Carnivora",
+                                  family = "Miacidae",
+                                  genus = "Miacis",
+                                  species = "deutschi" )), 1)
+          })
