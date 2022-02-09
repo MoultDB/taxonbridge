@@ -66,4 +66,4 @@ library(taxonbridge)
 ?load_taxonomies
 ```
 
-See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) for more ideas on what to do with loaded data in `taxonbridge`.
+See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) and [vignette](https://cran.r-project.org/web/packages/taxonbridge/vignettes/Examples.html) for more ideas on what to do with loaded data in `taxonbridge`.
