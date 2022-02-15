@@ -95,6 +95,7 @@ get_inconsistencies <- function(x, uninomials = TRUE) {
   canonicalName <- NULL
   candidates <- lapply(x, function(y) dplyr::pull(y, canonicalName))
   candidate_intersect <- Reduce(intersect, candidates)
+  xout <- candidate_intersect
   if (!uninomials) {
     xout <- candidate_intersect[which(purrr::map_dbl(strsplit(candidate_intersect, " "), length)>1)]
   }

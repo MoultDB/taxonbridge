@@ -1,5 +1,6 @@
 # taxonbridge 1.0.3
 
+* Fixed bug in get_inconsistencies() when uninomials are set to true
 * Added `download_ncbi()` method
 
 # taxonbridge 1.0.2
