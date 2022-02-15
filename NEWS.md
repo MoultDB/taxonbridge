@@ -1,3 +1,7 @@
+# taxonbridge 1.0.3
+
+* Added `download_ncbi()` method
+
 # taxonbridge 1.0.2
 
 * Added `get_taxa()` method
