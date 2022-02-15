@@ -3,7 +3,7 @@
 #' `load_taxonomies()` parses and merges a GBIF `Taxon.tsv` file (available
 #' within the \url{https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip} archive) and
 #' a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: `taxonkit list --ids 1 | taxonkit lineage
-#' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv`.
+#' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv` on NCBI data dump files.
 #'
 #' @param GBIF_path Path to the GBIF backbone taxonomy (compressed or uncompressed).
 #' @param NCBI_path Path to the NCBI taxonomy (compressed or uncompressed).
@@ -83,4 +83,26 @@ load_population <- function(x) {
 load_sample <- function() {
   sample_data <- system.file("extdata", "sample.tsv.gz", package = "taxonbridge", mustWork = TRUE)
   vroom::vroom(sample_data, na = "")
+}
+
+#' Download the NCBI taxonomy data dump to a temporary directory
+#'
+#' @return A character vector containing paths to the downloaded and unzipped NCBI data dump
+#' @export
+#'
+#' @examples
+#' \dontrun{download_ncbi()}
+download_ncbi <- function() {
+  current_t <- getOption("timeout")
+  message("Your current download timeout is set to ",toString(current_t)," seconds.")
+  withr::local_options(list(timeout = 600))
+  new_t <- getOption("timeout")
+  message("Temporarily increasing the download timeout to ",toString(new_t)," seconds.")
+  tf <- tempfile()
+  td <- tempdir()
+  url1 <- "https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip"
+  utils::download.file(url1,tf)
+  files <- utils::unzip( tf , exdir = td )
+  message("NCBI data dump has been downloaded and extracted.")
+  files
 }
