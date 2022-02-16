@@ -1,5 +1,6 @@
 # taxonbridge 1.0.3
 
+* Added `download_gbif()` method
 * Added set operation parameter to `get_inconsistencies()`
 * Fixed bug in `get_inconsistencies()` when uninomials are set to true
 * Added `download_ncbi()` method

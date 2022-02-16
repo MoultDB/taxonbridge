@@ -55,9 +55,9 @@ load_population("path/to/downloaded/dataset")
 ```
 You can also prepare a dataset yourself which requires the use of external data and software available at the following links:
 
-[Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/) (download backbone.zip)
+[Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/) (use 'download_gbif()' and locate the file Taxon.tsv).
 
-[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (use `download_ncbi()` and subsequently parse with the [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) program according to its guidelines)
+[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (use `download_ncbi()` and parse with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) according to its guidelines).
 
 Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/versions/1.0.1/topics/load_taxonomies) for instructions on how to load a dataset of your own:
 

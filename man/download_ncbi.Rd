@@ -7,7 +7,7 @@
 download_ncbi()
 }
 \value{
-A character vector containing paths to the downloaded and unzipped NCBI data dump
+A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files.
 }
 \description{
 Download the NCBI taxonomy data dump to a temporary directory

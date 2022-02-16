@@ -1,9 +1,8 @@
 #' Load and merge GBIF and NCBI taxonomic data
 #'
-#' `load_taxonomies()` parses and merges a GBIF `Taxon.tsv` file (available
-#' within the \url{https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip} archive) and
+#' `load_taxonomies()` parses and merges a GBIF `Taxon.tsv` file (see `download_gbif()`) and
 #' a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: `taxonkit list --ids 1 | taxonkit lineage
-#' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv` on NCBI data dump files.
+#' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv` on NCBI data dump files (see `download_ncbi()`).
 #'
 #' @param GBIF_path Path to the GBIF backbone taxonomy (compressed or uncompressed).
 #' @param NCBI_path Path to the NCBI taxonomy (compressed or uncompressed).
@@ -87,7 +86,7 @@ load_sample <- function() {
 
 #' Download the NCBI taxonomy data dump to a temporary directory
 #'
-#' @return A character vector containing paths to the downloaded and unzipped NCBI data dump
+#' @return A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files.
 #' @export
 #'
 #' @examples
@@ -97,12 +96,34 @@ download_ncbi <- function() {
   message("Your current download timeout is set to ",toString(current_t)," seconds.")
   withr::local_options(list(timeout = 600))
   new_t <- getOption("timeout")
-  message("Temporarily increasing the download timeout to ",toString(new_t)," seconds.")
+  message("Temporarily setting the download timeout to ",toString(new_t)," seconds.")
   tf <- tempfile()
   td <- tempdir()
   url1 <- "https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip"
   utils::download.file(url1,tf)
-  files <- utils::unzip( tf , exdir = td )
+  files <- utils::unzip(tf, files = c("names.dmp","nodes.dmp","delnodes.dmp", "merged.dmp"), exdir = td )
   message("NCBI data dump has been downloaded and extracted.")
+  files
+}
+
+#' Download the GBIF taxonomy data dump to a temporary directory
+#'
+#' @return A character vector containing paths to the relevant downloaded and unzipped GBIF data dump files.
+#' @export
+#'
+#' @examples
+#' \dontrun{download_gbif()}
+download_gbif <- function() {
+  current_t <- getOption("timeout")
+  message("Your current download timeout is set to ",toString(current_t)," seconds.")
+  withr::local_options(list(timeout = 1800))
+  new_t <- getOption("timeout")
+  message("Temporarily setting the download timeout to ",toString(new_t)," seconds.")
+  tf <- tempfile()
+  td <- tempdir()
+  url1 <- "https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip"
+  utils::download.file(url1,tf)
+  files <- utils::unzip(tf, files = c("backbone/Taxon.tsv"), exdir = td)
+  message("GBIF data dump has been downloaded and extracted.")
   files
 }
