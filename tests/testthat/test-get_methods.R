@@ -37,6 +37,11 @@ test_that("get_inconsistencies() is functional",
             family <- get_validity(x, rank = "family", valid = FALSE)
             candidates <- list(kingdom, family)
             expect_equal(length(get_inconsistencies(candidates, uninomials = FALSE)), 2)
+            expect_equal(length(get_inconsistencies(candidates, uninomials = TRUE)), 27)
+            expect_equal(length(get_inconsistencies(candidates, uninomials = FALSE, set = "setdiff")), 11)
+            expect_equal(length(get_inconsistencies(candidates, uninomials = TRUE, set = "setdiff")), 20)
+            expect_equal(length(get_inconsistencies(candidates, uninomials = FALSE, set = "union")), 78)
+            expect_equal(length(get_inconsistencies(candidates, uninomials = TRUE, set = "union")), 155)
           })
 test_that("get_taxa() is functional",
           {

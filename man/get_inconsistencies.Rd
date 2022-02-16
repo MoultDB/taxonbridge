@@ -4,15 +4,17 @@
 \alias{get_inconsistencies}
 \title{Detect candidate inconsistencies and ambiguity}
 \usage{
-get_inconsistencies(x, uninomials = TRUE)
+get_inconsistencies(x, uninomials = TRUE, set = "intersect")
 }
 \arguments{
 \item{x}{A list consisting of tibble(s) that have been passed to get_validated()}
 
 \item{uninomials}{A Boolean indicating whether uninomials should be included in the detection (defaults to TRUE)}
+
+\item{set}{The type of set operation to be performed on x ("intersect", "union", or "setdiff"). Defaults to intersect.}
 }
 \value{
-A character vector containing scientific names that exhibit inconsistency or ambiguity
+A character vector containing scientific names that exhibit inconsistency or ambiguity (an intersect of the list that was passed to the function).
 }
 \description{
 Detect candidate inconsistencies and ambiguity
@@ -23,5 +25,5 @@ lineages <- get_lineages(sample)
 kingdom <- get_validity(lineages, rank = "kingdom", valid = FALSE)
 family <- get_validity(lineages, rank = "family", valid = FALSE)
 candidates <- list(kingdom, family)
-get_inconsistencies(candidates, uninomials = FALSE)
+get_inconsistencies(candidates, uninomials = FALSE, set = "intersect")
 }

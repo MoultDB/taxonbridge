@@ -80,8 +80,9 @@ get_status <- function (x, status = "all") {
 #'
 #' @param x A list consisting of tibble(s) that have been passed to get_validated()
 #' @param uninomials A Boolean indicating whether uninomials should be included in the detection (defaults to TRUE)
+#' @param set The type of set operation to be performed on x ("intersect", "union", or "setdiff"). Defaults to intersect.
 #'
-#' @return A character vector containing scientific names that exhibit inconsistency or ambiguity
+#' @return A character vector containing scientific names that exhibit inconsistency or ambiguity (an intersect of the list that was passed to the function).
 #' @export
 #'
 #' @examples
@@ -90,14 +91,30 @@ get_status <- function (x, status = "all") {
 #'kingdom <- get_validity(lineages, rank = "kingdom", valid = FALSE)
 #'family <- get_validity(lineages, rank = "family", valid = FALSE)
 #'candidates <- list(kingdom, family)
-#'get_inconsistencies(candidates, uninomials = FALSE)
-get_inconsistencies <- function(x, uninomials = TRUE) {
+#'get_inconsistencies(candidates, uninomials = FALSE, set = "intersect")
+get_inconsistencies <- function(x, uninomials = TRUE, set = "intersect") {
   canonicalName <- NULL
   candidates <- lapply(x, function(y) dplyr::pull(y, canonicalName))
+  if (set=="intersect") {
   candidate_intersect <- Reduce(intersect, candidates)
   xout <- candidate_intersect
-  if (!uninomials) {
-    xout <- candidate_intersect[which(purrr::map_dbl(strsplit(candidate_intersect, " "), length)>1)]
+    if (!uninomials) {
+      xout <- candidate_intersect[which(purrr::map_dbl(strsplit(candidate_intersect, " "), length)>1)]
+    }
+  }
+  if (set=="union") {
+  candidate_union <- Reduce(union, candidates)
+  xout <- candidate_union
+    if (!uninomials) {
+      xout <- candidate_union[which(purrr::map_dbl(strsplit(candidate_union, " "), length)>1)]
+    }
+  }
+  if (set=="setdiff") {
+  candidate_setdiff <- Reduce(setdiff, candidates)
+  xout <- candidate_setdiff
+    if (!uninomials) {
+      xout <- candidate_setdiff[which(purrr::map_dbl(strsplit(candidate_setdiff, " "), length)>1)]
+    }
   }
   xout
 }
