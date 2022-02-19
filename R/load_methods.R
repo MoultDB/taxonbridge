@@ -154,5 +154,6 @@ download_gbif <- function() {
   utils::download.file(url1,tf)
   files <- utils::unzip(tf, files = c("backbone/Taxon.tsv"), exdir = td)
   message("GBIF data dump has been downloaded and extracted.")
+  message("NOTE: Taxon.tsv is stored at ", files)
   files
 }
