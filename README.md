@@ -57,7 +57,7 @@ You can also prepare a dataset yourself which requires the use of external data 
 
 [Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/) (use `download_gbif()` and note the location of the file Taxon.tsv).
 
-[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (use `download_ncbi()` and parse the downloaded files with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) according to its guidelines, or use `download_ncbi(taxonkitpath = "path/to/taxonkit")` to carry
+[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (use `download_ncbi()` and parse the downloaded files with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) according to its guidelines, or use `download_ncbi(taxonkitpath = "/path/to/taxonkit")` to carry
 out parsing automatically if Taxonkit is installed on your system):
 
 ``` r
