@@ -12,6 +12,7 @@
 #'
 #' @examples
 #' \dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv")}
+#' \dontrun{load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))}
 load_taxonomies <- function(GBIF_path, NCBI_path) {
   #Load GBIF data
   #Available at https://hosted-datasets.gbif.org/datasets/backbone/
@@ -86,12 +87,17 @@ load_sample <- function() {
 
 #' Download the NCBI taxonomy data dump to a temporary directory
 #'
+#' @param taxonkitpath A string containing the full path to where Taxonkit is installed (optional).
+#' With this parameter set the download NCBI files will be parsed with Taxonkit and saved in a file called `All.lineages.tsv` in
+#' your current working directory.
+#'
 #' @return A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files.
 #' @export
 #'
 #' @examples
 #' \dontrun{download_ncbi()}
-download_ncbi <- function() {
+#' \dontrun{download_ncbi(taxonkitpath = "/home/usr/bin/taxonkit")}
+download_ncbi <- function(taxonkitpath = NA) {
   current_t <- getOption("timeout")
   message("Your current download timeout is set to ",toString(current_t)," seconds.")
   withr::local_options(list(timeout = 600))
@@ -103,7 +109,30 @@ download_ncbi <- function() {
   utils::download.file(url1,tf)
   files <- utils::unzip(tf, files = c("names.dmp","nodes.dmp","delnodes.dmp", "merged.dmp"), exdir = td )
   message("NCBI data dump has been downloaded and extracted.")
-  files
+  if (!is.na(taxonkitpath)) {
+    tryCatch(
+      expr = {
+      system(paste0(taxonkitpath, " version"))
+      message("Taxonkit detected!")
+      },
+      warning = function(e){
+      message(paste("Taxonkit not detected. Is this the correct path to Taxonkit:", taxonkitpath, "?"))
+      })
+    tryCatch(
+      expr = {
+        system(paste0(taxonkitpath, " list --ids 1 | ",taxonkitpath ," lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv"))
+        #system(paste0(taxonkitpath, "taxonkit list --ids 1 | ",taxonkitpath ,"taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir ", td, "> All.lineages.tsv"))
+        message("NCBI files parsed and result saved.")
+        location <- file.path(getwd(), "All.lineages.tsv")
+        location
+      },
+      warning = function(e){
+        message("Double check the directory name you supplied and/or your write permissions!")
+      })
+  }
+  else {
+    files
+  }
 }
 
 #' Download the GBIF taxonomy data dump to a temporary directory

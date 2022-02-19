@@ -20,4 +20,5 @@ a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obta
 }
 \examples{
 \dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv")}
+\dontrun{load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))}
 }

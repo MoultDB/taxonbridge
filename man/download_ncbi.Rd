@@ -4,7 +4,12 @@
 \alias{download_ncbi}
 \title{Download the NCBI taxonomy data dump to a temporary directory}
 \usage{
-download_ncbi()
+download_ncbi(taxonkitpath = NA)
+}
+\arguments{
+\item{taxonkitpath}{A string containing the full path to where Taxonkit is installed (optional).
+With this parameter set the download NCBI files will be parsed with Taxonkit and saved in a file called \code{All.lineages.tsv} in
+your current working directory.}
 }
 \value{
 A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files.
@@ -14,4 +19,5 @@ Download the NCBI taxonomy data dump to a temporary directory
 }
 \examples{
 \dontrun{download_ncbi()}
+\dontrun{download_ncbi(taxonkitpath = "/home/usr/bin/taxonkit")}
 }

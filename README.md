@@ -57,13 +57,14 @@ You can also prepare a dataset yourself which requires the use of external data 
 
 [Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/) (use `download_gbif()` and note the location of the file Taxon.tsv).
 
-[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (use `download_ncbi()` and parse the downloaded files with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) according to its guidelines).
-
-Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/versions/1.0.1/topics/load_taxonomies) for instructions on how to load a dataset of your own:
+[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (use `download_ncbi()` and parse the downloaded files with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) according to its guidelines, or use `download_ncbi(taxonkitpath = "path/to/taxonkit")` to carry
+out parsing automatically if Taxonkit is installed on your system):
 
 ``` r
 library(taxonbridge)
-?load_taxonomies
+custom_taxonomy <- load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))
 ```
+
+Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/versions/1.0.1/topics/load_taxonomies) for instructions on how to load a dataset of your own.
 
 See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) and [vignette](https://cran.r-project.org/web/packages/taxonbridge/vignettes/Examples.html) for more ideas on what to do with loaded data in `taxonbridge`.
