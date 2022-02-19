@@ -91,7 +91,8 @@ load_sample <- function() {
 #' With this parameter set the download NCBI files will be parsed with Taxonkit and saved in a file called `All.lineages.tsv` in
 #' your current working directory.
 #'
-#' @return A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files.
+#' @return A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files, or
+#' if the taxonkitpath parameter was set, a character vector containing the path to ´All.lineages.tsv´.
 #' @export
 #'
 #' @examples
