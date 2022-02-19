@@ -121,7 +121,8 @@ download_ncbi <- function(taxonkitpath = NA) {
   message("NCBI data dump has been downloaded and extracted.")
   if (!is.na(taxonkitpath)) { tryCatch(
       expr = {
-        system(paste0("cd ", td,";",taxonkitpath, " list --ids 1 | ",taxonkitpath ," lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv"))
+        system(paste0("cd ", td,";",taxonkitpath," --data-dir=", file.path(td) ," list --ids 1 | ",taxonkitpath ," lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=", file.path(td) ," > All.lineages.tsv"))
+        unlink(tf)
         message("NCBI files parsed and result saved.")
         location <- file.path(td, "All.lineages.tsv")
         location
@@ -154,6 +155,7 @@ download_gbif <- function() {
   utils::download.file(url1,tf)
   files <- utils::unzip(tf, files = c("backbone/Taxon.tsv"), exdir = td)
   message("GBIF data dump has been downloaded and extracted.")
+  unlink(tf)
   message("NOTE: Taxon.tsv is stored at ", files)
   files
 }
