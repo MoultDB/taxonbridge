@@ -98,10 +98,10 @@ load_sample <- function() {
 #' \dontrun{download_ncbi()}
 #' \dontrun{download_ncbi(taxonkitpath = "/home/usr/bin/taxonkit")}
 download_ncbi <- function(taxonkitpath = NA) {
-  if (!grepl("taxonkit", tolower(taxonkitpath), fixed=TRUE)) {
-    stop("The path must include both the directory name and filename 'taxonkit'")
-  }
   if (!is.na(taxonkitpath)) {
+    if (!grepl("taxonkit", tolower(taxonkitpath), fixed=TRUE)) {
+      stop("The path must include both the directory name and filename 'taxonkit'")
+    }
     tryCatch(
       expr = {
         system(paste0(taxonkitpath, " version"))
@@ -124,10 +124,9 @@ download_ncbi <- function(taxonkitpath = NA) {
   message("NCBI data dump has been downloaded and extracted.")
   if (!is.na(taxonkitpath)) { tryCatch(
       expr = {
-        system(paste0(taxonkitpath, " list --ids 1 | ",taxonkitpath ," lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv"))
-        #system(paste0(taxonkitpath, "taxonkit list --ids 1 | ",taxonkitpath ,"taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir ", td, "> All.lineages.tsv"))
+        system(paste0("cd ", td,";",taxonkitpath, " list --ids 1 | ",taxonkitpath ," lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv"))
         message("NCBI files parsed and result saved.")
-        location <- file.path(getwd(), "All.lineages.tsv")
+        location <- file.path(td, "All.lineages.tsv")
         location
       },
       warning = function(e){
