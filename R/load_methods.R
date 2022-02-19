@@ -98,6 +98,19 @@ load_sample <- function() {
 #' \dontrun{download_ncbi()}
 #' \dontrun{download_ncbi(taxonkitpath = "/home/usr/bin/taxonkit")}
 download_ncbi <- function(taxonkitpath = NA) {
+  if (!grepl("taxonkit", tolower(taxonkitpath), fixed=TRUE)) {
+    stop("The path must include both the directory name and filename 'taxonkit'")
+  }
+  if (!is.na(taxonkitpath)) {
+    tryCatch(
+      expr = {
+        system(paste0(taxonkitpath, " version"))
+        message("Taxonkit detected!")
+      },
+      warning = function(e){
+        stop(paste("Taxonkit not detected. Is this the correct path to Taxonkit:", taxonkitpath, "?"))
+      })
+  }
   current_t <- getOption("timeout")
   message("Your current download timeout is set to ",toString(current_t)," seconds.")
   withr::local_options(list(timeout = 600))
@@ -109,16 +122,7 @@ download_ncbi <- function(taxonkitpath = NA) {
   utils::download.file(url1,tf)
   files <- utils::unzip(tf, files = c("names.dmp","nodes.dmp","delnodes.dmp", "merged.dmp"), exdir = td )
   message("NCBI data dump has been downloaded and extracted.")
-  if (!is.na(taxonkitpath)) {
-    tryCatch(
-      expr = {
-      system(paste0(taxonkitpath, " version"))
-      message("Taxonkit detected!")
-      },
-      warning = function(e){
-      message(paste("Taxonkit not detected. Is this the correct path to Taxonkit:", taxonkitpath, "?"))
-      })
-    tryCatch(
+  if (!is.na(taxonkitpath)) { tryCatch(
       expr = {
         system(paste0(taxonkitpath, " list --ids 1 | ",taxonkitpath ," lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv"))
         #system(paste0(taxonkitpath, "taxonkit list --ids 1 | ",taxonkitpath ,"taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir ", td, "> All.lineages.tsv"))
@@ -130,9 +134,9 @@ download_ncbi <- function(taxonkitpath = NA) {
         message("Double check the directory name you supplied and/or your write permissions!")
       })
   }
-  else {
-    files
-  }
+    else {
+      files
+    }
 }
 
 #' Download the GBIF taxonomy data dump to a temporary directory
