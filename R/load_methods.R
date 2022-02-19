@@ -14,20 +14,8 @@
 #' \dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv")}
 #' \dontrun{load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))}
 load_taxonomies <- function(GBIF_path, NCBI_path) {
-  #Load GBIF data
-  #Available at https://hosted-datasets.gbif.org/datasets/backbone/
-  #Remove redundant and empty columns
-  GBIF <- vroom::vroom(GBIF_path)
-  GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
-  GBIF$canonicalName <- as.character(GBIF$canonicalName)
-  GBIF_all_rows <- nrow(GBIF)
-  GBIF_data <- GBIF[!is.na(GBIF$canonicalName),]
-  GBIF_data$from_GBIF <- 1
-  GBIF_filtered_rows <- nrow(GBIF_data)
 
-  #Load NCBI data obtained from taxonkit with:
-  #taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > all.lineage_extended.tsv
-  #Rename NCBI "name" column to "canonicalName" for merger with identically named column in GBIF
+  #Load NCBI data:
   NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE)
   colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName", "ncbi_rank", "ncbi_lineage_ranks")
   NCBI$canonicalName <- as.character(NCBI$canonicalName)
@@ -35,6 +23,15 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   NCBI_data <- NCBI[!is.na(NCBI$canonicalName),]
   NCBI_data$from_NCBI <- 1
   NCBI_filtered_rows <- nrow(NCBI_data)
+
+  #Load GBIF data:
+  GBIF <- vroom::vroom(GBIF_path)
+  GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
+  GBIF$canonicalName <- as.character(GBIF$canonicalName)
+  GBIF_all_rows <- nrow(GBIF)
+  GBIF_data <- GBIF[!is.na(GBIF$canonicalName),]
+  GBIF_data$from_GBIF <- 1
+  GBIF_filtered_rows <- nrow(GBIF_data)
 
   #Merge GBIF and NCBI on “canonicalName" having a value
   merged_set <- dplyr::full_join(GBIF_data, NCBI_data)

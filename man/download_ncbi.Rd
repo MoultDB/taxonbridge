@@ -8,11 +8,11 @@ download_ncbi(taxonkitpath = NA)
 }
 \arguments{
 \item{taxonkitpath}{A string containing the full path to where Taxonkit is installed (optional).
-With this parameter set the download NCBI files will be parsed with Taxonkit and saved in a file called \code{All.lineages.tsv} in
-your current working directory.}
+With this parameter set the downloaded NCBI files will be parsed with Taxonkit and saved in a file called \code{All.lineages.tsv}.}
 }
 \value{
-A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files.
+A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files, or
+if the taxonkitpath parameter was set, a character vector containing the path to \code{All.lineages.tsv}.
 }
 \description{
 Download the NCBI taxonomy data dump to a temporary directory
