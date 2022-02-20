@@ -1,5 +1,6 @@
 # taxonbridge 1.0.3
 
+* Added `fuzzy_search()` method
 * Added `download_gbif()` method
 * Added set operation parameter to `get_inconsistencies()`
 * Fixed bug in `get_inconsistencies()` when uninomials are set to true

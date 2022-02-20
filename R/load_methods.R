@@ -16,7 +16,7 @@
 load_taxonomies <- function(GBIF_path, NCBI_path) {
 
   #Load NCBI data:
-  NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE)
+  NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE, show_col_types = FALSE)
   colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName", "ncbi_rank", "ncbi_lineage_ranks")
   NCBI$canonicalName <- as.character(NCBI$canonicalName)
   NCBI_all_rows <- nrow(NCBI)
@@ -25,7 +25,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   NCBI_filtered_rows <- nrow(NCBI_data)
 
   #Load GBIF data:
-  GBIF <- vroom::vroom(GBIF_path)
+  GBIF <- vroom::vroom(GBIF_path, show_col_types = FALSE)
   GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
   GBIF$canonicalName <- as.character(GBIF$canonicalName)
   GBIF_all_rows <- nrow(GBIF)
@@ -65,7 +65,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
 #' @examples
 #' \dontrun{load_population("path/to/merged_taxonomies")}
 load_population <- function(x) {
-  vroom::vroom(x, na = "")
+  vroom::vroom(x, na = "", show_col_types = FALSE)
 }
 
 #' Load a sample of previously merged GBIF and NCBI taxonomies
@@ -79,7 +79,7 @@ load_population <- function(x) {
 #' load_sample()
 load_sample <- function() {
   sample_data <- system.file("extdata", "sample.tsv.gz", package = "taxonbridge", mustWork = TRUE)
-  vroom::vroom(sample_data, na = "")
+  vroom::vroom(sample_data, na = "", show_col_types = FALSE)
 }
 
 #' Download the NCBI taxonomy data dump to a temporary directory
