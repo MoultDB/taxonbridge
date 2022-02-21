@@ -1,5 +1,6 @@
 # taxonbridge 1.0.3
 
+* Updated v1.0.2 documentation
 * Added `fuzzy_search()` method
 * Added `download_gbif()` method
 * Added set operation parameter to `get_inconsistencies()`
