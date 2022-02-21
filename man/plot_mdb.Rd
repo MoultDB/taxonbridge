@@ -13,7 +13,11 @@ plot_mdb(x)
 A \code{ggplot2} derived plot
 }
 \description{
-A custom generic for methods that plot \code{taxonbridge} data types
+Generic for plot_mdb methods
+}
+\details{
+A generic with methods that plot \code{taxonbridge} data types (\code{one_rank} and \code{all_ranks}). These
+data types are created by using the methods \code{prepare_rank_dist()} or \code{prepare_comparable_rank_dist()}.
 }
 \examples{
 plot_mdb(prepare_rank_dist(load_sample(), NCBI = TRUE, GBIF = TRUE))

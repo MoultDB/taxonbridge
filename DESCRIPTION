@@ -1,10 +1,13 @@
 Package: taxonbridge
-Title: Creation of Custom Taxonomies Based on the NCBI Taxonomy and GBIF Taxonomy 
+Title: Create Custom Taxonomies Based on the NCBI Taxonomy and GBIF Backbone Taxonomy 
 Version: 1.0.3
 Authors@R: 
     person("Werner", "Veldsman", , "wernerpieter.veldsman@unil.ch", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9837-8332"))
-Description: The NCBI is a popular resource for taxonomic studies but it only contains data on species with sequence data whereas the GBIF has a more extensive coverage of extinct species. Taxonbridge is useful for the creation and analysis of custom taxonomies based on the NCBI taxonomy and GBIF taxonomy.
+Description: The NCBI taxonomy is a popular resource for taxonomic studies but it only 
+    contains data on species with sequence data whereas the GBIF has a more extensive 
+    coverage of extinct species. Taxonbridge is useful for the creation and analysis of 
+    custom taxonomies based on the NCBI taxonomy and GBIF backbone taxonomy.
 License: CC0
 URL: https://github.com/MoultDB/taxonbridge
 BugReports: https://github.com/MoultDB/taxonbridge/issues

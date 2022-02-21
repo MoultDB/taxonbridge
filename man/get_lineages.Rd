@@ -10,7 +10,7 @@ get_lineages(x)
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 }
 \value{
-A tibble with complete lineage data
+A tibble with complete lineage data.
 }
 \description{
 Get entries that have lineage information for both the GBIF and NCBI data

@@ -9,16 +9,19 @@ prepare_comparable_rank_dist(x, GBIF = TRUE, NCBI = TRUE)
 \arguments{
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 
-\item{GBIF}{A boolean indicating whether GBIF taxonomic ranks are to be retrieved.}
+\item{GBIF}{A logical indicating whether GBIF taxonomic ranks are to be retrieved.}
 
-\item{NCBI}{A boolean indicating whether NCBI taxonomic ranks are to be retrieved.}
+\item{NCBI}{A logical indicating whether NCBI taxonomic ranks are to be retrieved.}
 }
 \value{
 A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class \code{all_ranks}.
 }
 \description{
-\code{prepare_comparable_rank_dist()}, like \code{prepare_rank_dist()}, returns taxonomic ranks aggregated by frequency for
-data derived from the NCBI, the GBIF, or both. However, \code{prepare_comparable_rank_dist()} only includes
+Get comparable NCBI and GBIF taxonomic ranks
+}
+\details{
+This method, like \code{prepare_rank_dist()}, returns taxonomic ranks aggregated by frequency for
+data derived from the NCBI, the GBIF, or both. However, this method only retains
 taxonomic ranks that have at least one NCBI and one GBIF representative.
 }
 \examples{

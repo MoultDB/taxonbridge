@@ -1,11 +1,15 @@
 #' Convert GBIF terms to NCBI terms
 #'
-#' `term_conversion` converts GBIF terminology to NCBI terminology where there is
-#' no biological provenance for the difference.
-#'
 #' @param x A tibble created with `load_taxonomies()` or `load_population()` or `load_sample()`.
 #'
-#' @return A tibble with converted terms.
+#' @return A tibble with converted terms. The tibble is furthermore annotated with the
+#' attribute `converted=TRUE`.
+#'
+#' @details
+#' This method converts GBIF terminology to NCBI terminology where there is
+#' no biological provenance for the difference. Specifically, "Animalia" is converted
+#' to "Metazoa", and "Plantae" is converted to "Viridiplantae".
+#'
 #' @export
 #'
 #' @examples
@@ -19,15 +23,24 @@ term_conversion <- function(x) {
   x
 }
 
-#' Match scientific names that might be misspelled or that contain partial information
+#' Match misspelled or partial scientific names
 #'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
-#' @param term A string consisting of a scientific name
-#' @param sensitivity Mismatch tolerance (defaults to intolerant i.e. 0)
-#' @param allow_term_removal Allow search against only the first word of a search query. Useful
+#' @param term A string consisting of a scientific name.
+#' @param sensitivity An integer representing character mismatch tolerance (defaults to intolerant i.e. sensitivity=0)
+#' @param allow_term_removal Allow searches against only the first word of a search query. Useful
 #' when "Genus sp." or "Genus indet." is the search phrase.
 #'
 #' @return A list of candidate match(es), if applicable.
+#'
+#' @details
+#' The `sensitivity` parameter sets the number of character mismatches that are tolerated for
+#' a match to be reported. The higher the sensitivity, the more matches will be found, but the
+#' less relevant they may be. The `allow_term_removal` parameter allows striping the search query
+#' to only retain the characters before the first occurrence of a white space (i.e., only the first
+#' word of a search query is used during the search). However, `fuzzy_search()` will always search
+#' using the entire search query first and then only proceed to strips terms if no hits are found.
+#'
 #' @export
 #'
 #' @examples

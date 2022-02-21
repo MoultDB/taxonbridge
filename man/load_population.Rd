@@ -10,11 +10,14 @@ load_population(x)
 \item{x}{Path to a text file containing previously merged NCBI and GBIF taxonomies (compressed or uncompressed).}
 }
 \value{
-A tibble
+A tibble containing merged GBIF and NCBI taxonomic data.
 }
 \description{
-\code{load_population()} imports a previously merged taxonomy from your file system. An
-example of an previously merged taxonomy can be downloaded
+Load previously merged GBIF and NCBI taxonomies
+}
+\details{
+This method imports a previously merged taxonomy from your file system. An
+example of a previously merged taxonomy can be downloaded
 from \url{https://drive.google.com/file/d/1gpvm9QKdOcuGo_cIXPkAgGlB-qfKZZU6/view?usp=sharing}.
 }
 \examples{

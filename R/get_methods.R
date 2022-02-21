@@ -1,12 +1,18 @@
 #' Validate entries of a merged taxonomy
 #'
 #' @param x A tibble created with `load_taxonomies()` or `load_population()` or `load_sample()`.
-#' @param valid A logical indicating whether the returned data should include valid or invalid entries (defaults to valid).
+#' @param valid A logical indicating whether the returned data should include valid or invalid entries (defaults to TRUE).
 #' @param rank A string with GBIF rank that will be used to examine an NCBI lineage for validation purposes. Must
 #' be kingdom, phylum, class, order or family. Defaults to family. Note: If "kingdom" is used, the
 #' term_conversion() method should first be applied.
 #'
-#' @return A validated tibble
+#' @details
+#' Taxonbridge matches NCBI and GBIF data by scientific name. This method will use the GBIF rank
+#' (kingdom, phylum, class, order or family) and search for this rank name in the matched NCBI
+#' lineage. The purpose is to detect scientific names that have different lineage
+#' data in the GBIF and NCBI data.
+#'
+#' @return A validated tibble.
 #' @export
 #'
 #' @examples
@@ -36,7 +42,7 @@ get_validity <- function(x, rank = "family", valid = TRUE) {
 #'
 #' @param x A tibble created with `load_taxonomies()` or `load_population()` or `load_sample()`.
 #'
-#' @return A tibble with complete lineage data
+#' @return A tibble with complete lineage data.
 #' @export
 #'
 #' @examples
@@ -47,13 +53,13 @@ get_lineages <- function(x) {
 }
 
 
-#' Filter a combined taxonomy by GBIF taxonomic status/synonym
+#' Filter a custom taxonomy by GBIF taxonomic status/synonym
 #'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
 #' @param status Filter on GBIF assigned status (i.e. NA, "doubtful", "accepted", "proparte synonym", "synonym", "homotypic synonym",
 #' "heterotypic synonym"). Can be a string or a vector of strings. Defaults to no filtering.
 #'
-#' @return A filtered tibble
+#' @return A filtered tibble.
 #' @export
 #'
 #' @examples
@@ -78,11 +84,16 @@ get_status <- function (x, status = "all") {
 
 #' Detect candidate inconsistencies and ambiguity
 #'
-#' @param x A list consisting of tibble(s) that have been passed to get_validated()
-#' @param uninomials A Boolean indicating whether uninomials should be included in the detection (defaults to TRUE)
+#' @param x A **list** consisting of tibble(s) that have been passed to `get_validated()`.
+#' @param uninomials A logical indicating whether uninomials should be included in the detection (defaults to TRUE).
 #' @param set The type of set operation to be performed on x ("intersect", "union", or "setdiff"). Defaults to intersect.
 #'
-#' @return A character vector containing scientific names that exhibit inconsistency or ambiguity (an intersect of the list that was passed to the function).
+#' @return A character vector containing scientific names that exhibit inconsistency or ambiguity.
+#'
+#' @details This method will return the intersect, union, or set difference of a list of
+#' tibbles, and is meant to be used on lists of tibbles that have already been
+#' processed with `get_validity ()`. Note: uninomials are single names (e.g., "Coenobitidae").
+#'
 #' @export
 #'
 #' @examples
@@ -122,15 +133,15 @@ get_inconsistencies <- function(x, uninomials = TRUE, set = "intersect") {
 #' A helper function to filter columns on GBIF taxa names
 #'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
-#' @param kingdom A string consisting of a scientific name
-#' @param phylum A string consisting of a scientific name
-#' @param class A string consisting of a scientific name
-#' @param order A string consisting of a scientific name
-#' @param family A string consisting of a scientific name
-#' @param genus A string consisting of a scientific name
-#' @param species A string consisting of a scientific name
+#' @param kingdom A string consisting of a scientific name.
+#' @param phylum A string consisting of a scientific name.
+#' @param class A string consisting of a scientific name.
+#' @param order A string consisting of a scientific name.
+#' @param family A string consisting of a scientific name.
+#' @param genus A string consisting of a scientific name.
+#' @param species A string consisting of a scientific name.
 #'
-#' @return A filtered tibble
+#' @return A filtered tibble.
 #' @export
 #'
 #' @examples

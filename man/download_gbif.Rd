@@ -2,15 +2,19 @@
 % Please edit documentation in R/load_methods.R
 \name{download_gbif}
 \alias{download_gbif}
-\title{Download the GBIF taxonomy data dump to a temporary directory}
+\title{Download the GBIF backbone taxonomy}
 \usage{
 download_gbif()
 }
 \value{
-A character vector containing paths to the relevant downloaded and unzipped GBIF data dump files.
+A string containing the path to \code{Taxon.tsv}.
 }
 \description{
-Download the GBIF taxonomy data dump to a temporary directory
+Download the GBIF backbone taxonomy
+}
+\details{
+This method downloads the GBIF backbone taxonomy archive file to a temporary directory,
+extracts \code{Taxon.tsv} from the downloaded archive file, and then removes the archive file.
 }
 \examples{
 \dontrun{download_gbif()}

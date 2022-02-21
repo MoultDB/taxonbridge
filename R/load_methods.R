@@ -1,13 +1,15 @@
 #' Load and merge GBIF and NCBI taxonomic data
 #'
-#' `load_taxonomies()` parses and merges a GBIF `Taxon.tsv` file (see `download_gbif()`) and
-#' a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: `taxonkit list --ids 1 | taxonkit lineage
-#' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv` on NCBI data dump files (see `download_ncbi()`).
-#'
 #' @param GBIF_path Path to the GBIF backbone taxonomy (compressed or uncompressed).
 #' @param NCBI_path Path to the NCBI taxonomy (compressed or uncompressed).
 #'
 #' @return A tibble containing merged GBIF and NCBI taxonomic data.
+#'
+#' @details
+#' This method parses and merges a GBIF `Taxon.tsv` file (see `download_gbif()`) and
+#' a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: `taxonkit list --ids 1 | taxonkit lineage
+#' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv` on NCBI data dump files (see `download_ncbi()`).
+#'
 #' @export
 #'
 #' @examples
@@ -53,14 +55,15 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
 
 #' Load previously merged GBIF and NCBI taxonomies
 #'
-#' `load_population()` imports a previously merged taxonomy from your file system. An
-#' example of an previously merged taxonomy can be downloaded
-#' from \url{https://drive.google.com/file/d/1gpvm9QKdOcuGo_cIXPkAgGlB-qfKZZU6/view?usp=sharing}.
-#'
 #' @param x Path to a text file containing previously merged NCBI and GBIF taxonomies (compressed or uncompressed).
 #'
-#' @return A tibble
+#' @return A tibble containing merged GBIF and NCBI taxonomic data.
 #' @export
+#'
+#' @details
+#' This method imports a previously merged taxonomy from your file system. An
+#' example of a previously merged taxonomy can be downloaded
+#' from \url{https://drive.google.com/file/d/1gpvm9QKdOcuGo_cIXPkAgGlB-qfKZZU6/view?usp=sharing}.
 #'
 #' @examples
 #' \dontrun{load_population("path/to/merged_taxonomies")}
@@ -70,9 +73,9 @@ load_population <- function(x) {
 
 #' Load a sample of previously merged GBIF and NCBI taxonomies
 #'
-#' `load_sample()` returns a small subset of previously merged GBIF and NCBI taxonomies.
-#'
 #' @return A tibble containing a sample of merged GBIF and NCBI taxonomic data.
+#' @details
+#' This method returns a small subset of previously merged GBIF and NCBI taxonomies.
 #' @export
 #'
 #' @examples
@@ -82,13 +85,21 @@ load_sample <- function() {
   vroom::vroom(sample_data, na = "", show_col_types = FALSE)
 }
 
-#' Download the NCBI taxonomy data dump to a temporary directory
+#' Download the NCBI taxonomy
 #'
-#' @param taxonkitpath A string containing the full path to where Taxonkit is installed (optional).
-#' With this parameter set the downloaded NCBI files will be parsed with Taxonkit and saved in a file called `All.lineages.tsv`.
+#' @param taxonkitpath A string containing the full path to where `Taxonkit` is installed (optional).
 #'
 #' @return A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files, or
-#' if the taxonkitpath parameter was set, a character vector containing the path to `All.lineages.tsv`.
+#' if the `taxonkitpath` parameter was set, the path to `All.lineages.tsv`.
+#'
+#'@details
+#' This method downloads a NCBI taxonomy archive file to a temporary directory,
+#' extracts four files (`nodes.dmp`, `names.dmp`, `merged.dmp` and `deleted.dmp`)
+#' from the downloaded archive file, and then removes the archive file. If the path
+#' to a `Taxonkit` installation is supplied, `Taxonkit` is called and the location of
+#' the four files is passed to `Taxonkit` as an argument. Output is saved in the same
+#' temporary folder in a file called `All.lineages.tsv`.
+#'
 #' @export
 #'
 #' @examples
@@ -136,9 +147,15 @@ download_ncbi <- function(taxonkitpath = NA) {
     }
 }
 
-#' Download the GBIF taxonomy data dump to a temporary directory
+#' Download the GBIF backbone taxonomy
 #'
-#' @return A character vector containing paths to the relevant downloaded and unzipped GBIF data dump files.
+#' @return A string containing the path to `Taxon.tsv`.
+#'
+#' @details
+#' This method downloads the GBIF backbone taxonomy archive file to a temporary directory,
+#' extracts `Taxon.tsv` from the downloaded archive file, and then removes the archive file.
+#'
+#'
 #' @export
 #'
 #' @examples

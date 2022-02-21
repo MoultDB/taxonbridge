@@ -17,7 +17,10 @@ prepare_rank_dist(x, GBIF = FALSE, NCBI = FALSE)
 A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class \code{all_ranks}.
 }
 \description{
-\code{prepare_rank_dist()} returns taxonomic ranks aggregated by frequency for
+Get all NCBI and GBIF taxonomic ranks
+}
+\details{
+This method returns taxonomic ranks aggregated by frequency for
 data derived from the NCBI, the GBIF, or both.
 }
 \examples{

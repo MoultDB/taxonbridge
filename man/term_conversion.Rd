@@ -10,11 +10,16 @@ term_conversion(x)
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 }
 \value{
-A tibble with converted terms.
+A tibble with converted terms. The tibble is furthermore annotated with the
+attribute \code{converted=TRUE}.
 }
 \description{
-\code{term_conversion} converts GBIF terminology to NCBI terminology where there is
-no biological provenance for the difference.
+Convert GBIF terms to NCBI terms
+}
+\details{
+This method converts GBIF terminology to NCBI terminology where there is
+no biological provenance for the difference. Specifically, "Animalia" is converted
+to "Metazoa", and "Plantae" is converted to "Viridiplantae".
 }
 \examples{
 term_conversion(load_sample())

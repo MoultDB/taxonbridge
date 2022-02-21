@@ -1,13 +1,14 @@
 #' Get all NCBI and GBIF taxonomic ranks
 #'
-#' \code{prepare_rank_dist()} returns taxonomic ranks aggregated by frequency for
-#' data derived from the NCBI, the GBIF, or both.
-#'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
 #' @param GBIF A boolean indicating whether GBIF taxonomic ranks are to be retrieved.
 #' @param NCBI A boolean indicating whether NCBI taxonomic ranks are to be retrieved.
 #'
 #' @return A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class \code{all_ranks}.
+#' @details
+#' This method returns taxonomic ranks aggregated by frequency for
+#' data derived from the NCBI, the GBIF, or both.
+#'
 #' @export
 #'
 #' @examples
@@ -42,15 +43,16 @@ prepare_rank_dist <- function(x, GBIF=FALSE, NCBI=FALSE) {
 
 #' Get comparable NCBI and GBIF taxonomic ranks
 #'
-#' \code{prepare_comparable_rank_dist()}, like \code{prepare_rank_dist()}, returns taxonomic ranks aggregated by frequency for
-#' data derived from the NCBI, the GBIF, or both. However, \code{prepare_comparable_rank_dist()} only includes
-#' taxonomic ranks that have at least one NCBI and one GBIF representative.
-#'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
-#' @param GBIF A boolean indicating whether GBIF taxonomic ranks are to be retrieved.
-#' @param NCBI A boolean indicating whether NCBI taxonomic ranks are to be retrieved.
+#' @param GBIF A logical indicating whether GBIF taxonomic ranks are to be retrieved.
+#' @param NCBI A logical indicating whether NCBI taxonomic ranks are to be retrieved.
 #'
 #' @return A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class \code{all_ranks}.
+#' @details
+#' This method, like \code{prepare_rank_dist()}, returns taxonomic ranks aggregated by frequency for
+#' data derived from the NCBI, the GBIF, or both. However, this method only retains
+#' taxonomic ranks that have at least one NCBI and one GBIF representative.
+#'
 #' @export
 #'
 #' @examples

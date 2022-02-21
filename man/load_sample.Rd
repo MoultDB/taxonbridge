@@ -10,7 +10,10 @@ load_sample()
 A tibble containing a sample of merged GBIF and NCBI taxonomic data.
 }
 \description{
-\code{load_sample()} returns a small subset of previously merged GBIF and NCBI taxonomies.
+Load a sample of previously merged GBIF and NCBI taxonomies
+}
+\details{
+This method returns a small subset of previously merged GBIF and NCBI taxonomies.
 }
 \examples{
 load_sample()

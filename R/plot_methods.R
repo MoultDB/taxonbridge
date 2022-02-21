@@ -1,9 +1,11 @@
 #' Generic for plot_mdb methods
 #'
-#' A custom generic for methods that plot `taxonbridge` data types
-#'
 #' @param x An object of the class one_rank or the class all_ranks.
 #' @return A `ggplot2` derived plot
+#' @details
+#' A generic with methods that plot `taxonbridge` data types (`one_rank` and `all_ranks`). These
+#' data types are created by using the methods `prepare_rank_dist()` or `prepare_comparable_rank_dist()`.
+#'
 #' @export
 #'
 #' @examples

@@ -13,13 +13,19 @@ get_validity(x, rank = "family", valid = TRUE)
 be kingdom, phylum, class, order or family. Defaults to family. Note: If "kingdom" is used, the
 term_conversion() method should first be applied.}
 
-\item{valid}{A logical indicating whether the returned data should include valid or invalid entries (defaults to valid).}
+\item{valid}{A logical indicating whether the returned data should include valid or invalid entries (defaults to TRUE).}
 }
 \value{
-A validated tibble
+A validated tibble.
 }
 \description{
 Validate entries of a merged taxonomy
+}
+\details{
+Taxonbridge matches NCBI and GBIF data by scientific name. This method will use the GBIF rank
+(kingdom, phylum, class, order or family) and search for this rank name in the matched NCBI
+lineage. The purpose is to detect scientific names that have different lineage
+data in the GBIF and NCBI data.
 }
 \examples{
 get_validity(load_sample(), valid = TRUE)

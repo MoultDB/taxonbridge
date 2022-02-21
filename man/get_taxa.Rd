@@ -18,22 +18,22 @@ get_taxa(
 \arguments{
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 
-\item{kingdom}{A string consisting of a scientific name}
+\item{kingdom}{A string consisting of a scientific name.}
 
-\item{phylum}{A string consisting of a scientific name}
+\item{phylum}{A string consisting of a scientific name.}
 
-\item{class}{A string consisting of a scientific name}
+\item{class}{A string consisting of a scientific name.}
 
-\item{order}{A string consisting of a scientific name}
+\item{order}{A string consisting of a scientific name.}
 
-\item{family}{A string consisting of a scientific name}
+\item{family}{A string consisting of a scientific name.}
 
-\item{genus}{A string consisting of a scientific name}
+\item{genus}{A string consisting of a scientific name.}
 
-\item{species}{A string consisting of a scientific name}
+\item{species}{A string consisting of a scientific name.}
 }
 \value{
-A filtered tibble
+A filtered tibble.
 }
 \description{
 A helper function to filter columns on GBIF taxa names

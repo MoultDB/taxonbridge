@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_methods.R
 \name{get_status}
 \alias{get_status}
-\title{Filter a combined taxonomy by GBIF taxonomic status/synonym}
+\title{Filter a custom taxonomy by GBIF taxonomic status/synonym}
 \usage{
 get_status(x, status = "all")
 }
@@ -13,10 +13,10 @@ get_status(x, status = "all")
 "heterotypic synonym"). Can be a string or a vector of strings. Defaults to no filtering.}
 }
 \value{
-A filtered tibble
+A filtered tibble.
 }
 \description{
-Filter a combined taxonomy by GBIF taxonomic status/synonym
+Filter a custom taxonomy by GBIF taxonomic status/synonym
 }
 \examples{
 get_status(load_sample(), "synonym")

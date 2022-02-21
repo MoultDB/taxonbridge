@@ -2,25 +2,33 @@
 % Please edit documentation in R/helper_methods.R
 \name{fuzzy_search}
 \alias{fuzzy_search}
-\title{Match scientific names that might be misspelled or that contain partial information}
+\title{Match misspelled or partial scientific names}
 \usage{
 fuzzy_search(x, term, sensitivity = 0, allow_term_removal = FALSE)
 }
 \arguments{
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 
-\item{term}{A string consisting of a scientific name}
+\item{term}{A string consisting of a scientific name.}
 
-\item{sensitivity}{Mismatch tolerance (defaults to intolerant i.e. 0)}
+\item{sensitivity}{An integer representing character mismatch tolerance (defaults to intolerant i.e. sensitivity=0)}
 
-\item{allow_term_removal}{Allow search against only the first word of a search query. Useful
+\item{allow_term_removal}{Allow searches against only the first word of a search query. Useful
 when "Genus sp." or "Genus indet." is the search phrase.}
 }
 \value{
 A list of candidate match(es), if applicable.
 }
 \description{
-Match scientific names that might be misspelled or that contain partial information
+Match misspelled or partial scientific names
+}
+\details{
+The \code{sensitivity} parameter sets the number of character mismatches that are tolerated for
+a match to be reported. The higher the sensitivity, the more matches will be found, but the
+less relevant they may be. The \code{allow_term_removal} parameter allows striping the search query
+to only retain the characters before the first occurrence of a white space (i.e., only the first
+word of a search query is used during the search). However, \code{fuzzy_search()} will always search
+using the entire search query first and then only proceed to strips terms if no hits are found.
 }
 \examples{
 fuzzy_search(load_sample(), "Miacis deutschi")

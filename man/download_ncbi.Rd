@@ -2,20 +2,27 @@
 % Please edit documentation in R/load_methods.R
 \name{download_ncbi}
 \alias{download_ncbi}
-\title{Download the NCBI taxonomy data dump to a temporary directory}
+\title{Download the NCBI taxonomy}
 \usage{
 download_ncbi(taxonkitpath = NA)
 }
 \arguments{
-\item{taxonkitpath}{A string containing the full path to where Taxonkit is installed (optional).
-With this parameter set the downloaded NCBI files will be parsed with Taxonkit and saved in a file called \code{All.lineages.tsv}.}
+\item{taxonkitpath}{A string containing the full path to where \code{Taxonkit} is installed (optional).}
 }
 \value{
 A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files, or
-if the taxonkitpath parameter was set, a character vector containing the path to \code{All.lineages.tsv}.
+if the \code{taxonkitpath} parameter was set, the path to \code{All.lineages.tsv}.
 }
 \description{
-Download the NCBI taxonomy data dump to a temporary directory
+Download the NCBI taxonomy
+}
+\details{
+This method downloads a NCBI taxonomy archive file to a temporary directory,
+extracts four files (\code{nodes.dmp}, \code{names.dmp}, \code{merged.dmp} and \code{deleted.dmp})
+from the downloaded archive file, and then removes the archive file. If the path
+to a \code{Taxonkit} installation is supplied, \code{Taxonkit} is called and the location of
+the four files is passed to \code{Taxonkit} as an argument. Output is saved in the same
+temporary folder in a file called \code{All.lineages.tsv}.
 }
 \examples{
 \dontrun{download_ncbi()}
