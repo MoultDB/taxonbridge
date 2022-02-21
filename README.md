@@ -67,4 +67,4 @@ custom_taxonomy <- load_taxonomies(download_gbif(), download_ncbi(taxonkitpath =
 
 Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/versions/1.0.1/topics/load_taxonomies) for instructions on how to load a dataset of your own.
 
-See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) and [vignette](https://cran.r-project.org/web/packages/taxonbridge/vignettes/Examples.html) for more ideas on what to do with loaded data in `taxonbridge`.
+See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) and [vignette](https://CRAN.R-project.org/package=taxonbridge/vignettes/Examples.html) for more ideas on what to do with loaded data in `taxonbridge`.
