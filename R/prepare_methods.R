@@ -1,8 +1,8 @@
 #' Get all NCBI and GBIF taxonomic ranks
 #'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
-#' @param GBIF A boolean indicating whether GBIF taxonomic ranks are to be retrieved.
-#' @param NCBI A boolean indicating whether NCBI taxonomic ranks are to be retrieved.
+#' @param GBIF A logical indicating whether GBIF taxonomic ranks are to be retrieved.
+#' @param NCBI A logical indicating whether NCBI taxonomic ranks are to be retrieved.
 #'
 #' @return A list of tibble(s) assigned to the S3 class \code{one_rank} or to the S3 class \code{all_ranks}.
 #' @details

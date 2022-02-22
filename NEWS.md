@@ -1,3 +1,5 @@
+# taxonbridge 1.0.4
+
 # taxonbridge 1.0.3
 
 * Updated v1.0.2 documentation

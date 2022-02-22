@@ -36,10 +36,10 @@ term_conversion <- function(x) {
 #' @details
 #' The `sensitivity` parameter sets the number of character mismatches that are tolerated for
 #' a match to be reported. The higher the sensitivity, the more matches will be found, but the
-#' less relevant they may be. The `allow_term_removal` parameter allows striping the search query
+#' less relevant they may be. The `allow_term_removal` parameter allows stripping the search query
 #' to only retain the characters before the first occurrence of a white space (i.e., only the first
 #' word of a search query is used during the search). However, `fuzzy_search()` will always search
-#' using the entire search query first and then only proceed to strips terms if no hits are found.
+#' using the entire search query first and then only proceed to strip terms if no hits are found.
 #'
 #' @export
 #'
