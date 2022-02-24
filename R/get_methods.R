@@ -92,7 +92,7 @@ get_status <- function (x, status = "all") {
 #'
 #' @details This method will return the intersect, union, or set difference of a list of
 #' tibbles, and is meant to be used on lists of tibbles that have already been
-#' processed with `get_validity ()`. Note: uninomials are single names (e.g., "Coenobitidae").
+#' processed with `get_validity()`. Note: uninomials are single names (e.g., "Coenobitidae").
 #'
 #' @export
 #'

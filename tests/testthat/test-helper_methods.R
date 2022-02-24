@@ -12,3 +12,11 @@ test_that("fuzzy_search() is functional", {
   expect_equal(length(fuzzy_search(x, "Degeeria indet.", allow_term_removal = TRUE)), 1)
   expect_equal(length(fuzzy_search(x, "Degeeris indet.", sensitivity = 1, allow_term_removal = TRUE)), 1)
 })
+
+test_that("annotation() is functional", {
+  x <- load_sample()
+  x <- annotate(x, "Degeeria decora", "test" )
+  expect_equal(ncol(x), 21)
+  expect_equal(nrow(x[!is.na(x$test),]), 1)
+  expect_message(annotate(x, "Degejhwegjewgr", "test" ), "No annotations were made since no matching names were found.")
+})

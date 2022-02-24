@@ -72,3 +72,44 @@ fuzzy_search <- function(x, term, sensitivity = 0, allow_term_removal = FALSE) {
     }
   }
 }
+
+#' Annotate a tibble
+#'
+#' @param x The tibble to be annotated
+#' @param names A character vector containing scientific names
+#' @param new_column A string to be the name of a new column that will contain annotations
+#' @param present A string with the annotation in the case of a match (Defaults to "1")
+#' @param absent A string with the annotation in case of no match (Defaults to NA)
+#'
+#' @return An tibble that contains an additional column with annotations
+#' @details
+#' This method takes as input a character vector with scientific names. If the
+#' scientific name(s) in the vector match with scientific names in the tibble, a new
+#' column will be created and an annotation of choice will be added to the relevant row
+#' in the new column. This method is useful for annotating scientific names with identified
+#' ambiguity, duplication or any other characteristic. The character vector could, for example,
+#' even contain scientific names that have not been derived with a Taxonbridge method.
+#'
+#' @export
+#'
+#' @examples
+#'sample <- load_sample()
+#'lineages <- get_lineages(sample)
+#'kingdom <- get_validity(lineages, rank = "kingdom", valid = FALSE)
+#'family <- get_validity(lineages, rank = "family", valid = FALSE)
+#'candidates <- list(kingdom, family)
+#'binomials <- get_inconsistencies(candidates, uninomials = FALSE, set = "intersect")
+#'x <- annotate(sample, binomials, new_column = "inconsistencies", "Accepted but ambigious")
+#'x[!is.na(x$inconsistencies),c("inconsistencies")]
+annotate <- function(x, names, new_column, present = "1", absent = NA) {
+  match_index <- which(tolower(x$canonicalName) %in% tolower(names))
+  if (length(match_index)>0) {
+    x[toString(new_column)] <- absent
+    x[match_index,ncol(x)] <- present
+    message(toString(length(match_index)), " annotations were made.")
+  }
+  else {
+    message("No annotations were made since no matching names were found.")
+  }
+  x
+}

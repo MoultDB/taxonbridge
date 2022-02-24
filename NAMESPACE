@@ -3,6 +3,7 @@
 S3method(plot_mdb,all_ranks)
 S3method(plot_mdb,default)
 S3method(plot_mdb,one_rank)
+export(annotate)
 export(download_gbif)
 export(download_ncbi)
 export(fuzzy_search)

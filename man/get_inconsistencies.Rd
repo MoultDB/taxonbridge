@@ -22,7 +22,7 @@ Detect candidate inconsistencies and ambiguity
 \details{
 This method will return the intersect, union, or set difference of a list of
 tibbles, and is meant to be used on lists of tibbles that have already been
-processed with \code{get_validity ()}. Note: uninomials are single names (e.g., "Coenobitidae").
+processed with \code{get_validity()}. Note: uninomials are single names (e.g., "Coenobitidae").
 }
 \examples{
 sample <- load_sample()

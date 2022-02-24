@@ -1,5 +1,7 @@
 # taxonbridge 1.0.4
 
+* Added `annotation()` method
+
 # taxonbridge 1.0.3
 
 * Updated v1.0.2 documentation
