@@ -22,6 +22,8 @@ This vignette contains example use cases for `taxonbridge`:
 
 **2. Annotating a custom taxonomy**
 
+**3. Visualizing a custom taxonomy**
+
 ## 1. Detecting ambiguity and inconsistencies
 
 The first example illustrates how to detect ambiguity and inconsistency in a merged taxonomy. Start by loading the 2000 row sample dataset that comes with `taxonbridge`:
@@ -94,17 +96,68 @@ Next annotate your base taxonomy with this colloquial name for the family Portun
 
 ```{r, include=TRUE, message=FALSE}
 decapoda <- annotate(decapoda, names = swimming_crabs$canonicalName, 
-                     new_column = "Swimming_crabs", present = "1")
+                     new_column = "swimming_crabs", present = "1")
 ```
 
-A new column by the name "Swimming_crabs" has been added to the base taxonomy:
+A new column by the name "swimming_crabs" has been added to the base taxonomy:
 
 ```{r, include=TRUE, message=TRUE}
 colnames(decapoda)
 ```
 
-Since only the `present` parameter and not the `absent` parameter was passed to `annotate()`, all species that are not members of the Portunidae will be assigned `NA` by default in the `Swimming_crabs` column. Swimming crabs can therefore be retrieved from the base taxonomy with the following command:
+Since only the `present` parameter and not the `absent` parameter was passed to `annotate()`, all species that are not members of the Portunidae will be assigned `NA` by default in the `swimming_crabs` column. Swimming crabs can therefore be retrieved from the base taxonomy with the following command:
 
 ```{r, include=TRUE, message=TRUE}
-decapoda[!is.na(decapoda$Swimming_crabs),"canonicalName"]
+decapoda[!is.na(decapoda$swimming_crabs),"canonicalName"]
+```
+
+## 3. Visualizing a custom taxonomy
+
+Continue using the annotated base taxonomy from example 2. Prepare two distributions for the base taxonomy using `prepare_rank_dist()`:
+
+```{r, include=TRUE, message=TRUE, fig.show="hold"}
+GBIF_dist <- prepare_rank_dist(decapoda, GBIF = TRUE)
+NCBI_dist <- prepare_rank_dist(decapoda, NCBI = TRUE)
+plot_mdb(GBIF_dist)
+plot_mdb(NCBI_dist)
+```
+
+The plots show that there is a difference between the entries of the NCBI and GBIF. Looking at the previously prepared distributions reveal that the NCBI lacks lineage data for two species:
+
+```{r, include=TRUE, message=TRUE}
+GBIF_dist
+NCBI_dist 
+```
+
+Assuring that both the NCBI data and GBIF data have lineage data by using `get_lineages()` solves this problem at the cost of losing two GBIF entries that are not available in the NCBI:
+
+```{r, include=TRUE, message=TRUE, fig.show="hold"}
+lineages <- get_lineages(decapoda)
+GBIF_dist <- prepare_rank_dist(lineages, GBIF = TRUE)
+NCBI_dist <- prepare_rank_dist(lineages, NCBI = TRUE)
+plot_mdb(GBIF_dist)
+plot_mdb(NCBI_dist)
+```
+
+Note that `get_lineages()` should be used with care since extinct species in the GBIF are unlikely to have lineage data in the NCBI.
+
+Now that both the GBIF and NCBI data have lineage information, the validity of the lineage information can be accessed in the same way as was done in example 1:
+
+```{r, include=TRUE, message=TRUE}
+get_validity(decapoda, valid = FALSE)
+```
+
+Two entries have invalid data:
+
+* The species *Palibythus magnificus* belongs to the family Palinuridae in the GBIF but belongs to the family Synaxidae in the NCBI.
+
+* The genus *Lysirude* belongs to the family Lyreididae in the GBIF but belongs to the family Raninidae in the NCBI.
+
+Annotating the base taxonomy with these inconsistencies is a good idea:
+
+```{r, include=TRUE, message=TRUE}
+decapoda <- annotate(decapoda, get_validity(decapoda, valid = FALSE)$canonicalName,
+                    new_column = "family_inconsistencies", present = 1)
+colnames(decapoda)
+decapoda[!is.na(decapoda$family_inconsistencies),"canonicalName"]
 ```
