@@ -27,7 +27,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   NCBI_filtered_rows <- nrow(NCBI_data)
 
   #Load GBIF data:
-  GBIF <- vroom::vroom(GBIF_path, show_col_types = FALSE)
+  GBIF <- vroom::vroom(GBIF_path, show_col_types = FALSE, quote = "")
   GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
   GBIF$canonicalName <- as.character(GBIF$canonicalName)
   GBIF_all_rows <- nrow(GBIF)

@@ -1,5 +1,6 @@
 # taxonbridge 1.0.4
 
+* Fixed bug in `load_taxonomies()` when reading in GBIF data with vroom
 * Updated vignette
 * Added `annotate()` method
 
