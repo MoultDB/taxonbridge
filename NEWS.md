@@ -1,5 +1,6 @@
 # taxonbridge 1.0.4
 
+* Updated vignette
 * Added `annotate()` method
 
 # taxonbridge 1.0.3

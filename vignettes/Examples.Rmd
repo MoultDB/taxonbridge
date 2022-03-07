@@ -14,7 +14,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette illustrates how to detect ambiguity and inconsistency in a merged taxonomy. Start by loading the 2000 row sample dataset that comes with `taxonbridge`:
+This vignette contains example use cases for `taxonbridge`:
+
+## Table of contents
+
+**1. Detecting ambiguity and inconsistencies**
+
+**2. Annotating a custom taxonomy**
+
+## 1. Detecting ambiguity and inconsistencies
+
+The first example illustrates how to detect ambiguity and inconsistency in a merged taxonomy. Start by loading the 2000 row sample dataset that comes with `taxonbridge`:
 
 ```{r, include=TRUE, message=FALSE}
 library(taxonbridge)
@@ -62,4 +72,39 @@ kingdom <- get_validity(lineages, rank = "kingdom", valid = FALSE)
 family <- get_validity(lineages, rank = "family", valid = FALSE)
 candidates <- list(kingdom, family)
 get_inconsistencies(candidates, uninomials = FALSE)
+```
+
+## 2. Annotating a custom taxonomy
+
+Again, start by loading the 2000 row sample dataset that comes with `taxonbridge`. Then apply the `get_taxa()` method to find all decapod crustaceans in the sample dataset: 
+
+```{r, include=TRUE, message=FALSE}
+library(taxonbridge)
+sample <- load_sample()
+decapoda <- get_taxa(sample, order = "decapoda")
+```
+
+The `decapoda` object will serve as your base taxonomy. Create a new object that only retains decapods known as swimming crabs:
+
+```{r, include=TRUE, message=FALSE}
+swimming_crabs <- get_taxa(sample, family = "portunidae")
+```
+
+Next annotate your base taxonomy with this colloquial name for the family Portunidae:
+
+```{r, include=TRUE, message=FALSE}
+decapoda <- annotate(decapoda, names = swimming_crabs$canonicalName, 
+                     new_column = "Swimming_crabs", present = "1")
+```
+
+A new column by the name "Swimming_crabs" has been added to the base taxonomy:
+
+```{r, include=TRUE, message=TRUE}
+colnames(decapoda)
+```
+
+Since only the `present` parameter and not the `absent` parameter was passed to `annotate()`, all species that are not members of the Portunidae will be assigned `NA` by default in the `Swimming_crabs` column. Swimming crabs can therefore be retrieved from the base taxonomy with the following command:
+
+```{r, include=TRUE, message=TRUE}
+decapoda[!is.na(decapoda$Swimming_crabs),"canonicalName"]
 ```
