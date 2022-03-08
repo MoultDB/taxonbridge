@@ -36,7 +36,7 @@ library(taxonbridge)
 
 ## Available methods and how to use them
 
-See the `taxonbridge` [documentation]( https://rdocumentation.org/packages/taxonbridge/versions/1.0.1) and [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf).
+See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonbridge/) and [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf).
 
 ## Examples
 
@@ -65,6 +65,6 @@ library(taxonbridge)
 custom_taxonomy <- load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))
 ```
 
-Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/versions/1.0.1/topics/load_taxonomies) for instructions on how to load a dataset of your own.
+Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/) for instructions on how to load a dataset of your own.
 
 See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) and [vignette](https://CRAN.R-project.org/package=taxonbridge) for more ideas on what to do with loaded data in `taxonbridge`.
