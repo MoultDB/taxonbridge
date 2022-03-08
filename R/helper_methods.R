@@ -73,15 +73,15 @@ fuzzy_search <- function(x, term, sensitivity = 0, allow_term_removal = FALSE) {
   }
 }
 
-#' Annotate a tibble
+#' Annotate a custom taxonomy
 #'
-#' @param x The tibble to be annotated
-#' @param names A character vector containing scientific names
-#' @param new_column A string to be the name of a new column that will contain annotations
-#' @param present A string with the annotation in the case of a match (Defaults to "1")
-#' @param absent A string with the annotation in case of no match (Defaults to NA)
+#' @param x A tibble with taxonomic data to be annotated.
+#' @param names A character vector containing scientific names.
+#' @param new_column A string to be the name of a new column that will contain annotations.
+#' @param present A string with the annotation in the case of a match (Defaults to "1").
+#' @param absent A string with the annotation in case of no match (Defaults to NA).
 #'
-#' @return An tibble that contains an additional column with annotations
+#' @return A tibble that contains an additional column with annotations.
 #' @details
 #' This method takes as input a character vector with scientific names. If the
 #' scientific name(s) in the vector match with scientific names in the tibble, a new

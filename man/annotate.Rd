@@ -2,26 +2,26 @@
 % Please edit documentation in R/helper_methods.R
 \name{annotate}
 \alias{annotate}
-\title{Annotate a tibble}
+\title{Annotate a custom taxonomy}
 \usage{
 annotate(x, names, new_column, present = "1", absent = NA)
 }
 \arguments{
-\item{x}{The tibble to be annotated}
+\item{x}{A tibble with taxonomic data to be annotated.}
 
-\item{names}{A character vector containing scientific names}
+\item{names}{A character vector containing scientific names.}
 
-\item{new_column}{A string to be the name of a new column that will contain annotations}
+\item{new_column}{A string to be the name of a new column that will contain annotations.}
 
-\item{present}{A string with the annotation in the case of a match (Defaults to "1")}
+\item{present}{A string with the annotation in the case of a match (Defaults to "1").}
 
-\item{absent}{A string with the annotation in case of no match (Defaults to NA)}
+\item{absent}{A string with the annotation in case of no match (Defaults to NA).}
 }
 \value{
-An tibble that contains an additional column with annotations
+A tibble that contains an additional column with annotations.
 }
 \description{
-Annotate a tibble
+Annotate a custom taxonomy
 }
 \details{
 This method takes as input a character vector with scientific names. If the
