@@ -1,3 +1,5 @@
+# taxonbridge 1.0.5
+
 # taxonbridge 1.0.4
 
 * Updated `get_validity()` method
