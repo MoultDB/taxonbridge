@@ -10,7 +10,9 @@
 #' Taxonbridge matches NCBI and GBIF data by scientific name. This method will use the GBIF rank
 #' (kingdom, phylum, class, order or family) and search for this rank name in the matched NCBI
 #' lineage. The purpose is to detect scientific names that have different lineage
-#' data in the GBIF and NCBI data.
+#' data in the GBIF and NCBI. If the `valid` parameter is set to TRUE, this method will
+#' not only check the rank names, but also ensure that the GBIF `taxonRank` column and
+#' NCBI `ncbi_rank` column matches.
 #'
 #' @return A validated tibble.
 #' @export
@@ -32,7 +34,9 @@ get_validity <- function(x, rank = "family", valid = TRUE) {
   target_list <- dplyr::pull(x, userdefinedcolumn)
   lgl_vec <- unlist(purrr::map2(target_list, query_list, rje::is.subset))
   if (valid) {
-    xout <- x[which(lgl_vec),] }
+    xout <- x[which(lgl_vec),]
+    xout <- xout[xout$taxonRank==xout$ncbi_rank,]
+    }
   else {xout <- x[which(!lgl_vec),] }
   attr(xout, "got_validated") <- TRUE
   xout

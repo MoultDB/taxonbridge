@@ -25,7 +25,9 @@ Validate entries of a merged taxonomy
 Taxonbridge matches NCBI and GBIF data by scientific name. This method will use the GBIF rank
 (kingdom, phylum, class, order or family) and search for this rank name in the matched NCBI
 lineage. The purpose is to detect scientific names that have different lineage
-data in the GBIF and NCBI data.
+data in the GBIF and NCBI. If the \code{valid} parameter is set to TRUE, this method will
+not only check the rank names, but also ensure that the GBIF \code{taxonRank} column and
+NCBI \code{ncbi_rank} column matches.
 }
 \examples{
 get_validity(load_sample(), valid = TRUE)
