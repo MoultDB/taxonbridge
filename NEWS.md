@@ -1,5 +1,7 @@
 # taxonbridge 1.0.5
 
+* Added `dedupe()` method
+
 # taxonbridge 1.0.4
 
 * Updated `get_validity()` method
