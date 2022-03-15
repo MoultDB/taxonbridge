@@ -20,3 +20,9 @@ test_that("annotation() is functional", {
   expect_equal(nrow(x[!is.na(x$test),]), 1)
   expect_message(annotate(x, "Degejhwegjewgr", "test" ), "No annotations were made since no matching names were found.")
 })
+
+test_that("dedupe() is functional", {
+  x <- load_sample()
+  expect_equal(nrow(dedupe(x)), 1999)
+  expect_equal(nrow(dedupe(x, ranked = FALSE)), 2000)
+})

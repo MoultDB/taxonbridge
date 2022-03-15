@@ -130,6 +130,7 @@ annotate <- function(x, names, new_column, present = "1", absent = NA) {
 #' @export
 
 #' @examples
+#' dedupe(load_sample())
 dedupe <- function(x, ranked=TRUE) {
   start <- nrow(x)
   message("This may take a moment...")

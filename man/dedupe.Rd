@@ -25,3 +25,6 @@ duplicates will be stringently removed based on the following order: "accepted",
 duplicates will only be removed based on the scientific names, but not on taxonomic status, which results
 in less duplicates being removed.
 }
+\examples{
+dedupe(load_sample())
+}
