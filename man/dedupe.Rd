@@ -9,8 +9,8 @@ dedupe(x, ranked = TRUE)
 \arguments{
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 
-\item{ranked}{A logical indicating that duplicates should be removed by certainty
-of taxonomic status. Defaults to true.}
+\item{ranked}{A logical indicating whether duplicates should be removed by certainty
+of taxonomic status. Defaults to \code{TRUE}.}
 }
 \value{
 A de-duplicated tibble
@@ -19,7 +19,7 @@ A de-duplicated tibble
 Remove duplicate scientific names in a taxonomy
 }
 \details{
-This method can be used in one of two ways. By simple passing a tibble as input,
+This method can be used in one of two ways. By simply passing a tibble as input,
 duplicates will be stringently removed based on the following order: "accepted", "synonym","homotypic synonym",
 "heterotypic synonym", "proparte synonym","doubtful", NA. If however the ranked parameter is set to \code{FALSE},
 duplicates will only be removed based on the scientific names, but not on taxonomic status, which results

@@ -117,11 +117,11 @@ annotate <- function(x, names, new_column, present = "1", absent = NA) {
 #' Remove duplicate scientific names in a taxonomy
 #'
 #' @param x A tibble created with `load_taxonomies()` or `load_population()` or `load_sample()`.
-#' @param ranked A logical indicating that duplicates should be removed by certainty
-#' of taxonomic status. Defaults to true.
+#' @param ranked A logical indicating whether duplicates should be removed by certainty
+#' of taxonomic status. Defaults to `TRUE`.
 #'
 #' @return A de-duplicated tibble
-#' @details This method can be used in one of two ways. By simple passing a tibble as input,
+#' @details This method can be used in one of two ways. By simply passing a tibble as input,
 #' duplicates will be stringently removed based on the following order: "accepted", "synonym","homotypic synonym",
 #' "heterotypic synonym", "proparte synonym","doubtful", NA. If however the ranked parameter is set to `FALSE`,
 #' duplicates will only be removed based on the scientific names, but not on taxonomic status, which results
@@ -133,7 +133,6 @@ annotate <- function(x, names, new_column, present = "1", absent = NA) {
 #' dedupe(load_sample())
 dedupe <- function(x, ranked=TRUE) {
   start <- nrow(x)
-  message("This may take a moment...")
   ranks = c("accepted", "synonym","homotypic synonym", "heterotypic synonym", "proparte synonym","doubtful", NA)
   if (!ranked) {
     xout <- x[!(duplicated(x[c("canonicalName","taxonomicStatus")]) | duplicated(x[c("canonicalName","taxonomicStatus")])), ]
