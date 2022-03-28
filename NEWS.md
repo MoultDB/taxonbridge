@@ -1,3 +1,7 @@
+# taxonbridge 1.0.6
+
+* New hexagonal logo for Taxonbridge
+
 # taxonbridge 1.0.5
 
 * Added `dedupe()` method
