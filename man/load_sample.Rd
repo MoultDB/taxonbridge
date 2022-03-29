@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_methods.R
 \name{load_sample}
 \alias{load_sample}
-\title{Load a sample of previously merged GBIF and NCBI taxonomies}
+\title{Load an example of previously merged GBIF and NCBI taxonomies}
 \usage{
 load_sample()
 }
@@ -10,10 +10,12 @@ load_sample()
 A tibble containing a sample of merged GBIF and NCBI taxonomic data.
 }
 \description{
-Load a sample of previously merged GBIF and NCBI taxonomies
+Load an example of previously merged GBIF and NCBI taxonomies
 }
 \details{
-This method returns a small subset of previously merged GBIF and NCBI taxonomies.
+This method returns a small subset of previously merged GBIF and NCBI taxonomies. The
+subset is an example dataset that is only meant to be used to familiarize yourself
+with \code{taxonbridge} methods.
 }
 \examples{
 load_sample()

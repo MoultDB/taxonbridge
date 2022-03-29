@@ -71,11 +71,13 @@ load_population <- function(x) {
   vroom::vroom(x, na = "", show_col_types = FALSE)
 }
 
-#' Load a sample of previously merged GBIF and NCBI taxonomies
+#' Load an example of previously merged GBIF and NCBI taxonomies
 #'
 #' @return A tibble containing a sample of merged GBIF and NCBI taxonomic data.
 #' @details
-#' This method returns a small subset of previously merged GBIF and NCBI taxonomies.
+#' This method returns a small subset of previously merged GBIF and NCBI taxonomies. The
+#' subset is an example dataset that is only meant to be used to familiarize yourself
+#' with `taxonbridge` methods.
 #' @export
 #'
 #' @examples
