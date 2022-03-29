@@ -48,7 +48,6 @@ term_conversion <- function(x) {
 #' fuzzy_search(load_sample(), "Miacis sp.", allow_term_removal = TRUE)
 #' fuzzy_search(load_sample(), "Miacus deutschi", sensitivity = 1)
 fuzzy_search <- function(x, term, sensitivity = 0, allow_term_removal = FALSE) {
-  message("NOTE: Fuzzy search may be slower than expected...")
   canonicalName <- NULL
   term_l <- tolower(term)
   matches <- agrep(term_l, tolower(x$canonicalName), max.distance = sensitivity, ignore.case = TRUE)
