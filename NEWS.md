@@ -1,6 +1,7 @@
 # taxonbridge 1.0.6
 
 * New hexagonal logo and workflow
+* Updated vignette
 
 # taxonbridge 1.0.5
 

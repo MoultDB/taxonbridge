@@ -144,7 +144,7 @@ Note that `get_lineages()` should be used with care since extinct species in the
 Now that both the GBIF and NCBI data have lineage information, the validity of the lineage information can be accessed in the same way as was done in example 1:
 
 ```{r, include=TRUE, message=TRUE}
-get_validity(decapoda, valid = FALSE)
+get_validity(lineages, valid = FALSE)
 ```
 
 Two entries have invalid data:
@@ -156,7 +156,7 @@ Two entries have invalid data:
 Annotating the base taxonomy with these inconsistencies is a good idea:
 
 ```{r, include=TRUE, message=TRUE}
-decapoda <- annotate(decapoda, get_validity(decapoda, valid = FALSE)$canonicalName,
+decapoda <- annotate(decapoda, get_validity(lineages, valid = FALSE)$canonicalName,
                     new_column = "family_inconsistencies", present = 1)
 colnames(decapoda)
 decapoda[!is.na(decapoda$family_inconsistencies),"canonicalName"]
