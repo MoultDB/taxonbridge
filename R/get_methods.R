@@ -86,17 +86,22 @@ get_status <- function (x, status = "all") {
   xout
 }
 
-#' Detect candidate inconsistencies and ambiguity
+#' Detect candidate inconsistencies and ambiguity in a custom taxonomy
 #'
-#' @param x A **list** consisting of tibble(s) that have been passed to `get_validated()`.
-#' @param uninomials A logical indicating whether uninomials should be included in the detection (defaults to TRUE).
-#' @param set The type of set operation to be performed on x ("intersect", "union", or "setdiff"). Defaults to intersect.
+#' @param x A **list** consisting of two tibbles of different ranks that have been passed to `get_validated(..., rank = ...)`.
+#' @param uninomials A logical indicating whether uninomials should be included in the detection. Defaults to TRUE.
+#' Note: uninomials are single names (e.g., "Coenobitidae").
+#' @param set The type of set operation to be performed on `x` ("intersect", "union", or "setdiff").
+#' Defaults to intersect. Note: the set difference ("setdiff") argument is order dependent.
 #'
 #' @return A character vector containing scientific names that exhibit inconsistency or ambiguity.
 #'
-#' @details This method will return the intersect, union, or set difference of a list of
+#' @details This method will return the intersect, union, or set difference of a list of two
 #' tibbles, and is meant to be used on lists of tibbles that have already been
-#' processed with `get_validity()`. Note: uninomials are single names (e.g., "Coenobitidae").
+#' processed with `get_validity()`. A list consisting of a single tibble may be passed to this method for the
+#' purpose of retrieving a character vector containing scientific names, however, set operations do not apply
+#' to lists consisting of single tibbles.
+#'
 #'
 #' @export
 #'

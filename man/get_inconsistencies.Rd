@@ -2,27 +2,31 @@
 % Please edit documentation in R/get_methods.R
 \name{get_inconsistencies}
 \alias{get_inconsistencies}
-\title{Detect candidate inconsistencies and ambiguity}
+\title{Detect candidate inconsistencies and ambiguity in a custom taxonomy}
 \usage{
 get_inconsistencies(x, uninomials = TRUE, set = "intersect")
 }
 \arguments{
-\item{x}{A \strong{list} consisting of tibble(s) that have been passed to \code{get_validated()}.}
+\item{x}{A \strong{list} consisting of two tibbles of different ranks that have been passed to \code{get_validated(..., rank = ...)}.}
 
-\item{uninomials}{A logical indicating whether uninomials should be included in the detection (defaults to TRUE).}
+\item{uninomials}{A logical indicating whether uninomials should be included in the detection. Defaults to TRUE.
+Note: uninomials are single names (e.g., "Coenobitidae").}
 
-\item{set}{The type of set operation to be performed on x ("intersect", "union", or "setdiff"). Defaults to intersect.}
+\item{set}{The type of set operation to be performed on \code{x} ("intersect", "union", or "setdiff").
+Defaults to intersect. Note: the set difference ("setdiff") argument is order dependent.}
 }
 \value{
 A character vector containing scientific names that exhibit inconsistency or ambiguity.
 }
 \description{
-Detect candidate inconsistencies and ambiguity
+Detect candidate inconsistencies and ambiguity in a custom taxonomy
 }
 \details{
-This method will return the intersect, union, or set difference of a list of
+This method will return the intersect, union, or set difference of a list of two
 tibbles, and is meant to be used on lists of tibbles that have already been
-processed with \code{get_validity()}. Note: uninomials are single names (e.g., "Coenobitidae").
+processed with \code{get_validity()}. A list consisting of a single tibble may be passed to this method for the
+purpose of retrieving a character vector containing scientific names, however, set operations do not apply
+to lists consisting of single tibbles.
 }
 \examples{
 sample <- load_sample()
