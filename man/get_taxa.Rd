@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_methods.R
 \name{get_taxa}
 \alias{get_taxa}
-\title{A helper function to filter columns on GBIF taxa names}
+\title{A helper function to filter on GBIF taxa names}
 \usage{
 get_taxa(
   x,
@@ -36,7 +36,7 @@ get_taxa(
 A filtered tibble.
 }
 \description{
-A helper function to filter columns on GBIF taxa names
+A helper function to filter on GBIF taxa names
 }
 \examples{
 get_taxa(load_sample(), species = "hyalina")

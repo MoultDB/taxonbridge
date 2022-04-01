@@ -75,7 +75,7 @@ fuzzy_search <- function(x, term, sensitivity = 0, allow_term_removal = FALSE) {
 #' Annotate a custom taxonomy
 #'
 #' @param x A tibble with taxonomic data to be annotated.
-#' @param names A character vector containing scientific names.
+#' @param names A character vector containing scientific names that will be matched to scientific names in `x`.
 #' @param new_column A string to be the name of a new column that will contain annotations.
 #' @param present A string with the annotation in the case of a match (Defaults to "1").
 #' @param absent A string with the annotation in case of no match (Defaults to NA).

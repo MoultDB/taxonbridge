@@ -6,9 +6,8 @@
 #' @return A tibble containing merged GBIF and NCBI taxonomic data.
 #'
 #' @details
-#' This method parses and merges a GBIF `Taxon.tsv` file (see `download_gbif()`) and
-#' a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: `taxonkit list --ids 1 | taxonkit lineage
-#' --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv` on NCBI data dump files (see `download_ncbi()`).
+#' This method merges a GBIF `Taxon.tsv` file (see `download_gbif()`) and
+#' a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file (see `download_ncbi()`).
 #'
 #' @export
 #'
@@ -97,10 +96,13 @@ load_sample <- function() {
 #'@details
 #' This method downloads a NCBI taxonomy archive file to a temporary directory,
 #' extracts four files (`nodes.dmp`, `names.dmp`, `merged.dmp` and `deleted.dmp`)
-#' from the downloaded archive file, and then removes the archive file. If the path
-#' to a `Taxonkit` installation is supplied, `Taxonkit` is called and the location of
-#' the four files is passed to `Taxonkit` as an argument. Output is saved in the same
-#' temporary folder in a file called `All.lineages.tsv`.
+#' from the downloaded archive file, and then removes the archive file. Further parsing of
+#' these four files must be carried out with Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}),
+#' either automatically or manually. If the path to a Taxonkit installation is supplied, Taxonkit is
+#' called and the location of the four files is passed to Taxonkit as an argument for automatic parsing.
+#' Taxonkit output is saved in the same temporary folder in a file called `All.lineages.tsv`.
+#' If the path to Taxonkit is not supplied, parsing should be carried out manually using the command:
+#' `taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=path/to/downloaded/files > All.lineages.tsv`
 #'
 #' @export
 #'

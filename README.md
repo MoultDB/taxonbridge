@@ -40,11 +40,11 @@ See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonb
 
 ## Examples
 
-This is a basic example which uses a function from each of the `taxonbridge` package's four main function categories to load and manipulate sample data:
+A 2000-row example subset of a previously merged taxonomy is bundled with `taxonbridge` and can be loaded as follow:
 
 ``` r
 library(taxonbridge)
-plot_mdb(prepare_comparable_rank_dist(get_validity(get_status(load_sample()), valid = TRUE)))
+example <- load_sample()
 ```
 
 Want to try more than a sample? [Download](https://drive.google.com/file/d/1gpvm9QKdOcuGo_cIXPkAgGlB-qfKZZU6/view?usp=sharing) a larger dataset and load it as follow:
@@ -53,18 +53,25 @@ Want to try more than a sample? [Download](https://drive.google.com/file/d/1gpvm
 library(taxonbridge)
 load_population("path/to/downloaded/dataset")
 ```
-You can also prepare a dataset yourself which requires the use of external data and software available at the following links:
+You can also prepare a dataset yourself which requires the use of external data and software. The most current NCBI and GBIF taxonomic data can be downloaded as follow:
 
-[Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/) (use `download_gbif()` and note the location of the file Taxon.tsv).
+``` r
+download_gbif()
+download_ncbi()
+```
 
-[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/) (use `download_ncbi()` and parse the downloaded files with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) according to its guidelines, or use `download_ncbi(taxonkitpath = "/path/to/taxonkit")` to carry
-out parsing automatically if Taxonkit is installed on your system):
+Once the downloads are complete, the paths to the downloaded files will be reported to your terminal. A single file is downloaded from the GBIF (`Taxon.tsv`) while four files are downloaded from the NCBI (`nodes.dmp`, `names.dmp`,`delnodes.dmp` and `merged.dmp`). Take note of the location of these files. The NCBI files require further parsing with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/). Read the `load_taxonomies()` [documentation](https://rdocumentation.org/packages/taxonbridge/) for instructions on how to parse the NCBI files.
 
+Downloading the GBIF and NCBI taxonomic data, parsing the NCBI files, and merging the taxonomies can easily be carried out in one command if [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) is already installed on your system: 
 ``` r
 library(taxonbridge)
 custom_taxonomy <- load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))
 ```
 
-Read the `load_taxonomies()` function [documentation](https://rdocumentation.org/packages/taxonbridge/) for instructions on how to load a dataset of your own.
-
 See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) and [vignette](https://CRAN.R-project.org/package=taxonbridge) for more ideas on what to do with loaded data in `taxonbridge`.
+
+## References
+
+[Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/)
+
+[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/)

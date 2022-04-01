@@ -18,8 +18,8 @@ A tibble containing merged GBIF and NCBI taxonomic data.
 Load and merge GBIF and NCBI taxonomic data
 }
 \details{
-This method parses and merges a GBIF \code{Taxon.tsv} file (see \code{download_gbif()}) and
-a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file obtained by running: \verb{taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name > All.lineages.tsv} on NCBI data dump files (see \code{download_ncbi()}).
+This method merges a GBIF \code{Taxon.tsv} file (see \code{download_gbif()}) and
+a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file (see \code{download_ncbi()}).
 }
 \examples{
 \dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv")}

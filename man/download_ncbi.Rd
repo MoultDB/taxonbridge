@@ -19,10 +19,13 @@ Download the NCBI taxonomy
 \details{
 This method downloads a NCBI taxonomy archive file to a temporary directory,
 extracts four files (\code{nodes.dmp}, \code{names.dmp}, \code{merged.dmp} and \code{deleted.dmp})
-from the downloaded archive file, and then removes the archive file. If the path
-to a \code{Taxonkit} installation is supplied, \code{Taxonkit} is called and the location of
-the four files is passed to \code{Taxonkit} as an argument. Output is saved in the same
-temporary folder in a file called \code{All.lineages.tsv}.
+from the downloaded archive file, and then removes the archive file. Further parsing of
+these four files must be carried out with Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}),
+either automatically or manually. If the path to a Taxonkit installation is supplied, Taxonkit is
+called and the location of the four files is passed to Taxonkit as an argument for automatic parsing.
+Taxonkit output is saved in the same temporary folder in a file called \code{All.lineages.tsv}.
+If the path to Taxonkit is not supplied, parsing should be carried out manually using the command:
+\verb{taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=path/to/downloaded/files > All.lineages.tsv}
 }
 \examples{
 \dontrun{download_ncbi()}

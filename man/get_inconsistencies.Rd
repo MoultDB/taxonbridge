@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_methods.R
 \name{get_inconsistencies}
 \alias{get_inconsistencies}
-\title{Detect candidate inconsistencies and ambiguity in a custom taxonomy}
+\title{Detect candidate inconsistencies and ambiguity between NCBI and GBIF data}
 \usage{
 get_inconsistencies(x, uninomials = TRUE, set = "intersect")
 }
@@ -19,7 +19,7 @@ Defaults to intersect. Note: the set difference ("setdiff") argument is order de
 A character vector containing scientific names that exhibit inconsistency or ambiguity.
 }
 \description{
-Detect candidate inconsistencies and ambiguity in a custom taxonomy
+Detect candidate inconsistencies and ambiguity between NCBI and GBIF data
 }
 \details{
 This method will return the intersect, union, or set difference of a list of two

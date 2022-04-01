@@ -86,7 +86,7 @@ get_status <- function (x, status = "all") {
   xout
 }
 
-#' Detect candidate inconsistencies and ambiguity in a custom taxonomy
+#' Detect candidate inconsistencies and ambiguity between NCBI and GBIF data
 #'
 #' @param x A **list** consisting of two tibbles of different ranks that have been passed to `get_validated(..., rank = ...)`.
 #' @param uninomials A logical indicating whether uninomials should be included in the detection. Defaults to TRUE.
@@ -139,7 +139,7 @@ get_inconsistencies <- function(x, uninomials = TRUE, set = "intersect") {
   xout
 }
 
-#' A helper function to filter columns on GBIF taxa names
+#' A helper function to filter on GBIF taxa names
 #'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
 #' @param kingdom A string consisting of a scientific name.

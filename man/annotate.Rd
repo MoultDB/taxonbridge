@@ -9,7 +9,7 @@ annotate(x, names, new_column, present = "1", absent = NA)
 \arguments{
 \item{x}{A tibble with taxonomic data to be annotated.}
 
-\item{names}{A character vector containing scientific names.}
+\item{names}{A character vector containing scientific names that will be matched to scientific names in \code{x}.}
 
 \item{new_column}{A string to be the name of a new column that will contain annotations.}
 
