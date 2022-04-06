@@ -28,8 +28,8 @@ term_conversion <- function(x) {
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
 #' @param term A string consisting of a scientific name.
 #' @param sensitivity An integer representing character mismatch tolerance. Defaults to intolerant i.e. sensitivity=0.
-#' @param allow_term_removal Allow searches against only the first word of a search query. Useful
-#' when "Genus sp." or "Genus indet." is the search phrase. Defaults to FALSE.
+#' @param allow_term_removal A logical indicating whether searches against only the first word of `term`
+#' should be carried out if no matches are found. Defaults to FALSE.
 #' @param force_binomial A logical indicating whether `term` should be stripped
 #' to a maximum of two words. Defaults to FALSE.
 #'
@@ -39,9 +39,13 @@ term_conversion <- function(x) {
 #' The `sensitivity` parameter sets the number of character mismatches that are tolerated for
 #' a match to be reported. The higher the sensitivity, the more matches will be found, but the
 #' less relevant they may be. The `allow_term_removal` parameter allows stripping the search query
-#' to only retain the characters before the first occurrence of a white space (i.e., only the first
-#' word of a search query is used during the search). However, `fuzzy_search()` will always search
-#' using the entire search query first and then only proceed to strip terms if no hits are found.
+#' to only retain the characters before the first occurrence of a white space i.e. only the first
+#' word of a search query is used during the search. This is useful when "Genus sp." or "Genus indet." is
+#' the search query. However, `fuzzy_search()` will always search using the entire search query first and
+#' then only proceed to strip terms if no hits are found. On the other hand, if `force_binomial` is set to TRUE,
+#' the search query will first be limited to the first two words before searching commences. This in turn is useful
+#' if the search query includes credit to the publisher e.g. "Birgus latro (Linnaeus, 1767)" or to
+#' prevent subspecies names (so called "trinomials") from leading to a match not being made.
 #'
 #' @export
 #'
