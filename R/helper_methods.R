@@ -27,9 +27,11 @@ term_conversion <- function(x) {
 #'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
 #' @param term A string consisting of a scientific name.
-#' @param sensitivity An integer representing character mismatch tolerance (defaults to intolerant i.e. sensitivity=0)
+#' @param sensitivity An integer representing character mismatch tolerance. Defaults to intolerant i.e. sensitivity=0.
 #' @param allow_term_removal Allow searches against only the first word of a search query. Useful
-#' when "Genus sp." or "Genus indet." is the search phrase.
+#' when "Genus sp." or "Genus indet." is the search phrase. Defaults to FALSE.
+#' @param force_binomial A logical indicating whether `term` should be stripped
+#' to a maximum of two words. Defaults to FALSE.
 #'
 #' @return A list of candidate match(es), if applicable.
 #'
@@ -47,9 +49,13 @@ term_conversion <- function(x) {
 #' fuzzy_search(load_sample(), "Miacis deutschi")
 #' fuzzy_search(load_sample(), "Miacis sp.", allow_term_removal = TRUE)
 #' fuzzy_search(load_sample(), "Miacus deutschi", sensitivity = 1)
-fuzzy_search <- function(x, term, sensitivity = 0, allow_term_removal = FALSE) {
+#' fuzzy_search(load_sample(), "Miacis deutschi (Smith, 2022)", force_binomial = TRUE)
+fuzzy_search <- function(x, term, sensitivity = 0, allow_term_removal = FALSE, force_binomial = FALSE) {
   canonicalName <- NULL
   term_l <- tolower(term)
+  if (force_binomial) {
+    term_l <- sub("^(\\S*\\s+\\S+).*", "\\1", term_l)
+  }
   matches <- agrep(term_l, tolower(x$canonicalName), max.distance = sensitivity, ignore.case = TRUE)
   if (length(matches)>0) {
     xout <- x[matches,]

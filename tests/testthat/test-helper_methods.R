@@ -9,6 +9,7 @@ test_that("terms are converted", {
 test_that("fuzzy_search() is functional", {
   x <- load_sample()
   expect_equal(length(fuzzy_search(x, "Degeeria decora")), 1)
+  expect_equal(length(fuzzy_search(x, "Degeeria decora (Smith, 2022)", force_binomial = TRUE)), 1)
   expect_equal(length(fuzzy_search(x, "Degeeria indet.", allow_term_removal = TRUE)), 1)
   expect_equal(length(fuzzy_search(x, "Degeeris indet.", sensitivity = 1, allow_term_removal = TRUE)), 1)
 })

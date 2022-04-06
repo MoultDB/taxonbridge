@@ -4,17 +4,26 @@
 \alias{fuzzy_search}
 \title{Match misspelled or partial scientific names}
 \usage{
-fuzzy_search(x, term, sensitivity = 0, allow_term_removal = FALSE)
+fuzzy_search(
+  x,
+  term,
+  sensitivity = 0,
+  allow_term_removal = FALSE,
+  force_binomial = FALSE
+)
 }
 \arguments{
 \item{x}{A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.}
 
 \item{term}{A string consisting of a scientific name.}
 
-\item{sensitivity}{An integer representing character mismatch tolerance (defaults to intolerant i.e. sensitivity=0)}
+\item{sensitivity}{An integer representing character mismatch tolerance. Defaults to intolerant i.e. sensitivity=0.}
 
 \item{allow_term_removal}{Allow searches against only the first word of a search query. Useful
-when "Genus sp." or "Genus indet." is the search phrase.}
+when "Genus sp." or "Genus indet." is the search phrase. Defaults to FALSE.}
+
+\item{force_binomial}{A logical indicating whether \code{term} should be stripped
+to a maximum of two words. Defaults to FALSE.}
 }
 \value{
 A list of candidate match(es), if applicable.
@@ -34,4 +43,5 @@ using the entire search query first and then only proceed to strip terms if no h
 fuzzy_search(load_sample(), "Miacis deutschi")
 fuzzy_search(load_sample(), "Miacis sp.", allow_term_removal = TRUE)
 fuzzy_search(load_sample(), "Miacus deutschi", sensitivity = 1)
+fuzzy_search(load_sample(), "Miacis deutschi (Smith, 2022)", force_binomial = TRUE)
 }

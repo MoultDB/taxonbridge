@@ -2,6 +2,7 @@
 
 * New hexagonal logo and workflow
 * Updated vignette
+* Updated `fuzzy_search()` method with `force_binomial` parameter
 
 # taxonbridge 1.0.5
 
