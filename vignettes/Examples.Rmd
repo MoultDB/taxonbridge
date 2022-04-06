@@ -24,6 +24,8 @@ This vignette contains example use cases for `taxonbridge`:
 
 **3. Visualizing a custom taxonomy**
 
+**4. Retrieving information for a list of non-specific scientific names**
+
 ## 1. Detecting ambiguity and inconsistencies
 
 The first example illustrates how to detect ambiguity and inconsistency in a merged taxonomy. Start by loading the 2000 row sample dataset that comes with `taxonbridge`:
@@ -161,3 +163,57 @@ decapoda <- annotate(decapoda, get_validity(lineages, valid = FALSE)$canonicalNa
 colnames(decapoda)
 decapoda[!is.na(decapoda$family_inconsistencies),"canonicalName"]
 ```
+
+## 4. Retrieving information for a list of non-specific scientific names
+
+In this example a researcher is in possession of a list of scientific names of cone snails. The researcher has a three-fold concern. Firstly, some names in the list are non-specific since the researcher would like to include all species in a genus (e.g., "genus sp"). Secondly, the researcher is aware that there are changes in the taxonomic status of cone snails from time to time and would like to detect new or changed taxonomic entries. Lastly, the researcher would like to retrieve the associated GBIF and NCBI identifiers for all entries as well as the taxonomic status of every entry.
+
+NOTE: The following script requires [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) and may take some time to complete execution.
+
+```{r, include=TRUE,eval = FALSE}
+library(taxonbridge)
+
+#Retrieve and merge NCBI and GBIF data. INSERT PATH TO YOUR TAXONKIT INSTALLATION.
+custom_taxonomy <- load_taxonomies(download_gbif(), 
+                                   download_ncbi(taxonkitpath = "/path/to/taxonkit"))
+
+#Create a custom taxonomy of all gastropods
+custom_taxonomy <- get_taxa(custom_taxonomy, class = "gastropoda")
+remove(dt)
+
+#Use fuzzy_search to find occurrences of the names within the custom taxonomy
+search_result <- c()
+sp_names <- c("Natica sp", "Conus sp")
+for (i in sp_names) {
+  iter <- fuzzy_search(custom_taxonomy, i, allow_term_removal = TRUE)
+  search_result <- c(search_result, iter)
+}
+exact_names <- c("Polinices mammillata", "Cymatium pileare",
+                 "Chicoreus ramosus", "Murex tenuirostris","Vasum turbinellum",
+                 "Oliva amethystina", "Mitra mitra", "Nassa serta",
+                 "Phos senticosus")
+for (i in exact_names) {
+  iter <- fuzzy_search(custom_taxonomy, i, allow_term_removal = FALSE)
+  search_result <- c(search_result, iter)
+}
+
+#Annotate the custom taxonomy
+custom_taxonomy <- annotate(custom_taxonomy, names = search_result, new_column = "cone_snails")
+
+#Filter on the annotation
+custom_taxonomy <- custom_taxonomy[!is.na(custom_taxonomy$cone_snails),]
+
+#De-duplicate the custom taxonomy
+custom_taxonomy <- dedupe(custom_taxonomy, ranked = TRUE)
+
+#Create a subset of relevant data
+custom_taxonomy_short <- custom_taxonomy[, c(1,17,2,3,20,7)]
+colnames(custom_taxonomy_short) <- c("GBIF_id", "NCBI_id", "species_name", 
+                                     "GBIF_rank", "NCBI_rank", "taxonomic_status")
+
+#Print the results to the terminal
+print(custom_taxonomy_short, n=100)
+```
+
+The above script will return a tibble of candidate cone snails with their associated NCBI and GBIF identifiers as well as their associated taxonomic statuses. Since the fuzzy search method was used, each entry should be manually assessed to rule out false positives.
+
