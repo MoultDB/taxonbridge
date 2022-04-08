@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_methods.R
 \name{get_taxa}
 \alias{get_taxa}
-\title{A helper function to filter on GBIF taxa names}
+\title{A helper function to filter on GBIF and NCBI taxa names}
 \usage{
 get_taxa(
   x,
@@ -36,8 +36,14 @@ get_taxa(
 A filtered tibble.
 }
 \description{
-A helper function to filter on GBIF taxa names
+A helper function to filter on GBIF and NCBI taxa names
+}
+\details{
+This method will return results if the scientific name of interest is
+found in either the GBIF or the NCBI. The scientific name does not have to be
+case sensitive.
 }
 \examples{
 get_taxa(load_sample(), species = "hyalina")
+get_taxa(load_sample(), phylum = "ArthroPODA", genus = "BirGus")
 }

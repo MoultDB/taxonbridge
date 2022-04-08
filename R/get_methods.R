@@ -1,9 +1,10 @@
 #' Validate entries of a merged taxonomy
 #'
 #' @param x A tibble created with `load_taxonomies()` or `load_population()` or `load_sample()`.
-#' @param valid A logical indicating whether the returned data should include valid or invalid entries (defaults to TRUE).
-#' @param rank A string with GBIF rank that will be used to examine an NCBI lineage for validation purposes. Must
-#' be kingdom, phylum, class, order or family. Defaults to family. Note: If "kingdom" is used, the
+#' @param valid A logical indicating whether the returned data should include valid or invalid
+#' entries (defaults to TRUE).
+#' @param rank A string with GBIF rank that will be used to examine a NCBI lineage for validation purposes. Must
+#' be kingdom, phylum, class, order or family. Defaults to family. Note: If kingdom is used, the
 #' term_conversion() method should first be applied.
 #'
 #' @details
@@ -139,7 +140,7 @@ get_inconsistencies <- function(x, uninomials = TRUE, set = "intersect") {
   xout
 }
 
-#' A helper function to filter on GBIF taxa names
+#' A helper function to filter on GBIF and NCBI taxa names
 #'
 #' @param x A tibble created with \code{load_taxonomies()} or \code{load_population()} or \code{load_sample()}.
 #' @param kingdom A string consisting of a scientific name.
@@ -151,10 +152,16 @@ get_inconsistencies <- function(x, uninomials = TRUE, set = "intersect") {
 #' @param species A string consisting of a scientific name.
 #'
 #' @return A filtered tibble.
+#'
+#' @details This method will return results if the scientific name of interest is
+#' found in either the GBIF or the NCBI. The scientific name does not have to be
+#' case sensitive.
+#'
 #' @export
 #'
 #' @examples
 #' get_taxa(load_sample(), species = "hyalina")
+#' get_taxa(load_sample(), phylum = "ArthroPODA", genus = "BirGus")
 get_taxa <- function(x, kingdom=NA, phylum=NA, class=NA, order=NA, family=NA, genus=NA, species=NA) {
   if (!is.na(kingdom)) {
     k <- kingdom
