@@ -18,7 +18,12 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
 
   #Load NCBI data:
   NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE, show_col_types = FALSE)
-  colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName", "ncbi_rank", "ncbi_lineage_ranks")
+  NCBI_col7 <- do.call(rbind, stringr::str_split(NCBI$X7, ";"))
+  NCBI <- cbind(NCBI[,1:6], NCBI_col7)
+  remove(NCBI_col7)
+  colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName",
+                      "ncbi_rank", "ncbi_lineage_ranks", "ncbi_kingdom", "ncbi_phylum",
+                      "ncbi_class", "ncbi_order", "ncbi_family", "ncbi_genus", "ncbi_species")
   NCBI$canonicalName <- as.character(NCBI$canonicalName)
   NCBI_all_rows <- nrow(NCBI)
   NCBI_data <- NCBI[!is.na(NCBI$canonicalName),]
@@ -102,7 +107,8 @@ load_sample <- function() {
 #' called and the location of the four files is passed to Taxonkit as an argument for automatic parsing.
 #' Taxonkit output is saved in the same temporary folder in a file called `All.lineages.tsv`.
 #' If the path to Taxonkit is not supplied, parsing should be carried out manually using the command:
-#' `taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=path/to/downloaded/files > All.lineages.tsv`
+#' `taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank
+#' --show-name --data-dir=path/to/downloaded/files | taxonkit reformat > All.lineages.tsv`
 #'
 #' @export
 #'
@@ -136,7 +142,10 @@ download_ncbi <- function(taxonkitpath = NA) {
   message("NCBI data dump has been downloaded and extracted.")
   if (!is.na(taxonkitpath)) { tryCatch(
       expr = {
-        system(paste0("cd ", td,";",taxonkitpath," --data-dir=", file.path(td) ," list --ids 1 | ",taxonkitpath ," lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=", file.path(td) ," > All.lineages.tsv"))
+        system(paste0("cd ", td,";",taxonkitpath," --data-dir=",
+                      file.path(td) ," list --ids 1 | ",taxonkitpath ,
+                      " lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=",
+                      file.path(td) ," | ",taxonkitpath ," reformat > All.lineages.tsv"), ignore.stderr = TRUE)
         unlink(tf)
         message("NCBI files parsed and result saved.")
         location <- file.path(td, "All.lineages.tsv")

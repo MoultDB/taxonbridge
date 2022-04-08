@@ -1,5 +1,5 @@
-1	root	1	root	no rank	no rank
-10239	Viruses	10239	Viruses	superkingdom	superkingdom
-10472	Viruses;Plasmaviridae	10239;10472	Plasmaviridae	family	superkingdom;family
-10473	Viruses;Plasmaviridae;Plasmavirus	10239;10472;10473	Plasmavirus	genus	superkingdom;family;genus
-46014	Viruses;Plasmaviridae;Plasmavirus;Acholeplasma virus L2	10239;10472;10473;46014	Acholeplasma virus L2	species	superkingdom;family;genus;species
+1	root	1	root	no rank	no rank	;;;;;;
+10239	Viruses	10239	Viruses	superkingdom	superkingdom	Viruses;;;;;;
+10472	Viruses;Plasmaviridae	10239;10472	Plasmaviridae	family	superkingdom;family	Viruses;;;;Plasmaviridae;;
+10473	Viruses;Plasmaviridae;Plasmavirus	10239;10472;10473	Plasmavirus	genus	superkingdom;family;genus	Viruses;;;;Plasmaviridae;Plasmavirus;
+46014	Viruses;Plasmaviridae;Plasmavirus;Acholeplasma virus L2	10239;10472;10473;46014	Acholeplasma virus L2	species	superkingdom;family;genus;species	Viruses;;;;Plasmaviridae;Plasmavirus;Acholeplasma virus L2

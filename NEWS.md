@@ -1,8 +1,10 @@
-# taxonbridge 1.0.6
+# taxonbridge 1.1.0
 
 * New hexagonal logo and workflow
 * Updated vignette
 * Updated `fuzzy_search()` method with `force_binomial` parameter
+* Additional NCBI columns in merged taxonomy [BREAKING CHANGE]
+* Updated `get_taxa()` method
 
 # taxonbridge 1.0.5
 

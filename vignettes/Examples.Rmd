@@ -149,7 +149,9 @@ Now that both the GBIF and NCBI data have lineage information, the validity of t
 get_validity(lineages, valid = FALSE)
 ```
 
-Two entries have invalid data:
+Three entries have invalid data:
+
+* The genus *Orithyia* belongs to the family Phoxichilidiidae in the GBIF but belongs to the family Orithyiidae in the NCBI.
 
 * The species *Palibythus magnificus* belongs to the family Palinuridae in the GBIF but belongs to the family Synaxidae in the NCBI.
 

@@ -60,7 +60,7 @@ download_gbif()
 download_ncbi()
 ```
 
-Once the downloads are complete, the paths to the downloaded files will be reported to your terminal. A single file is downloaded from the GBIF (`Taxon.tsv`) while four files are downloaded from the NCBI (`nodes.dmp`, `names.dmp`,`delnodes.dmp` and `merged.dmp`). Take note of the location of these files. The NCBI files require further parsing with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/). Read the `load_taxonomies()` [documentation](https://rdocumentation.org/packages/taxonbridge/) for instructions on how to parse the NCBI files.
+Once the downloads are complete, the paths to the downloaded files will be reported to your terminal. A single file is downloaded from the GBIF (`Taxon.tsv`) while four files are downloaded from the NCBI (`nodes.dmp`, `names.dmp`,`delnodes.dmp` and `merged.dmp`). Take note of the location of these files. The NCBI files require further parsing with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/). Read the `download_ncbi()` [documentation](https://rdocumentation.org/packages/taxonbridge/) for instructions on how to parse the NCBI files.
 
 Downloading the GBIF and NCBI taxonomic data, parsing the NCBI files, and merging the taxonomies can easily be carried out in one command if [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) is already installed on your system: 
 ``` r
