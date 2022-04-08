@@ -36,7 +36,39 @@ library(taxonbridge)
 
 ## Available methods and how to use them
 
-See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonbridge/) and [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf).
+See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonbridge/) for detailed descriptions of the available methods and see the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) for how to use the methods. Custom taxonomies in `taxonbridge` always have the following 29 columns. Type `colnames(load_sample())` in your terminal to view the column names:
+
+Column name  		 	| Description
+-----------------------	| -------------
+taxonID				 	| GBIF identifier
+canonicalName		 	| Scientific name 
+taxonRank			 	| GBIF rank
+parentNameUsageID	 	| GBIF parent ID
+acceptedNameUsageID	 	| GBIF accepted ID
+originalNameUsageID	 	| GBIF original ID
+taxonomicStatus		 	| GBIF taxonomic status
+kingdom  			 	| GBIF kingdom name
+phylum  			 	| GBIF phylum name
+class  				 	| GBIF class name
+order 				 	| GBIF order name
+family  			 	| GBIF family name
+genericName  		 	| GBIF genus name
+specificEpithet 	    | GBIF species name
+infraspecificEpithet	| GBIF subspecies name	
+from_GBIF 			 	| GBIF provenance indicator	
+ncbi_id  				| NCBI identifier			
+ncbi_lineage_names 		| NCBI full lineage
+ncbi_lineage_ids		| NCBI full lineage IDs
+ncbi_rank  				| NCBI rank
+ncbi_lineage_ranks		| NCBI full lineage ranks
+ncbi_kingdom			| NCBI kingdom name
+ncbi_phylum				| NCBI phylum name
+ncbi_class				| NCBI class name
+ncbi_order				| NCBI order name
+ncbi_family				| NCBI family name
+ncbi_genus				| NCBI genus name
+ncbi_species			| NCBI species name
+from_NCBI				| NCBI provenance indicator
 
 ## Examples
 
