@@ -20,6 +20,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE, show_col_types = FALSE)
   NCBI_col7 <- do.call(rbind, stringr::str_split(NCBI$X7, ";"))
   NCBI <- cbind(NCBI[,1:6], NCBI_col7)
+  NCBI <- dplyr::mutate_all(NCBI, list(~na_if(.,"")))
   remove(NCBI_col7)
   colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName",
                       "ncbi_rank", "ncbi_lineage_ranks", "ncbi_kingdom", "ncbi_phylum",
@@ -72,7 +73,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
 #' @examples
 #' \dontrun{load_population("path/to/merged_taxonomies")}
 load_population <- function(x) {
-  vroom::vroom(x, na = "", show_col_types = FALSE)
+  vroom::vroom(x, show_col_types = FALSE)
 }
 
 #' Load an example of previously merged GBIF and NCBI taxonomies
