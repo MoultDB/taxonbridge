@@ -89,7 +89,21 @@ load_population <- function(x) {
 #' load_sample()
 load_sample <- function() {
   sample_data <- system.file("extdata", "sample.tsv.gz", package = "taxonbridge", mustWork = TRUE)
-  vroom::vroom(sample_data, na = "", show_col_types = FALSE)
+  x <- vroom::vroom(sample_data, na = "", show_col_types = FALSE)
+  message("############################################################################")
+  message("#####  ##   #    #   ###   #    #  ####   ####   #####  ####    #####  #####")
+  message("  #   #  #   #  #   #   #  ##   #  #   #  #   #    #    #   #   #      #    ")
+  message("  #   ####    #     #   #  # #  #  #####  #####    #    #    #  #  ##  #####")
+  message("  #   #  #   #  #   #   #  #  # #  #   #  #  #     #    #   #   #   #  #    ")
+  message("  #   #  #  #    #   ###   #    #  ####   #   #  #####  ####    #####  #####")
+  message("############################################################################\n")
+  message("A sample containing 2000 rows by 29 columns has been loaded.\n")
+  message("Visit the following links to learn more about Taxonbridge:\n")
+  message("https://github.com/MoultDB/taxonbridge#available-methods-and-how-to-use-them")
+  message("https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf")
+  message("https://rdocumentation.org/packages/taxonbridge/")
+  message("https://CRAN.R-project.org/package=taxonbridge")
+  x
 }
 
 #' Download the NCBI taxonomy
