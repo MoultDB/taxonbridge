@@ -40,21 +40,21 @@ See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonb
 
 Column name  		 	| Description
 -----------------------	| -------------
-[taxonID](http://rs.tdwg.org/dwc/terms/taxonID)				 	| GBIF identifier
+[taxonID](https://dwc.tdwg.org/terms/)				 	| GBIF identifier
 canonicalName		 	| Scientific name 
-[taxonRank](http://rs.tdwg.org/dwc/terms/taxonRank)			 	| GBIF rank
-[parentNameUsageID](http://rs.tdwg.org/dwc/terms/parentNameUsageID)	 	| GBIF parent ID
-[acceptedNameUsageID](http://rs.tdwg.org/dwc/terms/acceptedNameUsageID)	 	| GBIF accepted ID
-[originalNameUsageID](http://rs.tdwg.org/dwc/terms/originalNameUsageID)	 	| GBIF original ID
-[taxonomicStatus](http://rs.tdwg.org/dwc/terms/taxonomicStatus)		 	| GBIF taxonomic status
-[kingdom](http://rs.tdwg.org/dwc/terms/kingdom)  			 	| GBIF kingdom name
-[phylum](http://rs.tdwg.org/dwc/terms/phylum)  			 	| GBIF phylum name
-[class](http://rs.tdwg.org/dwc/terms/class)  				 	| GBIF class name
-[order](http://rs.tdwg.org/dwc/terms/order) 				 	| GBIF order name
-[family](http://rs.tdwg.org/dwc/terms/family)  			 	| GBIF family name
-[genericName](http://rs.tdwg.org/dwc/terms/genericName)  		 	| GBIF genus name
-[specificEpithet](http://rs.tdwg.org/dwc/terms/specificEpithet) 	    | GBIF species name
-[infraspecificEpithet](http://rs.tdwg.org/dwc/terms/infraspecificEpithet)	| GBIF subspecies name	
+[taxonRank](https://dwc.tdwg.org/terms/)			 	| GBIF rank
+[parentNameUsageID](https://dwc.tdwg.org/terms/)	 	| GBIF parent ID
+[acceptedNameUsageID](https://dwc.tdwg.org/terms/)	 	| GBIF accepted ID
+[originalNameUsageID](https://dwc.tdwg.org/terms/)	 	| GBIF original ID
+[taxonomicStatus](https://dwc.tdwg.org/terms/)		 	| GBIF taxonomic status
+[kingdom](https://dwc.tdwg.org/terms/)  			 	| GBIF kingdom name
+[phylum](https://dwc.tdwg.org/terms/)  			 	| GBIF phylum name
+[class](https://dwc.tdwg.org/terms/)  				 	| GBIF class name
+[order](https://dwc.tdwg.org/terms/) 				 	| GBIF order name
+[family](https://dwc.tdwg.org/terms/)  			 	| GBIF family name
+[genericName](https://dwc.tdwg.org/terms/)  		 	| GBIF genus name
+[specificEpithet](https://dwc.tdwg.org/terms/) 	    | GBIF species name
+[infraspecificEpithet](https://dwc.tdwg.org/terms/)	| GBIF subspecies name	
 from_GBIF 			 	| GBIF provenance indicator	
 ncbi_id  				| NCBI identifier			
 ncbi_lineage_names 		| NCBI full lineage
