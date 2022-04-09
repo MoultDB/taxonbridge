@@ -36,25 +36,25 @@ library(taxonbridge)
 
 ## Available methods and how to use them
 
-See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonbridge/) for detailed descriptions of the available methods and see the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) for how to use the methods. Custom taxonomies in `taxonbridge` always have the following 29 columns. Type `colnames(load_sample())` in your terminal to view the column names:
+See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonbridge/) for detailed descriptions of the available methods and see the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) for how to use the methods. Custom taxonomies in `taxonbridge` always have the following 29 columns. Columns names with links are GBIF nomenclature that have associated [Darwin Core controlled vocabulary terms](https://dwc.tdwg.org).
 
 Column name  		 	| Description
 -----------------------	| -------------
-taxonID				 	| GBIF identifier
+[taxonID](http://rs.tdwg.org/dwc/terms/taxonID)				 	| GBIF identifier
 canonicalName		 	| Scientific name 
-taxonRank			 	| GBIF rank
-parentNameUsageID	 	| GBIF parent ID
-acceptedNameUsageID	 	| GBIF accepted ID
-originalNameUsageID	 	| GBIF original ID
-taxonomicStatus		 	| GBIF taxonomic status
-kingdom  			 	| GBIF kingdom name
-phylum  			 	| GBIF phylum name
-class  				 	| GBIF class name
-order 				 	| GBIF order name
-family  			 	| GBIF family name
-genericName  		 	| GBIF genus name
-specificEpithet 	    | GBIF species name
-infraspecificEpithet	| GBIF subspecies name	
+[taxonRank](http://rs.tdwg.org/dwc/terms/taxonRank)			 	| GBIF rank
+[parentNameUsageID](http://rs.tdwg.org/dwc/terms/parentNameUsageID)	 	| GBIF parent ID
+[acceptedNameUsageID](http://rs.tdwg.org/dwc/terms/acceptedNameUsageID)	 	| GBIF accepted ID
+[originalNameUsageID](http://rs.tdwg.org/dwc/terms/originalNameUsageID)	 	| GBIF original ID
+[taxonomicStatus](http://rs.tdwg.org/dwc/terms/taxonomicStatus)		 	| GBIF taxonomic status
+[kingdom](http://rs.tdwg.org/dwc/terms/kingdom)  			 	| GBIF kingdom name
+[phylum](http://rs.tdwg.org/dwc/terms/phylum)  			 	| GBIF phylum name
+[class](http://rs.tdwg.org/dwc/terms/class)  				 	| GBIF class name
+[order](http://rs.tdwg.org/dwc/terms/order) 				 	| GBIF order name
+[family](http://rs.tdwg.org/dwc/terms/family)  			 	| GBIF family name
+[genericName](http://rs.tdwg.org/dwc/terms/genericName)  		 	| GBIF genus name
+[specificEpithet](http://rs.tdwg.org/dwc/terms/specificEpithet) 	    | GBIF species name
+[infraspecificEpithet](http://rs.tdwg.org/dwc/terms/infraspecificEpithet)	| GBIF subspecies name	
 from_GBIF 			 	| GBIF provenance indicator	
 ncbi_id  				| NCBI identifier			
 ncbi_lineage_names 		| NCBI full lineage
