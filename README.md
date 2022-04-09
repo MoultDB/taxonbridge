@@ -36,7 +36,7 @@ library(taxonbridge)
 
 ## Available methods and how to use them
 
-See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonbridge/) for detailed descriptions of the available methods and see the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) for how to use the methods. Custom taxonomies in `taxonbridge` always have the following 29 columns. Columns names with links are GBIF nomenclature that have associated [Darwin Core controlled vocabulary terms](https://dwc.tdwg.org).
+See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonbridge/) for detailed descriptions of the available methods and see the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf) for how to use the methods. Custom taxonomies in `taxonbridge` always have the following 29 columns. Column names with links are GBIF nomenclature that have associated [Darwin Core controlled vocabulary terms](https://dwc.tdwg.org).
 
 Column name  		 	| Description
 -----------------------	| -------------
