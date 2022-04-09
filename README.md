@@ -72,18 +72,18 @@ from_NCBI				| NCBI provenance indicator
 
 ## Examples
 
-A 2000-row example subset of a previously merged taxonomy is bundled with `taxonbridge` and can be loaded as follow:
+A 2000 row example subset of a previously merged taxonomy is bundled with `taxonbridge` and can be loaded as follow:
 
 ``` r
 library(taxonbridge)
-example <- load_sample()
+example_1 <- load_sample()
 ```
 
 Want to try more than a sample? [Download](https://drive.google.com/file/d/1gpvm9QKdOcuGo_cIXPkAgGlB-qfKZZU6/view?usp=sharing) a larger dataset and load it as follow:
 
 ``` r
 library(taxonbridge)
-load_population("path/to/downloaded/dataset")
+example_2 <- load_population("path/to/downloaded/dataset")
 ```
 You can also prepare a dataset yourself which requires the use of external data and software. The most current NCBI and GBIF taxonomic data can be downloaded as follow:
 
@@ -92,7 +92,7 @@ download_gbif()
 download_ncbi()
 ```
 
-Once the downloads are complete, the paths to the downloaded files will be reported to your terminal. A single file is downloaded from the GBIF (`Taxon.tsv`) while four files are downloaded from the NCBI (`nodes.dmp`, `names.dmp`,`delnodes.dmp` and `merged.dmp`). Take note of the location of these files. The NCBI files require further parsing with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/). Read the `download_ncbi()` [documentation](https://rdocumentation.org/packages/taxonbridge/) for instructions on how to parse the NCBI files.
+Once the downloads are complete, the paths to the downloaded files will be reported to your terminal. A single file is downloaded from the GBIF (`Taxon.tsv`) while four files are downloaded from the NCBI (`nodes.dmp`, `names.dmp`, `delnodes.dmp` and `merged.dmp`). Take note of the location of these files. The NCBI files require further parsing with [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/). Read the `download_ncbi()` [documentation](https://rdocumentation.org/packages/taxonbridge/) for instructions on how to parse the NCBI files.
 
 Downloading the GBIF and NCBI taxonomic data, parsing the NCBI files, and merging the taxonomies can easily be carried out in one command if [Taxonkit](https://bioinf.shenwei.me/taxonkit/download/) is already installed on your system: 
 ``` r
