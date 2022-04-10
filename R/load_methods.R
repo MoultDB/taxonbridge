@@ -90,15 +90,14 @@ load_population <- function(x) {
 load_sample <- function() {
   sample_data <- system.file("extdata", "sample.tsv.gz", package = "taxonbridge", mustWork = TRUE)
   x <- vroom::vroom(sample_data, na = "", show_col_types = FALSE)
-  message("############################################################################")
-  message("#####  ##   #    #   ###   #    #  ####   ####   #####  ####    #####  #####")
-  message("  #   #  #   #  #   #   #  ##   #  #   #  #   #    #    #   #   #      #    ")
-  message("  #   ####    #     #   #  # #  #  #####  #####    #    #    #  #  ##  #####")
-  message("  #   #  #   #  #   #   #  #  # #  #   #  #  #     #    #   #   #   #  #    ")
-  message("  #   #  #  #    #   ###   #    #  ####   #   #  #####  ####    #####  #####")
-  message("############################################################################\n")
-  message("A sample containing 2000 rows by 29 columns has been loaded.\n")
-  message("Visit the following links to learn more about Taxonbridge:\n")
+  message("╭━━━━┳━━━┳━╮╭━┳━━━┳━╮╱╭┳━━╮╭━━━┳━━┳━━━┳━━━┳━━━╮")
+  message("┃╭╮╭╮┃╭━╮┣╮╰╯╭┫╭━╮┃┃╰╮┃┃╭╮┃┃╭━╮┣┫┣┻╮╭╮┃╭━╮┃╭━━╯")
+  message("╰╯┃┃╰┫┃╱┃┃╰╮╭╯┃┃╱┃┃╭╮╰╯┃╰╯╰┫╰━╯┃┃┃╱┃┃┃┃┃╱╰┫╰━━╮")
+  message("╱╱┃┃╱┃╰━╯┃╭╯╰╮┃┃╱┃┃┃╰╮┃┃╭━╮┃╭╮╭╯┃┃╱┃┃┃┃┃╭━┫╭━━╯")
+  message("╱╱┃┃╱┃╭━╮┣╯╭╮╰┫╰━╯┃┃╱┃┃┃╰━╯┃┃┃╰┳┫┣┳╯╰╯┃╰┻━┃╰━━╮")
+  message("╱╱╰╯╱╰╯╱╰┻━╯╰━┻━━━┻╯╱╰━┻━━━┻╯╰━┻━━┻━━━┻━━━┻━━━╯")
+  message("A sample containing 2000 rows by 29 columns has been loaded.")
+  message("Visit the following links to learn more about Taxonbridge:")
   message("https://github.com/MoultDB/taxonbridge#available-methods-and-how-to-use-them")
   message("https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_workflow.pdf")
   message("https://rdocumentation.org/packages/taxonbridge/")
@@ -115,7 +114,7 @@ load_sample <- function() {
 #'
 #'@details
 #' This method downloads a NCBI taxonomy archive file to a temporary directory,
-#' extracts four files (`nodes.dmp`, `names.dmp`, `merged.dmp` and `deleted.dmp`)
+#' extracts four files (`nodes.dmp`, `names.dmp`, `merged.dmp` and `delnodes.dmp`)
 #' from the downloaded archive file, and then removes the archive file. Further parsing of
 #' these four files must be carried out with Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}),
 #' either automatically or manually. If the path to a Taxonkit installation is supplied, Taxonkit is

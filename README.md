@@ -41,7 +41,7 @@ See the `taxonbridge` [documentation](https://rdocumentation.org/packages/taxonb
 Column name  		 	| Description
 -----------------------	| -------------
 [taxonID](https://dwc.tdwg.org/terms/)				 	| GBIF identifier
-canonicalName		 	| Scientific name 
+canonicalName		 	| GBIF/NCBI scientific name 
 [taxonRank](https://dwc.tdwg.org/terms/)			 	| GBIF rank
 [parentNameUsageID](https://dwc.tdwg.org/terms/)	 	| GBIF parent ID
 [acceptedNameUsageID](https://dwc.tdwg.org/terms/)	 	| GBIF accepted ID
@@ -57,7 +57,7 @@ canonicalName		 	| Scientific name
 [infraspecificEpithet](https://dwc.tdwg.org/terms/)	| GBIF subspecies name	
 from_GBIF 			 	| GBIF provenance indicator	
 ncbi_id  				| NCBI identifier			
-ncbi_lineage_names 		| NCBI full lineage
+ncbi_lineage_names 		| NCBI full lineage names
 ncbi_lineage_ids		| NCBI full lineage IDs
 ncbi_rank  				| NCBI rank
 ncbi_lineage_ranks		| NCBI full lineage ranks
