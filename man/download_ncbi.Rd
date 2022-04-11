@@ -18,7 +18,7 @@ Download the NCBI taxonomy
 }
 \details{
 This method downloads a NCBI taxonomy archive file to a temporary directory,
-extracts four files (\code{nodes.dmp}, \code{names.dmp}, \code{merged.dmp} and \code{deleted.dmp})
+extracts four files (\code{nodes.dmp}, \code{names.dmp}, \code{merged.dmp} and \code{delnodes.dmp})
 from the downloaded archive file, and then removes the archive file. Further parsing of
 these four files must be carried out with Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}),
 either automatically or manually. If the path to a Taxonkit installation is supplied, Taxonkit is
