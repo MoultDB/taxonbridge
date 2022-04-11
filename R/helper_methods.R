@@ -45,7 +45,7 @@ term_conversion <- function(x) {
 #' then only proceed to strip terms if no hits are found. On the other hand, if `force_binomial` is set to TRUE,
 #' the search query will first be limited to the first two words before searching commences. This in turn is useful
 #' if the search query includes credit to the publisher e.g. "Birgus latro (Linnaeus, 1767)" or to
-#' prevent subspecies names (so called "trinomials") from leading to a match not being made.
+#' prevent subspecies names (so-called trinomials) from leading to a match not being made.
 #'
 #' @export
 #'

@@ -17,7 +17,7 @@
 load_taxonomies <- function(GBIF_path, NCBI_path) {
 
   #Load NCBI data:
-  NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE, show_col_types = FALSE)
+  NCBI <- vroom::vroom(NCBI_path, na = "", col_names = FALSE, col_types = vroom::cols(.default = "c"))
   NCBI_col7 <- do.call(rbind, stringr::str_split(NCBI$X7, ";"))
   NCBI <- cbind(NCBI[,1:6], NCBI_col7)
   NCBI <- dplyr::mutate_all(NCBI, list(~dplyr::na_if(.,"")))
@@ -32,7 +32,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   NCBI_filtered_rows <- nrow(NCBI_data)
 
   #Load GBIF data:
-  GBIF <- vroom::vroom(GBIF_path, show_col_types = FALSE, quote = "")
+  GBIF <- vroom::vroom(GBIF_path, col_types = vroom::cols(.default = "c"), quote = "")
   GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
   GBIF$canonicalName <- as.character(GBIF$canonicalName)
   GBIF_all_rows <- nrow(GBIF)
@@ -73,7 +73,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
 #' @examples
 #' \dontrun{load_population("path/to/merged_taxonomies")}
 load_population <- function(x) {
-  vroom::vroom(x, show_col_types = FALSE)
+  vroom::vroom(x, show_col_types = FALSE, col_types = vroom::cols(.default = "c"))
 }
 
 #' Load an example of previously merged GBIF and NCBI taxonomies
@@ -89,7 +89,7 @@ load_population <- function(x) {
 #' load_sample()
 load_sample <- function() {
   sample_data <- system.file("extdata", "sample.tsv.gz", package = "taxonbridge", mustWork = TRUE)
-  x <- vroom::vroom(sample_data, na = "", show_col_types = FALSE)
+  x <- vroom::vroom(sample_data, na = "", col_types = vroom::cols(.default = "c"))
   message("\n#####  ##   #    #   ###   #    #  ####   ####   #####  ####    #####  #####")
   message("  #   #  #   #  #   #   #  ##   #  #   #  #   #    #    #   #   #      #    ")
   message("  #   ####    #     #   #  # #  #  #####  #####    #    #    #  #  ##  #####")
