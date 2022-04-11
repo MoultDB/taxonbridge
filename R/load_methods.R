@@ -25,7 +25,6 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   colnames(NCBI) <- c("ncbi_id","ncbi_lineage_names", "ncbi_lineage_ids", "canonicalName",
                       "ncbi_rank", "ncbi_lineage_ranks", "ncbi_kingdom", "ncbi_phylum",
                       "ncbi_class", "ncbi_order", "ncbi_family", "ncbi_genus", "ncbi_species")
-  NCBI$canonicalName <- as.character(NCBI$canonicalName)
   NCBI_all_rows <- nrow(NCBI)
   NCBI_data <- NCBI[!is.na(NCBI$canonicalName),]
   NCBI_data$from_NCBI <- 1
@@ -34,7 +33,6 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   #Load GBIF data:
   GBIF <- vroom::vroom(GBIF_path, col_types = vroom::cols(.default = "c"), quote = "")
   GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
-  GBIF$canonicalName <- as.character(GBIF$canonicalName)
   GBIF_all_rows <- nrow(GBIF)
   GBIF_data <- GBIF[!is.na(GBIF$canonicalName),]
   GBIF_data$from_GBIF <- 1
