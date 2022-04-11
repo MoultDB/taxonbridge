@@ -27,7 +27,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
                       "ncbi_class", "ncbi_order", "ncbi_family", "ncbi_genus", "ncbi_species")
   NCBI_all_rows <- nrow(NCBI)
   NCBI_data <- NCBI[!is.na(NCBI$canonicalName),]
-  NCBI_data$from_NCBI <- 1
+  NCBI_data$from_NCBI <- as.character(1)
   NCBI_filtered_rows <- nrow(NCBI_data)
 
   #Load GBIF data:
@@ -35,7 +35,7 @@ load_taxonomies <- function(GBIF_path, NCBI_path) {
   GBIF <- GBIF[,c(1, 8, 12, 3:5, 15, 18:22, 9:11)]
   GBIF_all_rows <- nrow(GBIF)
   GBIF_data <- GBIF[!is.na(GBIF$canonicalName),]
-  GBIF_data$from_GBIF <- 1
+  GBIF_data$from_GBIF <- as.character(1)
   GBIF_filtered_rows <- nrow(GBIF_data)
 
   #Merge GBIF and NCBI on “canonicalName" having a value
