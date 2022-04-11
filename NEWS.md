@@ -1,3 +1,8 @@
+# taxonbridge 1.2.0
+
+* Load methods now convert all columns to character data type
+* Documentation updates
+
 # taxonbridge 1.1.0
 
 * New hexagonal logo and workflow
