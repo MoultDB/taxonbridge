@@ -25,7 +25,7 @@ either automatically or manually. If the path to a Taxonkit installation is supp
 called and the location of the four files is passed to Taxonkit as an argument for automatic parsing.
 Taxonkit output is saved in the same temporary folder in a file called \code{All.lineages.tsv}.
 If the path to Taxonkit is not supplied, parsing should be carried out manually using the command:
-\verb{taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=path/to/downloaded/files | taxonkit reformat > All.lineages.tsv}
+\verb{taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=path/to/downloaded/files | taxonkit reformat --data-dir=path/to/downloaded/files > All.lineages.tsv}
 }
 \examples{
 \dontrun{download_ncbi()}

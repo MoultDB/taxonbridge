@@ -1,3 +1,7 @@
+# taxonbridge 1.2.1
+
+* Fixed bug in `load_taxonomies()` method
+
 # taxonbridge 1.2.0
 
 * Load methods now convert all columns to character data type

@@ -119,7 +119,7 @@ load_sample <- function() {
 #' Taxonkit output is saved in the same temporary folder in a file called `All.lineages.tsv`.
 #' If the path to Taxonkit is not supplied, parsing should be carried out manually using the command:
 #' `taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank
-#' --show-name --data-dir=path/to/downloaded/files | taxonkit reformat > All.lineages.tsv`
+#' --show-name --data-dir=path/to/downloaded/files | taxonkit reformat --data-dir=path/to/downloaded/files > All.lineages.tsv`
 #'
 #' @export
 #'
@@ -156,7 +156,7 @@ download_ncbi <- function(taxonkitpath = NA) {
         system(paste0("cd ", td,";",taxonkitpath," --data-dir=",
                       file.path(td) ," list --ids 1 | ",taxonkitpath ,
                       " lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=",
-                      file.path(td) ," | ",taxonkitpath ," reformat > All.lineages.tsv"), ignore.stderr = TRUE)
+                      file.path(td) ," | ",taxonkitpath ," reformat --data-dir=path/to/downloaded/files > All.lineages.tsv"), ignore.stderr = TRUE)
         unlink(tf)
         message("NCBI files parsed and result saved.")
         location <- file.path(td, "All.lineages.tsv")

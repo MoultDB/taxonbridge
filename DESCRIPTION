@@ -1,6 +1,6 @@
 Package: taxonbridge
 Title: Create Custom Taxonomies Based on the NCBI Taxonomy and GBIF Backbone Taxonomy 
-Version: 1.2.0
+Version: 1.2.1
 Authors@R: 
     person("Werner", "Veldsman", , "wernerpieter.veldsman@unil.ch", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9837-8332"))
