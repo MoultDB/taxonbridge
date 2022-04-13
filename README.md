@@ -106,4 +106,4 @@ See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridg
 
 [Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/)
 
-[National Centre for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/)
+[National Center for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/)
