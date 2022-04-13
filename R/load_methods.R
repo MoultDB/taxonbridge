@@ -156,7 +156,8 @@ download_ncbi <- function(taxonkitpath = NA) {
         system(paste0("cd ", td,";",taxonkitpath," --data-dir=",
                       file.path(td) ," list --ids 1 | ",taxonkitpath ,
                       " lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=",
-                      file.path(td) ," | ",taxonkitpath ," reformat --data-dir=path/to/downloaded/files > All.lineages.tsv"), ignore.stderr = TRUE)
+                      file.path(td) ," | ",taxonkitpath ," reformat --data-dir=",
+                      file.path(td) ," > All.lineages.tsv"), ignore.stderr = TRUE)
         unlink(tf)
         message("NCBI files parsed and result saved.")
         location <- file.path(td, "All.lineages.tsv")
