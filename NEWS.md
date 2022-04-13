@@ -1,6 +1,6 @@
 # taxonbridge 1.2.1
 
-* Fixed bug in `load_taxonomies()` method
+* Fixed bug in `download_ncbi()` method
 
 # taxonbridge 1.2.0
 
