@@ -149,8 +149,10 @@ download_ncbi <- function(taxonkitpath = NA) {
   td <- tempdir()
   url1 <- "https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip"
   utils::download.file(url1,tf)
+  if (file.exists(tf)) {
+    message("NCBI taxonomic data has been downloaded.")
+  }
   files <- utils::unzip(tf, files = c("names.dmp","nodes.dmp","delnodes.dmp", "merged.dmp"), exdir = td )
-  message("NCBI data dump has been downloaded and extracted.")
   if (!is.na(taxonkitpath)) { tryCatch(
       expr = {
         system(paste0("cd ", td,";",taxonkitpath," --data-dir=",
@@ -161,13 +163,24 @@ download_ncbi <- function(taxonkitpath = NA) {
         unlink(tf)
         message("NCBI files parsed and result saved.")
         location <- file.path(td, "All.lineages.tsv")
+        if (file.exists(location)&file.size(location)!=0) {
+        message("NOTE: All.lineages.tsv is stored at ", td)
         location
+        }
+        else if (!file.exists(location)) {
+          stop("Error saving All.lineages.tsv. Consider raising an issue on Github.")
+        }
+        else if (file.size(location)==0) {
+          stop("All.lineages.tsv is empty. Consider raising an issue on Github.")
+        }
       },
       warning = function(e){
         message("Double check the directory name you supplied and/or your write permissions!")
       })
   }
     else {
+      unlink(tf)
+      message("NOTE: NCBI .dmp files saved at ", td)
       files
     }
 }
@@ -195,9 +208,17 @@ download_gbif <- function() {
   td <- tempdir()
   url1 <- "https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip"
   utils::download.file(url1,tf)
-  files <- utils::unzip(tf, files = c("backbone/Taxon.tsv"), exdir = td)
-  message("GBIF data dump has been downloaded and extracted.")
-  unlink(tf)
-  message("NOTE: Taxon.tsv is stored at ", files)
-  files
+  if (file.exists(tf)) {
+    message("GBIF backbone taxonomy has been downloaded.")
+  }
+  files <- utils::unzip(tf, files = c(file.path("backbone","Taxon.tsv")), exdir = td)
+  if (file.exists(file.path(td, "backbone","Taxon.tsv"))) {
+    message("Taxon.tsv has been extracted.")
+    message("NOTE: Taxon.tsv is stored at ", files)
+    unlink(tf)
+    files
+  }
+  else if (!file.exists(file.path(td, "backbone","Taxon.tsv"))) {
+    stop("Error saving Taxon.tsv. Consider raising an issue on Github.")
+  }
 }

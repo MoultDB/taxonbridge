@@ -1,6 +1,7 @@
 # taxonbridge 1.2.1
 
 * Fixed bug in `download_ncbi()` method
+* Updated `download_ncbi()` and `download_gbif()` with file checks
 
 # taxonbridge 1.2.0
 
