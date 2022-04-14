@@ -3,6 +3,7 @@
 <img src="https://github.com/MoultDB/taxonbridge/blob/master/taxonbridge_logo.png" align="left" style="margin: 0px 10px 0px 0px;" alt="" width="120"></img>
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/MoultDB/taxonbridge/actions/workflows/main.yml/badge.svg)](https://github.com/MoultDB/taxonbridge/actions/workflows/main.yml)
+[![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Werner0/a32a60e64ce4c19b9b63d9025b26c9d5/raw/dev_version.json)](https://github.com/MoultDB/taxonbridge#development-version)
 [![CRAN Status](https://www.r-pkg.org/badges/version/taxonbridge)](https://CRAN.R-project.org/package=taxonbridge)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/taxonbridge)](https://cran.r-project.org/package=taxonbridge)
 <!-- badges: end -->
