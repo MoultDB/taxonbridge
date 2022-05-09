@@ -108,3 +108,9 @@ See the [workflow](https://github.com/MoultDB/taxonbridge/blob/master/taxonbridg
 [Global Biodiversity Information Facility (GBIF) backbone taxonomy](https://hosted-datasets.gbif.org/datasets/backbone/current/)
 
 [National Center for Biotechnology Information (NCBI) taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/)
+
+## Citation
+
+To cite taxonbridge in publications use:
+
+Veldsman WP, Campli G, Dind S, Rech de Laval V, Drage HB, Waterhouse RM and Robinson-Rechavi M (2022) Taxonbridge: an R package to create custom taxonomies based on the NCBI and GBIF taxonomies, <i>bioRxiv</i>, <b>490269</b>. DOI: https://doi.org/10.1101/2022.05.02.490269
