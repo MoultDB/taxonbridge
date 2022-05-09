@@ -12,6 +12,6 @@ citEntry(
   volume   = "490269",
   url      = "https://doi.org/10.1101/2022.05.02.490269",
   textVersion = paste(
-  "Taxonbridge: an R package to create custom taxonomies based on the NCBI and GBIF taxonomies, BioRxiv, 490269"
+  "Veldsman WP, Campli G, Dind S, Rech de Laval V, Drage HB, Waterhouse RM and Robinson-Rechavi M (2022) Taxonbridge: an R package to create custom taxonomies based on the NCBI and GBIF taxonomies, bioRxiv, 490269."
   )
 )
