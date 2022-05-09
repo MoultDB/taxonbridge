@@ -1,9 +1,20 @@
 Package: taxonbridge
 Title: Create Custom Taxonomies Based on the NCBI Taxonomy and GBIF Backbone Taxonomy 
-Version: 1.2.1
+Version: 1.2.2
 Authors@R: 
-    person("Werner", "Veldsman", , "wernerpieter.veldsman@unil.ch", role = c("aut", "cre"),
+    c(person("Werner", "Veldsman", ,"wernerpieter.veldsman@unil.ch", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9837-8332")),
+      person("Giulia", "Campli", ,"giulia.campli@unil.ch", role = c("aut")),
+      person("Sagane", "Dind", , "sagane.dind@unil.ch", role = c("aut")),
+      person("Valentine", "Rech de Laval", , "valentine.rechdelaval@unil.ch", role = c("aut"),
+           comment = c(ORCID = "0000-0002-3020-1490")),
+      person("Harriet", "Drage", , "harriet.drage@unil.ch", role = c("aut"),
+           comment = c(ORCID = "0000-0002-0759-5970")),
+      person("Robert", "Waterhouse", , "robert.waterhouse@unil.ch", role = c("aut"),
+           comment = c(ORCID = "0000-0003-4199-9052")),
+      person("Marc", "Robinson-Rechavi", , "marc.robinson-rechavi@unil.ch", role = c("aut"),
            comment = c(ORCID = "0000-0001-9837-8332"))
+           )
 Description: The NCBI taxonomy is a popular resource for taxonomic studies but it only contains
     data on species with sequence data whereas the GBIF has a more extensive coverage of
     extinct species. Taxonbridge is useful for the creation and analysis of custom taxonomies

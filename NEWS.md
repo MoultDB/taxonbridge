@@ -1,3 +1,5 @@
+# taxonbridge 1.2.2
+
 # taxonbridge 1.2.1
 
 * Fixed bug in `download_ncbi()` method

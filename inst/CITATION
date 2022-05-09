@@ -1,0 +1,17 @@
+citHeader("To cite taxonbridge in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "Taxonbridge: an R package to create custom taxonomies based on the NCBI and GBIF taxonomies",
+  author   = personList(as.person("Werner P. Veldsman"), as.person("Giulia Campli"),
+                        as.person("Sagane Dind"), as.person("Valentine Rech de Laval"),
+                        as.person("Harriet B. Drage"), as.person("Robert M. Waterhouse"),
+                        as.person("Marc Robinson-Rechavi")),
+  journal  = "BioRxiv",
+  year     = "2022",
+  volume   = "490269",
+  url      = "https://doi.org/10.1101/2022.05.02.490269",
+  textVersion = paste(
+  "Taxonbridge: an R package to create custom taxonomies based on the NCBI and GBIF taxonomies, BioRxiv, 490269"
+  )
+)
