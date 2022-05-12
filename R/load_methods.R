@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv")}
+#' \dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv.gz")}
 #' \dontrun{load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))}
 load_taxonomies <- function(GBIF_path, NCBI_path) {
 
@@ -107,7 +107,7 @@ load_sample <- function() {
 #' @param taxonkitpath A string containing the full path to where `Taxonkit` is installed (optional).
 #'
 #' @return A character vector containing paths to the relevant downloaded and unzipped NCBI data dump files, or
-#' if the `taxonkitpath` parameter was set, the path to `All.lineages.tsv`.
+#' if the `taxonkitpath` parameter was set, the path to `All.lineages.tsv.gz`.
 #'
 #'@details
 #' This method downloads a NCBI taxonomy archive file to a temporary directory,
@@ -116,10 +116,10 @@ load_sample <- function() {
 #' these four files must be carried out with Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}),
 #' either automatically or manually. If the path to a Taxonkit installation is supplied, Taxonkit is
 #' called and the location of the four files is passed to Taxonkit as an argument for automatic parsing.
-#' Taxonkit output is saved in the same temporary folder in a file called `All.lineages.tsv`.
+#' Taxonkit output is saved in the same temporary folder in a file called `All.lineages.tsv.gz`.
 #' If the path to Taxonkit is not supplied, parsing should be carried out manually using the command:
-#' `taxonkit list --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank
-#' --show-name --data-dir=path/to/downloaded/files | taxonkit reformat --data-dir=path/to/downloaded/files > All.lineages.tsv`
+#' `taxonkit list --data-dir=path/to/downloaded/files --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank
+#' --show-name --data-dir=path/to/downloaded/files | taxonkit reformat --data-dir=path/to/downloaded/files -o All.lineages.tsv.gz`
 #'
 #' @export
 #'
@@ -133,8 +133,14 @@ download_ncbi <- function(taxonkitpath = NA) {
     }
     tryCatch(
       expr = {
-        system(paste0(taxonkitpath, " version"))
-        message("Taxonkit detected!")
+        system(paste0(taxonkitpath, " version"), ignore.stdout = TRUE)
+        version <- gsub("taxonkit v", "", system(paste0(taxonkitpath, " version"), intern = TRUE))
+        if (numeric_version(version) < numeric_version("0.8.0")) {
+          stop("Taxonkit v0.8.0 or greater is required. Download a more recent version of Taxonkit and try again.")
+          }
+        else if (numeric_version(version) > numeric_version("0.8.0")) {
+          message("Taxonkit v", version ," detected!")
+        }
       },
       warning = function(e){
         stop(paste("Taxonkit not detected. Is this the correct path to Taxonkit:", taxonkitpath, "?"))
@@ -158,20 +164,20 @@ download_ncbi <- function(taxonkitpath = NA) {
         system(paste0("cd ", td,";",taxonkitpath," --data-dir=",
                       file.path(td) ," list --ids 1 | ",taxonkitpath ,
                       " lineage --show-lineage-taxids --show-lineage-ranks --show-rank --show-name --data-dir=",
-                      file.path(td) ," | ",taxonkitpath ," reformat --data-dir=",
-                      file.path(td) ," > All.lineages.tsv"), ignore.stderr = TRUE)
+                      file.path(td) ," | ",taxonkitpath ," reformat --taxid-field 1 --data-dir=",
+                      file.path(td) ," -o All.lineages.tsv.gz"), ignore.stderr = TRUE)
         unlink(tf)
         message("NCBI files parsed and result saved.")
-        location <- file.path(td, "All.lineages.tsv")
+        location <- file.path(td, "All.lineages.tsv.gz")
         if (file.exists(location)&file.size(location)!=0) {
-        message("NOTE: All.lineages.tsv is stored at ", td)
+        message("NOTE: All.lineages.tsv.gz is stored at ", td)
         location
         }
         else if (!file.exists(location)) {
-          stop("Error saving All.lineages.tsv. Consider raising an issue on Github.")
+          stop("Error saving All.lineages.tsv.gz. Consider raising an issue on Github.")
         }
         else if (file.size(location)==0) {
-          stop("All.lineages.tsv is empty. Consider raising an issue on Github.")
+          stop("All.lineages.tsv.gz is empty. Consider raising an issue on Github.")
         }
       },
       warning = function(e){

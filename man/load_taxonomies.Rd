@@ -22,6 +22,6 @@ This method merges a GBIF \code{Taxon.tsv} file (see \code{download_gbif()}) and
 a Taxonkit (\url{https://bioinf.shenwei.me/taxonkit/download/}) output file (see \code{download_ncbi()}).
 }
 \examples{
-\dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv")}
+\dontrun{load_taxonomies("path/to/GBIF/Taxon.tsv","path/to/NCBI-Taxonkit/All.lineages.tsv.gz")}
 \dontrun{load_taxonomies(download_gbif(), download_ncbi(taxonkitpath = "/path/to/taxonkit"))}
 }

@@ -1,5 +1,8 @@
 # taxonbridge 1.2.2
 
+* Optimized `download_ncbi()` [Thanks to https://github.com/shenwei356]
+* Updated co-author and citation information
+
 # taxonbridge 1.2.1
 
 * Fixed bug in `download_ncbi()` method
