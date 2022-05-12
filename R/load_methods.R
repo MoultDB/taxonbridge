@@ -118,8 +118,9 @@ load_sample <- function() {
 #' called and the location of the four files is passed to Taxonkit as an argument for automatic parsing.
 #' Taxonkit output is saved in the same temporary folder in a file called `All.lineages.tsv.gz`.
 #' If the path to Taxonkit is not supplied, parsing should be carried out manually using the command:
-#' `taxonkit list --data-dir=path/to/downloaded/files --ids 1 | taxonkit lineage --show-lineage-taxids --show-lineage-ranks --show-rank
-#' --show-name --data-dir=path/to/downloaded/files | taxonkit reformat --data-dir=path/to/downloaded/files -o All.lineages.tsv.gz`
+#' `taxonkit list --data-dir=path/to/downloaded/files --ids 1 | taxonkit lineage --show-lineage-taxids
+#' --show-lineage-ranks --show-rank --show-name --data-dir=path/to/downloaded/files | taxonkit reformat
+#' --taxid-field 1 --data-dir=path/to/downloaded/files -o All.lineages.tsv.gz`
 #'
 #' @export
 #'
@@ -138,7 +139,7 @@ download_ncbi <- function(taxonkitpath = NA) {
         if (numeric_version(version) < numeric_version("0.8.0")) {
           stop("Taxonkit v0.8.0 or greater is required. Download a more recent version of Taxonkit and try again.")
           }
-        else if (numeric_version(version) > numeric_version("0.8.0")) {
+        else if (numeric_version(version) >= numeric_version("0.8.0")) {
           message("Taxonkit v", version ," detected!")
         }
       },
