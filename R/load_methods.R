@@ -218,7 +218,7 @@ download_gbif <- function() {
   if (file.exists(tf)) {
     message("GBIF backbone taxonomy has been downloaded.")
   }
-  files <- utils::unzip(tf, files = c(file.path("backbone","Taxon.tsv")), exdir = td)
+  files <- utils::unzip(tf, files = "Taxon.tsv", exdir = td)
   if (file.exists(file.path(td, "backbone","Taxon.tsv"))) {
     message("Taxon.tsv has been extracted.")
     message("NOTE: Taxon.tsv is stored at ", files)
